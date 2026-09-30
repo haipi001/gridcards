@@ -26,6 +26,13 @@ export type RuicOptions = {
   profile?: CardEffectProfile;
   autoRotate?: boolean;
   interactive?: boolean;
+  /**
+   * Allow the card to turn over. Defaults to true but only takes effect when a
+   * back image was supplied — flipping to the blank "paper" texture would show
+   * a card back this site has no image of, which is exactly the kind of
+   * invention the archive refuses to make.
+   */
+  allowFlip?: boolean;
   quality?: "low" | "medium" | "high";
   onFail?: (reason: string) => void;
 };
@@ -253,8 +260,12 @@ export function createRuicRenderer(opts: RuicOptions): RuicHandle | null {
     canvas.addEventListener("pointerup", onUp);
     canvas.addEventListener("pointercancel", onUp);
     canvas.addEventListener("wheel", onWheel, { passive: false });
-    canvas.addEventListener("dblclick", onDouble);
   }
+
+  // Flipping is opt-out *and* requires a real back image. Without one the
+  // renderer would only have its blank paper texture to show.
+  const canFlip = opts.allowFlip !== false && Boolean(opts.back);
+  if (canFlip) canvas.addEventListener("dblclick", onDouble);
 
   const onLost = (e: Event) => {
     e.preventDefault();

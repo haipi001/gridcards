@@ -53,6 +53,8 @@ const ROWS: ArchiveRow[] = ARCHIVE_CARDS.map((card) => {
     year: card.year,
     cardName: card.cardName,
     img: card.img,
+    w: card.w,
+    h: card.h,
     href: PLAYER_SLUGS.has(slug) ? `/players/${slug}/` : "/archive/",
     a: theme.a,
     b: theme.b,

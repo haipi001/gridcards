@@ -1,28 +1,40 @@
 import type { CardEffectProfile } from './types';
 
-export type EffectConfig = {
-  foil: number;
-  reflection: number;
-  saturationShift: number;
-  sparkle: number;
-  edgeLight: number;
-};
+/**
+ * Which foil shader a card gets.
+ *
+ * The only source of truth for what each profile *looks like* is the FINISH
+ * table in ruicShaders.ts — a duplicate config table used to live here and
+ * quietly disagreed with it, so it was removed.
+ */
 
-export const EFFECT_PROFILES: Record<CardEffectProfile, EffectConfig> = {
-  original:   { foil: 0.00, reflection: 0.18, saturationShift: 0.00, sparkle: 0.00, edgeLight: 0.12 },
-  pearl:      { foil: 0.34, reflection: 0.40, saturationShift: 0.04, sparkle: 0.06, edgeLight: 0.22 },
-  silver:     { foil: 0.48, reflection: 0.52, saturationShift: -0.10, sparkle: 0.08, edgeLight: 0.30 },
-  gold:       { foil: 0.58, reflection: 0.58, saturationShift: 0.05, sparkle: 0.10, edgeLight: 0.36 },
-  refractor:  { foil: 0.66, reflection: 0.62, saturationShift: 0.12, sparkle: 0.12, edgeLight: 0.32 },
-  rainbow:    { foil: 0.76, reflection: 0.68, saturationShift: 0.18, sparkle: 0.16, edgeLight: 0.36 },
-  custom:     { foil: 0.52, reflection: 0.52, saturationShift: 0.08, sparkle: 0.10, edgeLight: 0.30 },
-};
+/**
+ * Market rarity → foil profile.
+ *
+ * `MarketItem.effect` carries the parallel tier (see EFFECT_BY_RARITY in
+ * scripts/gen-market-mock.mjs): superfractor / gold / refractor / prism / none.
+ * Note "superfractor" does NOT contain the substring "refractor", which is why
+ * 1/1 SuperFractors used to fall through to a plain, foil-free render.
+ */
+export function resolveEffectFromMarketEffect(marketEffect?: string | null): CardEffectProfile {
+  const v = (marketEffect ?? '').toLowerCase();
+  if (v.includes('super') || v.includes('rainbow')) return 'rainbow';
+  if (v.includes('gold')) return 'gold';
+  if (v.includes('refractor') || v.includes('holo') || v.includes('chrome')) return 'refractor';
+  if (v.includes('prism') || v.includes('prizm')) return 'pearl';
+  if (v.includes('silver')) return 'silver';
+  return 'original';
+}
 
+/** Free-text parallel name → foil profile (used by the upload form). */
 export function resolveEffectFromVariant(variantName?: string | null): CardEffectProfile {
   const v = (variantName ?? '').toLowerCase();
+  if (v.includes('super') || v.includes('rainbow')) return 'rainbow';
   if (v.includes('gold')) return 'gold';
   if (v.includes('silver')) return 'silver';
-  if (v.includes('pearl')) return 'pearl';
+  // Topps spells it "prism", Panini "prizm" — both are the same pearlescent
+  // finish and neither contains the other's spelling.
+  if (v.includes('pearl') || v.includes('prism') || v.includes('prizm')) return 'pearl';
   if (v.includes('refractor') || v.includes('holo')) return 'refractor';
   return 'original';
 }

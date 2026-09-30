@@ -10,6 +10,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import WatchButton from "@/components/WatchButton";
+import { archiveAspect as aspect } from "@/lib/archiveAspect";
 import { teamLogo } from "@/lib/teams";
 
 export type ArchiveRow = {
@@ -22,6 +23,9 @@ export type ArchiveRow = {
   year: string;
   cardName: string;
   img: string;
+  /** Real scan size, used to frame the card at its own aspect ratio. */
+  w: number;
+  h: number;
   href: string;
   a: string;
   b: string;
@@ -256,14 +260,22 @@ export default function ArchiveBrowser({
         <div className="archiveGrid">
           {filtered.map((r) => (
             <div className="archiveCard" key={r.id}>
-              <Link href={r.href} className="archiveVisual">
+              <Link
+                href={r.href}
+                className="archiveVisual"
+                style={
+                  aspect(r.w, r.h)
+                    ? ({ aspectRatio: aspect(r.w, r.h) } as React.CSSProperties)
+                    : undefined
+                }
+              >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={r.img}
                   alt={`${r.driver} ${r.serial} card`}
                   loading="lazy"
-                  width={360}
-                  height={500}
+                  width={r.w || 360}
+                  height={r.h || 500}
                 />
                 <span className="serialFlag">{r.serial}</span>
                 <span className="yearFlag">{r.year}</span>

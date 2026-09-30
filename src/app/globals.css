@@ -409,6 +409,13 @@ button:has(.soonTag):hover{opacity:.65;background:inherit;color:inherit}
 .cardFxFlat img{width:100%;height:100%;object-fit:cover;display:block}
 .cardFxSheen{position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,#ffffff14,transparent 45%,#ffffff0f);mix-blend-mode:screen}
 .cardFxHint{position:absolute;left:8px;bottom:6px;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#ffffff70;pointer-events:none}
+/* Front/back switch. Dark-on-dark on purpose: it sits on the card stage, which
+   keeps its dark ground in both themes. */
+.cardFxFlip{position:absolute;right:8px;top:8px;z-index:2;display:flex;gap:2px;padding:2px;border-radius:999px;background:#080a0bd9;border:1px solid #ffffff1f;backdrop-filter:blur(6px)}
+.cardFxFlip button{border:0;background:transparent;color:#ffffffa6;font-size:10px;font-weight:800;letter-spacing:.04em;padding:4px 8px;border-radius:999px;line-height:1}
+.cardFxFlip button:hover:not(:disabled){color:#fff;background:#ffffff14}
+.cardFxFlip button.on{background:#ffffff1f;color:#fff}
+.cardFxFlip button:disabled{opacity:.45;cursor:not-allowed}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
 .uploadDrop{display:grid;gap:8px}
@@ -1039,3 +1046,329 @@ body{
   .avatarBtn:hover,.spotlightArrow:hover{transform:none}
   .spotlightArrow:hover{transform:translateY(-50%)}
 }
+
+/* ==========================================================================
+   V20 · ARCHIVE GALLERY
+   The 515-card grid was the densest surface on the site: a 5:7 crop window
+   with 14px gutters, 9px card padding and a meta block with no line-height.
+   Reworked around three ideas:
+     1. the frame follows the scan — every card is shown complete, nothing is
+        cropped (see src/lib/archiveAspect.ts)
+     2. real gutters — 20px between cards, 12px inside them
+     3. the meta block reads as a caption, not a data dump
+   ========================================================================== */
+
+.archiveGrid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:20px;
+  margin-top:24px;
+}
+@media(max-width:1400px){.archiveGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:1100px){.archiveGrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.archiveGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+
+.archiveCard{
+  display:flex;
+  flex-direction:column;
+  border:1px solid #262d36;
+  border-radius:14px;
+  padding:12px;
+  /* A card on a mount: the panel is a hair lighter than the page so the grid
+     reads as objects rather than holes. */
+  background:linear-gradient(180deg,#0e1216,#0a0c0f);
+  box-shadow:0 1px 0 #ffffff05 inset;
+  transition:transform .22s cubic-bezier(.2,.7,.3,1),border-color .22s,box-shadow .22s;
+}
+.archiveCard:hover{
+  border-color:#46525c;
+  transform:translateY(-5px);
+  box-shadow:0 18px 44px rgba(0,0,0,.55);
+}
+
+/* The scan sits on a dark mount and keeps its own aspect ratio (inline style
+   wins). Landscape scans therefore show completely instead of being cropped
+   to a portrait window. */
+.archiveVisual{
+  position:relative;
+  display:block;
+  flex:0 0 auto;
+  border-radius:10px;
+  overflow:hidden;
+  aspect-ratio:5/7;
+  background:
+    radial-gradient(120% 90% at 50% 0%,#171d24 0%,#0b0e12 70%),
+    #0b0e12;
+  box-shadow:0 0 0 1px #ffffff08 inset;
+}
+.archiveVisual img{
+  width:100%;
+  height:100%;
+  object-fit:contain;   /* never crop a 1/1 */
+  display:block;
+  transition:transform .35s;
+}
+.archiveCard:hover .archiveVisual img{transform:scale(1.02)}
+
+.archiveVisual .serialFlag{right:10px;top:10px}
+.archiveVisual .yearFlag{left:10px;bottom:10px}
+.archiveVisual .watchIcon{left:10px;top:10px;right:auto}
+
+/* Captions: pinned to the bottom so every card in a row ends on the same
+   baseline even when the scans above them differ in shape. */
+.archiveMeta{
+  margin-top:auto;
+  padding:12px 4px 4px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  line-height:1.45;
+}
+.archiveMeta b{font-size:14.5px;line-height:1.28;letter-spacing:-.005em}
+.archiveMeta span{font-size:11.5px;color:var(--mut)}
+.archiveCardName{color:#98a2ad;font-size:11px;display:block;margin-top:-2px}
+.archiveId{font-size:10px;color:#5f6872;letter-spacing:.06em}
+
+/* Toolbar stays reachable through 515 cards. */
+.archiveToolbar{
+  position:sticky;
+  top:66px;
+  z-index:30;
+  margin:20px 0 2px;
+  padding:12px 0 10px;
+  background:linear-gradient(var(--bg) 78%,transparent);
+}
+.filterGroup{margin-top:10px}
+
+@media(max-width:430px){
+  .archiveGrid{gap:10px}
+  .archiveCard{padding:8px;border-radius:12px}
+  .archiveMeta{padding:10px 3px 3px;gap:4px}
+  .archiveMeta b{font-size:13.5px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .archiveCard{transition:none}
+  .archiveCard:hover{transform:none}
+}
+
+/* ==========================================================================
+   V21 · LIGHT THEME  (opt-in, <html data-theme="light">)
+   The chrome flips; the cards do not.
+   Every surface below is scoped so that the *card faces* — .mFace,
+   .mStageCard, .mStage, .itemStage, .archiveVisual, .cardFx, .cardObject —
+   keep their dark ground. Rarity colours, team liveries and the
+   mix-blend-mode:screen foil layers are all authored against a dark card, and
+   inverting them would break far more than it would fix. Around them the page
+   becomes a light gallery: white panels, dark text, one accent.
+   ========================================================================== */
+
+html[data-theme="light"]{
+  --bg:#f4f6f8;
+  --s1:#ffffff;--s2:#f7f9fb;--s3:#eef1f5;
+  --line:#dde2e8;--line2:#c3cbd5;
+  --text:#11151a;--mut:#59636f;--mut2:#78838f;
+  --cyan:#0a7ea4;--blue:#1668d6;--gold:#96690f;
+  --green:#0f8a4f;--red:#c5303a;
+}
+
+/* --- base ---------------------------------------------------------------- */
+html[data-theme="light"] body{
+  background:
+    radial-gradient(1100px 480px at 50% -220px,#ffffff 0%,transparent 62%),
+    radial-gradient(900px 420px at 88% -160px,#e8eff8 0%,transparent 58%),
+    var(--bg);
+  color:var(--text);
+}
+html[data-theme="light"] ::selection{background:#1668d62e;color:#11151a}
+
+/* --- honesty strip + top chrome ------------------------------------------ */
+html[data-theme="light"] .demoStrip{
+  background:linear-gradient(90deg,#ffffff,#f5f7fa);
+  border-bottom:1px solid var(--line);
+}
+html[data-theme="light"] .demoStripLink{color:#1668d6}
+html[data-theme="light"] .topbar{
+  background:rgba(255,255,255,.84);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 10px 30px rgba(15,23,32,.07);
+}
+html[data-theme="light"] .mark{border-color:#11151a}
+html[data-theme="light"] .mark:after{border-color:#11151a}
+html[data-theme="light"] .brand em{color:#0a7ea4}
+html[data-theme="light"] .nav a,
+html[data-theme="light"] .nav button{color:#4c5663}
+html[data-theme="light"] .nav a:hover,
+html[data-theme="light"] .nav button:hover{background:#eef1f5;color:#11151a}
+html[data-theme="light"] .nav a.active,
+html[data-theme="light"] .nav button.active{
+  background:#e5eaf0;color:#11151a;box-shadow:inset 0 0 0 1px #11151a10;
+}
+html[data-theme="light"] .skipLink{background:#fff;color:#11151a;border-color:var(--line2)}
+
+/* --- theme switch glyphs -------------------------------------------------- */
+.themeToggle .themeIcon{width:18px;height:18px;display:block}
+.themeToggle .themeIconSun{display:none}
+html[data-theme="light"] .themeToggle .themeIconMoon{display:none}
+html[data-theme="light"] .themeToggle .themeIconSun{display:block}
+
+/* --- controls: white fields, dark primary --------------------------------- */
+html[data-theme="light"] .btn,
+html[data-theme="light"] .iconBtn,
+html[data-theme="light"] .chip,
+html[data-theme="light"] .pill,
+html[data-theme="light"] .mBtn,
+html[data-theme="light"] .input,
+html[data-theme="light"] .sort,
+html[data-theme="light"] .search input,
+html[data-theme="light"] .archiveSearch input,
+html[data-theme="light"] .dataToolbar input,
+html[data-theme="light"] .filter input[type=text],
+html[data-theme="light"] .priceBox,
+html[data-theme="light"] .close,
+html[data-theme="light"] .tool,
+html[data-theme="light"] .followMini,
+html[data-theme="light"] .toggleCard,
+html[data-theme="light"] .paletteTrigger,
+html[data-theme="light"] .uploadPreview{
+  background:#fff;border-color:var(--line2);color:var(--text);
+}
+html[data-theme="light"] .btn:hover,
+html[data-theme="light"] .iconBtn:hover,
+html[data-theme="light"] .chip:hover,
+html[data-theme="light"] .paletteTrigger:hover{background:#eef1f5;border-color:#a6b0bc}
+html[data-theme="light"] .archiveSearch button{background:#eef1f5;color:#4c5663}
+html[data-theme="light"] .searchIcon,
+html[data-theme="light"] .kbd{color:#78838f;border-color:var(--line2)}
+
+/* The primary button is a solid dark slab in dark mode; invert it rather than
+   letting a white-on-white button disappear. */
+html[data-theme="light"] .btn.primary,
+html[data-theme="light"] .buySmall{background:#11151a;border-color:#11151a;color:#fff}
+html[data-theme="light"] .btn.primary:hover{background:#000;border-color:#000}
+html[data-theme="light"] .chip.active,
+html[data-theme="light"] .pill.active,
+html[data-theme="light"] .marketTabs .chip.active{
+  background:#11151a;color:#fff;border-color:#11151a;
+}
+
+/* --- surfaces ------------------------------------------------------------- */
+html[data-theme="light"] .panel,
+html[data-theme="light"] .statTile,
+html[data-theme="light"] .marketCard,
+html[data-theme="light"] .catalogSectionHead,
+html[data-theme="light"] .infoBox,
+html[data-theme="light"] .composer,
+html[data-theme="light"] .post,
+html[data-theme="light"] .dataTable,
+html[data-theme="light"] .mTable,
+html[data-theme="light"] .mTape,
+html[data-theme="light"] .mLeaders,
+html[data-theme="light"] .mTile,
+html[data-theme="light"] .mHeroCard,
+html[data-theme="light"] .mSeriesCard,
+html[data-theme="light"] .watchItem,
+html[data-theme="light"] .editionCard,
+html[data-theme="light"] .specialSet,
+html[data-theme="light"] .marketPulse,
+html[data-theme="light"] .spotlight,
+html[data-theme="light"] .playerHero,
+html[data-theme="light"] .archiveCard,
+html[data-theme="light"] .cardBody{
+  background:#fff;border-color:var(--line);
+}
+html[data-theme="light"] .archiveCard{box-shadow:none}
+html[data-theme="light"] .marketPulse>div{border-left-color:var(--line)}
+html[data-theme="light"] .dataHead{background:#f2f5f8;color:#59636f}
+html[data-theme="light"] .dataRow,
+html[data-theme="light"] .serialRow{border-top-color:var(--line)}
+html[data-theme="light"] .dataRow:hover,
+html[data-theme="light"] .serialRow:hover,
+html[data-theme="light"] .post:hover{background:#f5f8fa}
+html[data-theme="light"] .composerFoot{border-top-color:var(--line)}
+html[data-theme="light"] .spark polyline{stroke:#1668d6}
+
+/* --- text ----------------------------------------------------------------- */
+html[data-theme="light"] .mut,
+html[data-theme="light"] .count,
+html[data-theme="light"] .eyebrow,
+html[data-theme="light"] small{color:var(--mut)}
+html[data-theme="light"] .link{color:#1668d6}
+html[data-theme="light"] .composer textarea{color:var(--text)}
+html[data-theme="light"] .modalRow{color:var(--mut)}
+html[data-theme="light"] .modalRow b{color:var(--text)}
+
+/* Gradient-clipped headings go transparent — restore them or they vanish. */
+html[data-theme="light"] .marketHeader h1,
+html[data-theme="light"] .collectionsHero h1,
+html[data-theme="light"] .mHeadText h1,
+html[data-theme="light"] .notFound h1{
+  background:none;
+  -webkit-background-clip:border-box;
+  background-clip:border-box;
+  color:var(--text);
+}
+
+/* Badges that sit *on* the dark card face keep light-on-dark. */
+html[data-theme="light"] .serialFlag{color:#e8eef4;border-color:#ffffff2e}
+html[data-theme="light"] .mTileSerial{background:#ffffffe6;color:#11151a}
+html[data-theme="light"] .check input{accent-color:#1668d6}
+
+/* --- overlays, drawers, toasts -------------------------------------------- */
+html[data-theme="light"] .overlay{background:rgba(15,20,26,.45)}
+html[data-theme="light"] .paletteOverlay{background:rgba(15,20,26,.34)}
+html[data-theme="light"] .palette,
+html[data-theme="light"] .drawer,
+html[data-theme="light"] .modal{background:#fff;border-color:var(--line2)}
+html[data-theme="light"] .toast{
+  background:#fff;color:#11151a;
+  border:1px solid var(--line2);
+  box-shadow:0 12px 34px rgba(15,23,32,.18);
+}
+
+/* --- footer --------------------------------------------------------------- */
+html[data-theme="light"] .siteFooter{background:linear-gradient(180deg,#ffffff,#eef1f5)}
+
+/* --- sticky bars must not let content bleed through ----------------------- */
+html[data-theme="light"] .resultsTop{background:linear-gradient(var(--bg) 82%,transparent)}
+html[data-theme="light"] .archiveToolbar{background:linear-gradient(var(--bg) 78%,transparent)}
+
+/* --- scrollbar rails ------------------------------------------------------ */
+html[data-theme="light"] .mRail,
+html[data-theme="light"] .scanStrip,
+html[data-theme="light"] .chips,
+html[data-theme="light"] .marketTabs,
+html[data-theme="light"] .archiveToolbar{scrollbar-color:#c3cbd5 transparent}
+html[data-theme="light"] .mRail::-webkit-scrollbar-thumb,
+html[data-theme="light"] .scanStrip::-webkit-scrollbar-thumb{background:#c3cbd5}
+
+/* --- active tabs / hover rows that kept a dark pill ----------------------- */
+html[data-theme="light"] .playerNav button.active,
+html[data-theme="light"] .serialTabs button.active,
+html[data-theme="light"] .profileTabs button.active,
+html[data-theme="light"] .roleSwitch button.active,
+html[data-theme="light"] .paletteRow.active,
+html[data-theme="light"] .toggleCard.active{background:#e5eaf0;color:#11151a}
+html[data-theme="light"] .indexRow.linkRow:hover,
+html[data-theme="light"] .expandToggle:hover,
+html[data-theme="light"] .profileTabs a:hover{background:#eef1f5;color:#11151a}
+html[data-theme="light"] .footerCol a:hover{color:#11151a}
+
+/* --- strips and inputs living inside a white panel ------------------------ */
+html[data-theme="light"] .buyStrip{
+  background:#f5f8fa;border-top-color:var(--line);color:var(--mut);
+}
+html[data-theme="light"] .buyStrip b{color:var(--text)}
+html[data-theme="light"] .listRow input,
+html[data-theme="light"] .nameFilter{background:#fff;border-color:var(--line2);color:var(--text)}
+html[data-theme="light"] .watchCount{box-shadow:0 0 0 2px #fff}
+html[data-theme="light"] .spotlightArrow{background:#ffffffe6;color:#11151a;border-color:var(--line2)}
+
+/* --- hairline dividers ---------------------------------------------------- */
+html[data-theme="light"] .tier:before{background:var(--line)}
+html[data-theme="light"] .formSection,
+html[data-theme="light"] .modalRow{border-top-color:var(--line)}
+html[data-theme="light"] .filter,
+html[data-theme="light"] .filterRail{border-color:var(--line)}
+html[data-theme="light"] .playerHero,
+html[data-theme="light"] .serialHero{border-bottom-color:var(--line)}

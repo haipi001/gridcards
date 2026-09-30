@@ -28,7 +28,9 @@ export default defineConfig({
       timeout: 60_000,
     },
     {
-      command: "node scripts/serve-out.mjs 3101",
+      // The dev project must hit ./out-dev (built with NEXT_PUBLIC_DEV_SWITCHES=1);
+      // serving ./out here would make every ?trade=1 assertion fail by design.
+      command: "DIR=out-dev node scripts/serve-out.mjs 3101",
       url: "http://127.0.0.1:3101/",
       reuseExistingServer: true,
       timeout: 60_000,

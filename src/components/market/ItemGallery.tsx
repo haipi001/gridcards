@@ -4,6 +4,7 @@ import { useState } from "react";
 import CardVisual from "@/components/CardVisual";
 import { CardEffectsViewer } from "@/components/card-effects/CardEffectsViewer";
 import { rarityMeta } from "@/market/rarity";
+import { resolveEffectFromMarketEffect } from "@/components/card-effects/effectProfiles";
 import type { MarketItem } from "@/market/types";
 
 // Detail-page hero: a large floating card.
@@ -17,6 +18,9 @@ export default function ItemGallery({ item }: { item: MarketItem }) {
   const [mode, setMode] = useState<"art" | "fx">("art");
   const meta = rarityMeta(item.rarity);
   const canFx = Boolean(item.image);
+  // The foil follows the parallel tier — a 1/1 SuperFractor should not render
+  // with the same finish as a base card.
+  const effect = resolveEffectFromMarketEffect(item.effect);
 
   return (
     <div className="mGallery">
@@ -30,10 +34,9 @@ export default function ItemGallery({ item }: { item: MarketItem }) {
           <div className="mStageFx">
             <CardEffectsViewer
               frontUrl={item.image as string}
-              effect="refractor"
+              effect={effect}
               autoRotate
               interactive
-              allowFlip={false}
             />
           </div>
         ) : (

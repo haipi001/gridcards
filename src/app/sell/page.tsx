@@ -257,8 +257,8 @@ export default function SellPage() {
               <div>
                 <EffectPicker value={effect} onChange={setEffect} />
                 <p className="mut" style={{ marginTop: 10, fontSize: 11.5 }}>
-                  拖拽旋转、双击翻面、滚轮缩放。默认效果按版本名自动推断（Gold→烫金、
-                  Refractor→折射），可手动改。
+                  拖拽旋转、滚轮缩放{back ? "、双击或点「反面」翻面" : "；上传反面影像后即可翻面"}。
+                  默认效果按版本名自动推断（Gold→烫金、Refractor→折射、SuperFractor→彩虹），可手动改。
                 </p>
               </div>
             </div>

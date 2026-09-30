@@ -5,6 +5,7 @@ import TopNav from "@/components/TopNav";
 import SearchPalette from "@/components/SearchPalette";
 import SellButton from "@/components/SellButton";
 import WatchlistLink from "@/components/WatchlistLink";
+import ThemeToggle, { THEME_BOOTSTRAP } from "@/components/ThemeToggle";
 import SiteFooter from "@/components/SiteFooter";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, pageMeta } from "@/lib/seo";
@@ -44,8 +45,13 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#07090b",
-  colorScheme: "dark",
+  // The chrome switches with data-theme; tell the browser UI about both so the
+  // address bar never clashes with the page.
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#07090b" },
+    { media: "(prefers-color-scheme: light)", color: "#f4f6f8" },
+  ],
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({
@@ -54,8 +60,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh-CN">
+    <html lang="zh-CN" data-theme="dark" suppressHydrationWarning>
       <body>
+        {/* Resolve the stored (or OS) theme before the first paint, otherwise a
+            light-mode visitor sees a dark flash on every navigation. */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />
         {/* First tab stop: keyboard users must be able to jump past the chrome. */}
         <a className="skipLink" href="#main">
           跳到主要内容
@@ -82,6 +91,7 @@ export default function RootLayout({
           <div className="topRight">
             <SellButton />
             <WatchlistLink />
+            <ThemeToggle />
             <Link className="avatarBtn" href="/profile/" aria-label="My Space"></Link>
           </div>
         </header>

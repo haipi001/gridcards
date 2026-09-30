@@ -7,7 +7,9 @@
 // The market is frozen and all data is mock, so caching the JSON is safe and
 // makes browse / detail usable offline. No API calls are ever intercepted.
 
-const CACHE = "gridcards-v1";
+// Bump with every release that changes prerendered HTML: cached pages carry
+// the old inline theme bootstrap / markup until the cache is replaced.
+const CACHE = "gridcards-v2";
 const PRECACHE = [
   "/index.html",
   "/404.html",

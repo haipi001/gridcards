@@ -24,6 +24,7 @@ import { money } from "@/lib/marketUi";
 import CardVisual from "@/components/CardVisual";
 import { archiveForDriver, type ArchiveCard } from "@/lib/archiveData";
 import { initials, teamLogo, teamTheme, variantArt } from "@/lib/teams";
+import { archiveAspect } from "@/lib/archiveAspect";
 
 export async function generateMetadata({
   params,
@@ -236,12 +237,21 @@ export default async function PlayerPage({
           <div className="archiveGrid">
             {digitals.map((card) => (
               <div className="archiveCard" key={card.id}>
-                <div className="archiveVisual">
+                <div
+                  className="archiveVisual"
+                  style={
+                    archiveAspect(card.w, card.h)
+                      ? ({ aspectRatio: archiveAspect(card.w, card.h) } as React.CSSProperties)
+                      : undefined
+                  }
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={card.img}
                     alt={`${card.driver} 1/1 digital card`}
                     loading="lazy"
+                    width={card.w || 360}
+                    height={card.h || 500}
                   />
                   <span className="serialFlag">1/1</span>
                 </div>

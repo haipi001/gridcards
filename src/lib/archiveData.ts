@@ -8,6 +8,10 @@
 // Sources: data/allofone-archive.json (cards + imagery) and
 // data/driver-team.json (constructor per season, from the Ergast-compatible
 // Jolpica API — the archive itself carries no team column).
+//
+// `w`/`h` are the real pixel size of each scan, read from the JPEG header at
+// build time. The gallery frames cards at their own aspect ratio so nothing is
+// cropped — see src/lib/archiveAspect.ts.
 
 export type ArchiveCard = {
   id: number;
@@ -21,6 +25,10 @@ export type ArchiveCard = {
   year: string;
   cardName: string;
   img: string;
+  /** Real scan width in px; 0 when the file could not be read. */
+  w: number;
+  /** Real scan height in px; 0 when the file could not be read. */
+  h: number;
 };
 
 export const ARCHIVE_CARDS: ArchiveCard[] = [
@@ -33,7 +41,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/2.jpg"
+    "img": "/img/archive/2.jpg",
+    "w": 360,
+    "h": 520
   },
   {
     "id": 3,
@@ -44,7 +54,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/3.jpg"
+    "img": "/img/archive/3.jpg",
+    "w": 360,
+    "h": 479
   },
   {
     "id": 5,
@@ -55,7 +67,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/5.jpg"
+    "img": "/img/archive/5.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 6,
@@ -66,7 +80,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Paddock Pass F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/6.jpg"
+    "img": "/img/archive/6.jpg",
+    "w": 360,
+    "h": 514
   },
   {
     "id": 7,
@@ -77,7 +93,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Paddock Pass F1",
     "year": "2024",
     "cardName": "Lone Star",
-    "img": "/img/archive/7.jpg"
+    "img": "/img/archive/7.jpg",
+    "w": 360,
+    "h": 500
   },
   {
     "id": 8,
@@ -88,7 +106,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "Speed Demons",
-    "img": "/img/archive/8.jpg"
+    "img": "/img/archive/8.jpg",
+    "w": 360,
+    "h": 501
   },
   {
     "id": 9,
@@ -99,7 +119,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Turbo Attax F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/9.jpg"
+    "img": "/img/archive/9.jpg",
+    "w": 360,
+    "h": 505
   },
   {
     "id": 10,
@@ -110,7 +132,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Turbo Attax F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/10.jpg"
+    "img": "/img/archive/10.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 11,
@@ -121,7 +145,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/11.jpg"
+    "img": "/img/archive/11.jpg",
+    "w": 360,
+    "h": 254
   },
   {
     "id": 12,
@@ -132,7 +158,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/12.jpg"
+    "img": "/img/archive/12.jpg",
+    "w": 360,
+    "h": 256
   },
   {
     "id": 13,
@@ -143,7 +171,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/13.jpg"
+    "img": "/img/archive/13.jpg",
+    "w": 360,
+    "h": 489
   },
   {
     "id": 14,
@@ -154,7 +184,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/14.jpg"
+    "img": "/img/archive/14.jpg",
+    "w": 360,
+    "h": 252
   },
   {
     "id": 15,
@@ -165,7 +197,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/15.jpg"
+    "img": "/img/archive/15.jpg",
+    "w": 341,
+    "h": 242
   },
   {
     "id": 16,
@@ -176,7 +210,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/16.jpg"
+    "img": "/img/archive/16.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 17,
@@ -187,7 +223,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/17.jpg"
+    "img": "/img/archive/17.jpg",
+    "w": 360,
+    "h": 261
   },
   {
     "id": 18,
@@ -198,7 +236,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/18.jpg"
+    "img": "/img/archive/18.jpg",
+    "w": 360,
+    "h": 258
   },
   {
     "id": 19,
@@ -209,7 +249,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/19.jpg"
+    "img": "/img/archive/19.jpg",
+    "w": 360,
+    "h": 255
   },
   {
     "id": 20,
@@ -220,7 +262,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/20.jpg"
+    "img": "/img/archive/20.jpg",
+    "w": 333,
+    "h": 238
   },
   {
     "id": 21,
@@ -231,7 +275,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/21.jpg"
+    "img": "/img/archive/21.jpg",
+    "w": 436,
+    "h": 595
   },
   {
     "id": 22,
@@ -242,7 +288,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/22.jpg"
+    "img": "/img/archive/22.jpg",
+    "w": 433,
+    "h": 602
   },
   {
     "id": 23,
@@ -253,7 +301,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/23.jpg"
+    "img": "/img/archive/23.jpg",
+    "w": 431,
+    "h": 605
   },
   {
     "id": 24,
@@ -264,7 +314,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/24.jpg"
+    "img": "/img/archive/24.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 25,
@@ -275,7 +327,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/25.jpg"
+    "img": "/img/archive/25.jpg",
+    "w": 800,
+    "h": 571
   },
   {
     "id": 26,
@@ -286,7 +340,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/26.jpg"
+    "img": "/img/archive/26.jpg",
+    "w": 426,
+    "h": 599
   },
   {
     "id": 27,
@@ -297,7 +353,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/27.jpg"
+    "img": "/img/archive/27.jpg",
+    "w": 360,
+    "h": 256
   },
   {
     "id": 28,
@@ -308,7 +366,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/28.jpg"
+    "img": "/img/archive/28.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 29,
@@ -319,7 +379,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/29.jpg"
+    "img": "/img/archive/29.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 30,
@@ -330,7 +392,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/30.jpg"
+    "img": "/img/archive/30.jpg",
+    "w": 360,
+    "h": 259
   },
   {
     "id": 31,
@@ -341,7 +405,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/31.jpg"
+    "img": "/img/archive/31.jpg",
+    "w": 360,
+    "h": 124
   },
   {
     "id": 32,
@@ -352,7 +418,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/32.jpg"
+    "img": "/img/archive/32.jpg",
+    "w": 360,
+    "h": 258
   },
   {
     "id": 33,
@@ -363,7 +431,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/33.jpg"
+    "img": "/img/archive/33.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 34,
@@ -374,7 +444,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/34.jpg"
+    "img": "/img/archive/34.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 35,
@@ -385,7 +457,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/35.jpg"
+    "img": "/img/archive/35.jpg",
+    "w": 360,
+    "h": 260
   },
   {
     "id": 36,
@@ -396,7 +470,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/36.jpg"
+    "img": "/img/archive/36.jpg",
+    "w": 435,
+    "h": 598
   },
   {
     "id": 37,
@@ -407,7 +483,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/37.jpg"
+    "img": "/img/archive/37.jpg",
+    "w": 360,
+    "h": 256
   },
   {
     "id": 38,
@@ -418,7 +496,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/38.jpg"
+    "img": "/img/archive/38.jpg",
+    "w": 360,
+    "h": 499
   },
   {
     "id": 39,
@@ -429,7 +509,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/39.jpg"
+    "img": "/img/archive/39.jpg",
+    "w": 447,
+    "h": 612
   },
   {
     "id": 40,
@@ -440,7 +522,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/40.jpg"
+    "img": "/img/archive/40.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 41,
@@ -451,7 +535,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/41.jpg"
+    "img": "/img/archive/41.jpg",
+    "w": 360,
+    "h": 498
   },
   {
     "id": 42,
@@ -462,7 +548,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/42.jpg"
+    "img": "/img/archive/42.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 43,
@@ -473,7 +561,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/43.jpg"
+    "img": "/img/archive/43.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 44,
@@ -484,7 +574,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/44.jpg"
+    "img": "/img/archive/44.jpg",
+    "w": 360,
+    "h": 500
   },
   {
     "id": 45,
@@ -495,7 +587,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/45.jpg"
+    "img": "/img/archive/45.jpg",
+    "w": 360,
+    "h": 498
   },
   {
     "id": 46,
@@ -506,7 +600,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/46.jpg"
+    "img": "/img/archive/46.jpg",
+    "w": 800,
+    "h": 570
   },
   {
     "id": 48,
@@ -517,7 +613,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/48.jpg"
+    "img": "/img/archive/48.jpg",
+    "w": 433,
+    "h": 601
   },
   {
     "id": 49,
@@ -528,7 +626,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/49.jpg"
+    "img": "/img/archive/49.jpg",
+    "w": 800,
+    "h": 574
   },
   {
     "id": 50,
@@ -539,7 +639,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/50.jpg"
+    "img": "/img/archive/50.jpg",
+    "w": 360,
+    "h": 255
   },
   {
     "id": 51,
@@ -550,7 +652,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/51.jpg"
+    "img": "/img/archive/51.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 52,
@@ -561,7 +665,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/52.jpg"
+    "img": "/img/archive/52.jpg",
+    "w": 360,
+    "h": 495
   },
   {
     "id": 53,
@@ -572,7 +678,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/53.jpg"
+    "img": "/img/archive/53.jpg",
+    "w": 360,
+    "h": 262
   },
   {
     "id": 54,
@@ -583,7 +691,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/54.jpg"
+    "img": "/img/archive/54.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 55,
@@ -594,7 +704,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/55.jpg"
+    "img": "/img/archive/55.jpg",
+    "w": 360,
+    "h": 489
   },
   {
     "id": 56,
@@ -605,7 +717,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/56.jpg"
+    "img": "/img/archive/56.jpg",
+    "w": 360,
+    "h": 258
   },
   {
     "id": 57,
@@ -616,7 +730,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/57.jpg"
+    "img": "/img/archive/57.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 58,
@@ -627,7 +743,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/58.jpg"
+    "img": "/img/archive/58.jpg",
+    "w": 360,
+    "h": 496
   },
   {
     "id": 59,
@@ -638,7 +756,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/59.jpg"
+    "img": "/img/archive/59.jpg",
+    "w": 360,
+    "h": 254
   },
   {
     "id": 60,
@@ -649,7 +769,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/60.jpg"
+    "img": "/img/archive/60.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 61,
@@ -660,7 +782,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/61.jpg"
+    "img": "/img/archive/61.jpg",
+    "w": 360,
+    "h": 503
   },
   {
     "id": 62,
@@ -671,7 +795,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/62.jpg"
+    "img": "/img/archive/62.jpg",
+    "w": 360,
+    "h": 256
   },
   {
     "id": 63,
@@ -682,7 +808,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/63.jpg"
+    "img": "/img/archive/63.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 64,
@@ -693,7 +821,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/64.jpg"
+    "img": "/img/archive/64.jpg",
+    "w": 360,
+    "h": 258
   },
   {
     "id": 65,
@@ -704,7 +834,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/65.jpg"
+    "img": "/img/archive/65.jpg",
+    "w": 360,
+    "h": 262
   },
   {
     "id": 66,
@@ -715,7 +847,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/66.jpg"
+    "img": "/img/archive/66.jpg",
+    "w": 360,
+    "h": 244
   },
   {
     "id": 67,
@@ -726,7 +860,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/67.jpg"
+    "img": "/img/archive/67.jpg",
+    "w": 360,
+    "h": 251
   },
   {
     "id": 68,
@@ -737,7 +873,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/68.jpg"
+    "img": "/img/archive/68.jpg",
+    "w": 360,
+    "h": 509
   },
   {
     "id": 69,
@@ -748,7 +886,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/69.jpg"
+    "img": "/img/archive/69.jpg",
+    "w": 360,
+    "h": 175
   },
   {
     "id": 71,
@@ -759,7 +899,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/71.jpg"
+    "img": "/img/archive/71.jpg",
+    "w": 360,
+    "h": 260
   },
   {
     "id": 72,
@@ -770,7 +912,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/72.jpg"
+    "img": "/img/archive/72.jpg",
+    "w": 360,
+    "h": 255
   },
   {
     "id": 73,
@@ -781,7 +925,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/73.jpg"
+    "img": "/img/archive/73.jpg",
+    "w": 360,
+    "h": 255
   },
   {
     "id": 74,
@@ -792,7 +938,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/74.jpg"
+    "img": "/img/archive/74.jpg",
+    "w": 360,
+    "h": 252
   },
   {
     "id": 75,
@@ -803,7 +951,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/75.jpg"
+    "img": "/img/archive/75.jpg",
+    "w": 360,
+    "h": 250
   },
   {
     "id": 76,
@@ -814,7 +964,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/76.jpg"
+    "img": "/img/archive/76.jpg",
+    "w": 360,
+    "h": 489
   },
   {
     "id": 77,
@@ -825,7 +977,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/77.jpg"
+    "img": "/img/archive/77.jpg",
+    "w": 360,
+    "h": 481
   },
   {
     "id": 78,
@@ -836,7 +990,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/78.jpg"
+    "img": "/img/archive/78.jpg",
+    "w": 360,
+    "h": 256
   },
   {
     "id": 79,
@@ -847,7 +1003,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/79.jpg"
+    "img": "/img/archive/79.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 80,
@@ -858,7 +1016,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/80.jpg"
+    "img": "/img/archive/80.jpg",
+    "w": 360,
+    "h": 519
   },
   {
     "id": 81,
@@ -869,7 +1029,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/81.jpg"
+    "img": "/img/archive/81.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 82,
@@ -880,7 +1042,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/82.jpg"
+    "img": "/img/archive/82.jpg",
+    "w": 360,
+    "h": 525
   },
   {
     "id": 83,
@@ -891,7 +1055,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/83.jpg"
+    "img": "/img/archive/83.jpg",
+    "w": 360,
+    "h": 264
   },
   {
     "id": 84,
@@ -902,7 +1068,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/84.jpg"
+    "img": "/img/archive/84.jpg",
+    "w": 360,
+    "h": 259
   },
   {
     "id": 85,
@@ -913,7 +1081,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/85.jpg"
+    "img": "/img/archive/85.jpg",
+    "w": 360,
+    "h": 490
   },
   {
     "id": 86,
@@ -924,7 +1094,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/86.jpg"
+    "img": "/img/archive/86.jpg",
+    "w": 360,
+    "h": 517
   },
   {
     "id": 87,
@@ -935,7 +1107,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/87.jpg"
+    "img": "/img/archive/87.jpg",
+    "w": 360,
+    "h": 495
   },
   {
     "id": 88,
@@ -946,7 +1120,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/88.jpg"
+    "img": "/img/archive/88.jpg",
+    "w": 360,
+    "h": 515
   },
   {
     "id": 89,
@@ -957,7 +1133,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/89.jpg"
+    "img": "/img/archive/89.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 90,
@@ -968,7 +1146,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/90.jpg"
+    "img": "/img/archive/90.jpg",
+    "w": 360,
+    "h": 252
   },
   {
     "id": 91,
@@ -979,7 +1159,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/91.jpg"
+    "img": "/img/archive/91.jpg",
+    "w": 360,
+    "h": 481
   },
   {
     "id": 92,
@@ -990,7 +1172,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/92.jpg"
+    "img": "/img/archive/92.jpg",
+    "w": 360,
+    "h": 247
   },
   {
     "id": 93,
@@ -1001,7 +1185,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/93.jpg"
+    "img": "/img/archive/93.jpg",
+    "w": 360,
+    "h": 504
   },
   {
     "id": 94,
@@ -1012,7 +1198,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/94.jpg"
+    "img": "/img/archive/94.jpg",
+    "w": 360,
+    "h": 499
   },
   {
     "id": 95,
@@ -1023,7 +1211,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/95.jpg"
+    "img": "/img/archive/95.jpg",
+    "w": 360,
+    "h": 253
   },
   {
     "id": 96,
@@ -1034,7 +1224,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/96.jpg"
+    "img": "/img/archive/96.jpg",
+    "w": 360,
+    "h": 493
   },
   {
     "id": 97,
@@ -1045,7 +1237,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/97.jpg"
+    "img": "/img/archive/97.jpg",
+    "w": 360,
+    "h": 500
   },
   {
     "id": 98,
@@ -1056,7 +1250,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/98.jpg"
+    "img": "/img/archive/98.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 99,
@@ -1067,7 +1263,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/99.jpg"
+    "img": "/img/archive/99.jpg",
+    "w": 360,
+    "h": 500
   },
   {
     "id": 100,
@@ -1078,7 +1276,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/100.jpg"
+    "img": "/img/archive/100.jpg",
+    "w": 360,
+    "h": 249
   },
   {
     "id": 101,
@@ -1089,7 +1289,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/101.jpg"
+    "img": "/img/archive/101.jpg",
+    "w": 360,
+    "h": 503
   },
   {
     "id": 102,
@@ -1100,7 +1302,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/102.jpg"
+    "img": "/img/archive/102.jpg",
+    "w": 360,
+    "h": 486
   },
   {
     "id": 103,
@@ -1111,7 +1315,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/103.jpg"
+    "img": "/img/archive/103.jpg",
+    "w": 360,
+    "h": 509
   },
   {
     "id": 104,
@@ -1122,7 +1328,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/104.jpg"
+    "img": "/img/archive/104.jpg",
+    "w": 360,
+    "h": 503
   },
   {
     "id": 105,
@@ -1133,7 +1341,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/105.jpg"
+    "img": "/img/archive/105.jpg",
+    "w": 360,
+    "h": 261
   },
   {
     "id": 106,
@@ -1144,7 +1354,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/106.jpg"
+    "img": "/img/archive/106.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 107,
@@ -1155,7 +1367,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/107.jpg"
+    "img": "/img/archive/107.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 108,
@@ -1166,7 +1380,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/108.jpg"
+    "img": "/img/archive/108.jpg",
+    "w": 360,
+    "h": 512
   },
   {
     "id": 109,
@@ -1177,7 +1393,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/109.jpg"
+    "img": "/img/archive/109.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 110,
@@ -1188,7 +1406,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/110.jpg"
+    "img": "/img/archive/110.jpg",
+    "w": 360,
+    "h": 509
   },
   {
     "id": 111,
@@ -1199,7 +1419,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/111.jpg"
+    "img": "/img/archive/111.jpg",
+    "w": 360,
+    "h": 505
   },
   {
     "id": 112,
@@ -1210,7 +1432,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/112.jpg"
+    "img": "/img/archive/112.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 114,
@@ -1221,7 +1445,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/114.jpg"
+    "img": "/img/archive/114.jpg",
+    "w": 447,
+    "h": 613
   },
   {
     "id": 115,
@@ -1232,7 +1458,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/115.jpg"
+    "img": "/img/archive/115.jpg",
+    "w": 360,
+    "h": 515
   },
   {
     "id": 116,
@@ -1243,7 +1471,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/116.jpg"
+    "img": "/img/archive/116.jpg",
+    "w": 360,
+    "h": 511
   },
   {
     "id": 117,
@@ -1254,7 +1484,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Turbo Attax F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/117.jpg"
+    "img": "/img/archive/117.jpg",
+    "w": 360,
+    "h": 514
   },
   {
     "id": 119,
@@ -1265,7 +1497,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/119.jpg"
+    "img": "/img/archive/119.jpg",
+    "w": 360,
+    "h": 250
   },
   {
     "id": 120,
@@ -1276,7 +1510,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/120.jpg"
+    "img": "/img/archive/120.jpg",
+    "w": 205,
+    "h": 290
   },
   {
     "id": 121,
@@ -1287,7 +1523,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/121.jpg"
+    "img": "/img/archive/121.jpg",
+    "w": 204,
+    "h": 281
   },
   {
     "id": 122,
@@ -1298,7 +1536,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/122.jpg"
+    "img": "/img/archive/122.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 123,
@@ -1309,7 +1549,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/123.jpg"
+    "img": "/img/archive/123.jpg",
+    "w": 360,
+    "h": 509
   },
   {
     "id": 124,
@@ -1320,7 +1562,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/124.jpg"
+    "img": "/img/archive/124.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 125,
@@ -1331,7 +1575,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/125.jpg"
+    "img": "/img/archive/125.jpg",
+    "w": 360,
+    "h": 505
   },
   {
     "id": 126,
@@ -1342,7 +1588,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/126.jpg"
+    "img": "/img/archive/126.jpg",
+    "w": 360,
+    "h": 252
   },
   {
     "id": 127,
@@ -1353,7 +1601,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/127.jpg"
+    "img": "/img/archive/127.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 128,
@@ -1364,7 +1614,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/128.jpg"
+    "img": "/img/archive/128.jpg",
+    "w": 360,
+    "h": 498
   },
   {
     "id": 129,
@@ -1375,7 +1627,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/129.jpg"
+    "img": "/img/archive/129.jpg",
+    "w": 360,
+    "h": 496
   },
   {
     "id": 130,
@@ -1386,7 +1640,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/130.jpg"
+    "img": "/img/archive/130.jpg",
+    "w": 360,
+    "h": 510
   },
   {
     "id": 131,
@@ -1397,7 +1653,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/131.jpg"
+    "img": "/img/archive/131.jpg",
+    "w": 360,
+    "h": 499
   },
   {
     "id": 132,
@@ -1408,7 +1666,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/132.jpg"
+    "img": "/img/archive/132.jpg",
+    "w": 401,
+    "h": 290
   },
   {
     "id": 133,
@@ -1419,7 +1679,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/133.jpg"
+    "img": "/img/archive/133.jpg",
+    "w": 360,
+    "h": 492
   },
   {
     "id": 134,
@@ -1430,7 +1692,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/134.jpg"
+    "img": "/img/archive/134.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 135,
@@ -1441,7 +1705,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/135.jpg"
+    "img": "/img/archive/135.jpg",
+    "w": 360,
+    "h": 505
   },
   {
     "id": 136,
@@ -1452,7 +1718,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/136.jpg"
+    "img": "/img/archive/136.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 137,
@@ -1463,7 +1731,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/137.jpg"
+    "img": "/img/archive/137.jpg",
+    "w": 360,
+    "h": 272
   },
   {
     "id": 138,
@@ -1474,7 +1744,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/138.jpg"
+    "img": "/img/archive/138.jpg",
+    "w": 360,
+    "h": 268
   },
   {
     "id": 139,
@@ -1485,7 +1757,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/139.jpg"
+    "img": "/img/archive/139.jpg",
+    "w": 360,
+    "h": 513
   },
   {
     "id": 140,
@@ -1496,7 +1770,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/140.jpg"
+    "img": "/img/archive/140.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 141,
@@ -1507,7 +1783,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/141.jpg"
+    "img": "/img/archive/141.jpg",
+    "w": 360,
+    "h": 530
   },
   {
     "id": 142,
@@ -1518,7 +1796,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/142.jpg"
+    "img": "/img/archive/142.jpg",
+    "w": 360,
+    "h": 510
   },
   {
     "id": 144,
@@ -1529,7 +1809,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/144.jpg"
+    "img": "/img/archive/144.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 145,
@@ -1540,7 +1822,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/145.jpg"
+    "img": "/img/archive/145.jpg",
+    "w": 360,
+    "h": 256
   },
   {
     "id": 146,
@@ -1551,7 +1835,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/146.jpg"
+    "img": "/img/archive/146.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 147,
@@ -1562,7 +1848,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/147.jpg"
+    "img": "/img/archive/147.jpg",
+    "w": 360,
+    "h": 504
   },
   {
     "id": 148,
@@ -1573,7 +1861,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/148.jpg"
+    "img": "/img/archive/148.jpg",
+    "w": 360,
+    "h": 495
   },
   {
     "id": 149,
@@ -1584,7 +1874,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/149.jpg"
+    "img": "/img/archive/149.jpg",
+    "w": 360,
+    "h": 511
   },
   {
     "id": 150,
@@ -1595,7 +1887,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/150.jpg"
+    "img": "/img/archive/150.jpg",
+    "w": 360,
+    "h": 500
   },
   {
     "id": 151,
@@ -1606,7 +1900,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/151.jpg"
+    "img": "/img/archive/151.jpg",
+    "w": 360,
+    "h": 259
   },
   {
     "id": 152,
@@ -1617,7 +1913,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/152.jpg"
+    "img": "/img/archive/152.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 153,
@@ -1628,7 +1926,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/153.jpg"
+    "img": "/img/archive/153.jpg",
+    "w": 360,
+    "h": 500
   },
   {
     "id": 154,
@@ -1639,7 +1939,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/154.jpg"
+    "img": "/img/archive/154.jpg",
+    "w": 371,
+    "h": 517
   },
   {
     "id": 155,
@@ -1650,7 +1952,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/155.jpg"
+    "img": "/img/archive/155.jpg",
+    "w": 360,
+    "h": 496
   },
   {
     "id": 156,
@@ -1661,7 +1965,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/156.jpg"
+    "img": "/img/archive/156.jpg",
+    "w": 360,
+    "h": 494
   },
   {
     "id": 157,
@@ -1672,7 +1978,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/157.jpg"
+    "img": "/img/archive/157.jpg",
+    "w": 360,
+    "h": 498
   },
   {
     "id": 158,
@@ -1683,7 +1991,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/158.jpg"
+    "img": "/img/archive/158.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 159,
@@ -1694,7 +2004,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/159.jpg"
+    "img": "/img/archive/159.jpg",
+    "w": 360,
+    "h": 495
   },
   {
     "id": 160,
@@ -1705,7 +2017,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/160.jpg"
+    "img": "/img/archive/160.jpg",
+    "w": 360,
+    "h": 510
   },
   {
     "id": 161,
@@ -1716,7 +2030,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/161.jpg"
+    "img": "/img/archive/161.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 163,
@@ -1727,7 +2043,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/163.jpg"
+    "img": "/img/archive/163.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 164,
@@ -1738,7 +2056,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/164.jpg"
+    "img": "/img/archive/164.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 165,
@@ -1749,7 +2069,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/165.jpg"
+    "img": "/img/archive/165.jpg",
+    "w": 360,
+    "h": 252
   },
   {
     "id": 166,
@@ -1760,7 +2082,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Fanatics Fest F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/166.jpg"
+    "img": "/img/archive/166.jpg",
+    "w": 360,
+    "h": 504
   },
   {
     "id": 167,
@@ -1771,7 +2095,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/167.jpg"
+    "img": "/img/archive/167.jpg",
+    "w": 360,
+    "h": 259
   },
   {
     "id": 168,
@@ -1782,7 +2108,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/168.jpg"
+    "img": "/img/archive/168.jpg",
+    "w": 493,
+    "h": 692
   },
   {
     "id": 170,
@@ -1793,7 +2121,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/170.jpg"
+    "img": "/img/archive/170.jpg",
+    "w": 360,
+    "h": 492
   },
   {
     "id": 171,
@@ -1804,7 +2134,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/171.jpg"
+    "img": "/img/archive/171.jpg",
+    "w": 360,
+    "h": 255
   },
   {
     "id": 172,
@@ -1815,7 +2147,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/172.jpg"
+    "img": "/img/archive/172.jpg",
+    "w": 360,
+    "h": 495
   },
   {
     "id": 173,
@@ -1826,7 +2160,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/173.jpg"
+    "img": "/img/archive/173.jpg",
+    "w": 360,
+    "h": 498
   },
   {
     "id": 174,
@@ -1837,7 +2173,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/174.jpg"
+    "img": "/img/archive/174.jpg",
+    "w": 360,
+    "h": 521
   },
   {
     "id": 175,
@@ -1848,7 +2186,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/175.jpg"
+    "img": "/img/archive/175.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 176,
@@ -1859,7 +2199,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/176.jpg"
+    "img": "/img/archive/176.jpg",
+    "w": 360,
+    "h": 498
   },
   {
     "id": 177,
@@ -1870,7 +2212,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/177.jpg"
+    "img": "/img/archive/177.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 178,
@@ -1881,7 +2225,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/178.jpg"
+    "img": "/img/archive/178.jpg",
+    "w": 360,
+    "h": 494
   },
   {
     "id": 179,
@@ -1892,7 +2238,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/179.jpg"
+    "img": "/img/archive/179.jpg",
+    "w": 360,
+    "h": 500
   },
   {
     "id": 180,
@@ -1903,7 +2251,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/180.jpg"
+    "img": "/img/archive/180.jpg",
+    "w": 360,
+    "h": 512
   },
   {
     "id": 181,
@@ -1914,7 +2264,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/181.jpg"
+    "img": "/img/archive/181.jpg",
+    "w": 360,
+    "h": 500
   },
   {
     "id": 182,
@@ -1925,7 +2277,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/182.jpg"
+    "img": "/img/archive/182.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 183,
@@ -1936,7 +2290,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/183.jpg"
+    "img": "/img/archive/183.jpg",
+    "w": 360,
+    "h": 513
   },
   {
     "id": 184,
@@ -1947,7 +2303,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/184.jpg"
+    "img": "/img/archive/184.jpg",
+    "w": 360,
+    "h": 511
   },
   {
     "id": 185,
@@ -1958,7 +2316,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/185.jpg"
+    "img": "/img/archive/185.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 186,
@@ -1969,7 +2329,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "Nero",
-    "img": "/img/archive/186.jpg"
+    "img": "/img/archive/186.jpg",
+    "w": 360,
+    "h": 512
   },
   {
     "id": 187,
@@ -1980,7 +2342,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "Nero",
-    "img": "/img/archive/187.jpg"
+    "img": "/img/archive/187.jpg",
+    "w": 360,
+    "h": 501
   },
   {
     "id": 188,
@@ -1991,7 +2355,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "Nero",
-    "img": "/img/archive/188.jpg"
+    "img": "/img/archive/188.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 189,
@@ -2002,7 +2368,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/189.jpg"
+    "img": "/img/archive/189.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 190,
@@ -2013,7 +2381,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "Nero",
-    "img": "/img/archive/190.jpg"
+    "img": "/img/archive/190.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 191,
@@ -2024,7 +2394,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/191.jpg"
+    "img": "/img/archive/191.jpg",
+    "w": 360,
+    "h": 273
   },
   {
     "id": 192,
@@ -2035,7 +2407,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/192.jpg"
+    "img": "/img/archive/192.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 193,
@@ -2046,7 +2420,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/193.jpg"
+    "img": "/img/archive/193.jpg",
+    "w": 360,
+    "h": 512
   },
   {
     "id": 194,
@@ -2057,7 +2433,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/194.jpg"
+    "img": "/img/archive/194.jpg",
+    "w": 360,
+    "h": 503
   },
   {
     "id": 195,
@@ -2068,7 +2446,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/195.jpg"
+    "img": "/img/archive/195.jpg",
+    "w": 360,
+    "h": 515
   },
   {
     "id": 196,
@@ -2079,7 +2459,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/196.jpg"
+    "img": "/img/archive/196.jpg",
+    "w": 360,
+    "h": 499
   },
   {
     "id": 197,
@@ -2090,7 +2472,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/197.jpg"
+    "img": "/img/archive/197.jpg",
+    "w": 360,
+    "h": 505
   },
   {
     "id": 198,
@@ -2101,7 +2485,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/198.jpg"
+    "img": "/img/archive/198.jpg",
+    "w": 360,
+    "h": 495
   },
   {
     "id": 199,
@@ -2112,7 +2498,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/199.jpg"
+    "img": "/img/archive/199.jpg",
+    "w": 360,
+    "h": 518
   },
   {
     "id": 200,
@@ -2123,7 +2511,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/200.jpg"
+    "img": "/img/archive/200.jpg",
+    "w": 360,
+    "h": 519
   },
   {
     "id": 201,
@@ -2134,7 +2524,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/201.jpg"
+    "img": "/img/archive/201.jpg",
+    "w": 360,
+    "h": 513
   },
   {
     "id": 202,
@@ -2145,7 +2537,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/202.jpg"
+    "img": "/img/archive/202.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 203,
@@ -2156,7 +2550,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/203.jpg"
+    "img": "/img/archive/203.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 204,
@@ -2167,7 +2563,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/204.jpg"
+    "img": "/img/archive/204.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 205,
@@ -2178,7 +2576,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/205.jpg"
+    "img": "/img/archive/205.jpg",
+    "w": 360,
+    "h": 495
   },
   {
     "id": 206,
@@ -2189,7 +2589,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/206.jpg"
+    "img": "/img/archive/206.jpg",
+    "w": 360,
+    "h": 523
   },
   {
     "id": 207,
@@ -2200,7 +2602,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/207.jpg"
+    "img": "/img/archive/207.jpg",
+    "w": 360,
+    "h": 492
   },
   {
     "id": 208,
@@ -2211,7 +2615,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/208.jpg"
+    "img": "/img/archive/208.jpg",
+    "w": 360,
+    "h": 501
   },
   {
     "id": 209,
@@ -2222,7 +2628,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/209.jpg"
+    "img": "/img/archive/209.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 210,
@@ -2233,7 +2641,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/210.jpg"
+    "img": "/img/archive/210.jpg",
+    "w": 360,
+    "h": 488
   },
   {
     "id": 211,
@@ -2244,7 +2654,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/211.jpg"
+    "img": "/img/archive/211.jpg",
+    "w": 360,
+    "h": 498
   },
   {
     "id": 212,
@@ -2255,7 +2667,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/212.jpg"
+    "img": "/img/archive/212.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 213,
@@ -2266,7 +2680,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/213.jpg"
+    "img": "/img/archive/213.jpg",
+    "w": 360,
+    "h": 495
   },
   {
     "id": 214,
@@ -2277,7 +2693,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/214.jpg"
+    "img": "/img/archive/214.jpg",
+    "w": 360,
+    "h": 504
   },
   {
     "id": 215,
@@ -2288,7 +2706,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/215.jpg"
+    "img": "/img/archive/215.jpg",
+    "w": 360,
+    "h": 504
   },
   {
     "id": 216,
@@ -2299,7 +2719,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/216.jpg"
+    "img": "/img/archive/216.jpg",
+    "w": 360,
+    "h": 266
   },
   {
     "id": 217,
@@ -2310,7 +2732,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/217.jpg"
+    "img": "/img/archive/217.jpg",
+    "w": 360,
+    "h": 262
   },
   {
     "id": 218,
@@ -2321,7 +2745,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/218.jpg"
+    "img": "/img/archive/218.jpg",
+    "w": 360,
+    "h": 485
   },
   {
     "id": 219,
@@ -2332,7 +2758,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/219.jpg"
+    "img": "/img/archive/219.jpg",
+    "w": 360,
+    "h": 505
   },
   {
     "id": 220,
@@ -2343,7 +2771,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/220.jpg"
+    "img": "/img/archive/220.jpg",
+    "w": 360,
+    "h": 488
   },
   {
     "id": 221,
@@ -2354,7 +2784,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/221.jpg"
+    "img": "/img/archive/221.jpg",
+    "w": 360,
+    "h": 503
   },
   {
     "id": 222,
@@ -2365,7 +2797,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/222.jpg"
+    "img": "/img/archive/222.jpg",
+    "w": 360,
+    "h": 513
   },
   {
     "id": 223,
@@ -2376,7 +2810,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/223.jpg"
+    "img": "/img/archive/223.jpg",
+    "w": 360,
+    "h": 511
   },
   {
     "id": 224,
@@ -2387,7 +2823,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/224.jpg"
+    "img": "/img/archive/224.jpg",
+    "w": 360,
+    "h": 253
   },
   {
     "id": 225,
@@ -2398,7 +2836,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/225.jpg"
+    "img": "/img/archive/225.jpg",
+    "w": 360,
+    "h": 270
   },
   {
     "id": 226,
@@ -2409,7 +2849,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/226.jpg"
+    "img": "/img/archive/226.jpg",
+    "w": 360,
+    "h": 261
   },
   {
     "id": 227,
@@ -2420,7 +2862,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/227.jpg"
+    "img": "/img/archive/227.jpg",
+    "w": 360,
+    "h": 505
   },
   {
     "id": 228,
@@ -2431,7 +2875,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/228.jpg"
+    "img": "/img/archive/228.jpg",
+    "w": 360,
+    "h": 520
   },
   {
     "id": 229,
@@ -2442,7 +2888,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/229.jpg"
+    "img": "/img/archive/229.jpg",
+    "w": 360,
+    "h": 488
   },
   {
     "id": 230,
@@ -2453,7 +2901,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/230.jpg"
+    "img": "/img/archive/230.jpg",
+    "w": 360,
+    "h": 509
   },
   {
     "id": 231,
@@ -2464,7 +2914,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/231.jpg"
+    "img": "/img/archive/231.jpg",
+    "w": 360,
+    "h": 517
   },
   {
     "id": 232,
@@ -2475,7 +2927,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/232.jpg"
+    "img": "/img/archive/232.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 233,
@@ -2486,7 +2940,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/233.jpg"
+    "img": "/img/archive/233.jpg",
+    "w": 360,
+    "h": 520
   },
   {
     "id": 234,
@@ -2497,7 +2953,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/234.jpg"
+    "img": "/img/archive/234.jpg",
+    "w": 360,
+    "h": 496
   },
   {
     "id": 235,
@@ -2508,7 +2966,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/235.jpg"
+    "img": "/img/archive/235.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 236,
@@ -2519,7 +2979,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/236.jpg"
+    "img": "/img/archive/236.jpg",
+    "w": 360,
+    "h": 510
   },
   {
     "id": 237,
@@ -2530,7 +2992,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/237.jpg"
+    "img": "/img/archive/237.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 238,
@@ -2541,7 +3005,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/238.jpg"
+    "img": "/img/archive/238.jpg",
+    "w": 360,
+    "h": 512
   },
   {
     "id": 239,
@@ -2552,7 +3018,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/239.jpg"
+    "img": "/img/archive/239.jpg",
+    "w": 360,
+    "h": 501
   },
   {
     "id": 240,
@@ -2563,7 +3031,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/240.jpg"
+    "img": "/img/archive/240.jpg",
+    "w": 360,
+    "h": 487
   },
   {
     "id": 241,
@@ -2574,7 +3044,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/241.jpg"
+    "img": "/img/archive/241.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 242,
@@ -2585,7 +3057,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/242.jpg"
+    "img": "/img/archive/242.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 243,
@@ -2596,7 +3070,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/243.jpg"
+    "img": "/img/archive/243.jpg",
+    "w": 360,
+    "h": 503
   },
   {
     "id": 244,
@@ -2607,7 +3083,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/244.jpg"
+    "img": "/img/archive/244.jpg",
+    "w": 360,
+    "h": 511
   },
   {
     "id": 245,
@@ -2618,7 +3096,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/245.jpg"
+    "img": "/img/archive/245.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 246,
@@ -2629,7 +3109,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/246.jpg"
+    "img": "/img/archive/246.jpg",
+    "w": 360,
+    "h": 256
   },
   {
     "id": 247,
@@ -2640,7 +3122,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/247.jpg"
+    "img": "/img/archive/247.jpg",
+    "w": 360,
+    "h": 284
   },
   {
     "id": 248,
@@ -2651,7 +3135,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/248.jpg"
+    "img": "/img/archive/248.jpg",
+    "w": 360,
+    "h": 490
   },
   {
     "id": 249,
@@ -2662,7 +3148,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/249.jpg"
+    "img": "/img/archive/249.jpg",
+    "w": 360,
+    "h": 504
   },
   {
     "id": 250,
@@ -2673,7 +3161,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/250.jpg"
+    "img": "/img/archive/250.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 251,
@@ -2684,7 +3174,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/251.jpg"
+    "img": "/img/archive/251.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 252,
@@ -2695,7 +3187,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/252.jpg"
+    "img": "/img/archive/252.jpg",
+    "w": 360,
+    "h": 509
   },
   {
     "id": 253,
@@ -2706,7 +3200,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/253.jpg"
+    "img": "/img/archive/253.jpg",
+    "w": 360,
+    "h": 498
   },
   {
     "id": 254,
@@ -2717,7 +3213,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/254.jpg"
+    "img": "/img/archive/254.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 255,
@@ -2728,7 +3226,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/255.jpg"
+    "img": "/img/archive/255.jpg",
+    "w": 360,
+    "h": 510
   },
   {
     "id": 256,
@@ -2739,7 +3239,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/256.jpg"
+    "img": "/img/archive/256.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 257,
@@ -2750,7 +3252,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/257.jpg"
+    "img": "/img/archive/257.jpg",
+    "w": 360,
+    "h": 249
   },
   {
     "id": 258,
@@ -2761,7 +3265,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/258.jpg"
+    "img": "/img/archive/258.jpg",
+    "w": 360,
+    "h": 265
   },
   {
     "id": 259,
@@ -2772,7 +3278,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/259.jpg"
+    "img": "/img/archive/259.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 260,
@@ -2783,7 +3291,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/260.jpg"
+    "img": "/img/archive/260.jpg",
+    "w": 360,
+    "h": 267
   },
   {
     "id": 261,
@@ -2794,7 +3304,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Paddock Pass F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/261.jpg"
+    "img": "/img/archive/261.jpg",
+    "w": 360,
+    "h": 505
   },
   {
     "id": 262,
@@ -2805,7 +3317,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Paddock Pass F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/262.jpg"
+    "img": "/img/archive/262.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 263,
@@ -2816,7 +3330,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/263.jpg"
+    "img": "/img/archive/263.jpg",
+    "w": 360,
+    "h": 499
   },
   {
     "id": 264,
@@ -2827,7 +3343,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Paddock Pass F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/264.jpg"
+    "img": "/img/archive/264.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 265,
@@ -2838,7 +3356,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/265.jpg"
+    "img": "/img/archive/265.jpg",
+    "w": 360,
+    "h": 515
   },
   {
     "id": 266,
@@ -2849,7 +3369,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/266.jpg"
+    "img": "/img/archive/266.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 267,
@@ -2860,7 +3382,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/267.jpg"
+    "img": "/img/archive/267.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 268,
@@ -2871,7 +3395,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/268.jpg"
+    "img": "/img/archive/268.jpg",
+    "w": 360,
+    "h": 264
   },
   {
     "id": 269,
@@ -2882,7 +3408,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/269.jpg"
+    "img": "/img/archive/269.jpg",
+    "w": 360,
+    "h": 258
   },
   {
     "id": 270,
@@ -2893,7 +3421,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/270.jpg"
+    "img": "/img/archive/270.jpg",
+    "w": 360,
+    "h": 260
   },
   {
     "id": 271,
@@ -2904,7 +3434,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/271.jpg"
+    "img": "/img/archive/271.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 272,
@@ -2915,7 +3447,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/272.jpg"
+    "img": "/img/archive/272.jpg",
+    "w": 360,
+    "h": 259
   },
   {
     "id": 273,
@@ -2926,7 +3460,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/273.jpg"
+    "img": "/img/archive/273.jpg",
+    "w": 360,
+    "h": 261
   },
   {
     "id": 274,
@@ -2937,7 +3473,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/274.jpg"
+    "img": "/img/archive/274.jpg",
+    "w": 360,
+    "h": 259
   },
   {
     "id": 275,
@@ -2948,7 +3486,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/275.jpg"
+    "img": "/img/archive/275.jpg",
+    "w": 360,
+    "h": 260
   },
   {
     "id": 276,
@@ -2959,7 +3499,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/276.jpg"
+    "img": "/img/archive/276.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 277,
@@ -2970,7 +3512,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/277.jpg"
+    "img": "/img/archive/277.jpg",
+    "w": 360,
+    "h": 269
   },
   {
     "id": 278,
@@ -2981,7 +3525,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/278.jpg"
+    "img": "/img/archive/278.jpg",
+    "w": 360,
+    "h": 260
   },
   {
     "id": 279,
@@ -2992,7 +3538,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/279.jpg"
+    "img": "/img/archive/279.jpg",
+    "w": 360,
+    "h": 264
   },
   {
     "id": 280,
@@ -3003,7 +3551,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/280.jpg"
+    "img": "/img/archive/280.jpg",
+    "w": 360,
+    "h": 265
   },
   {
     "id": 281,
@@ -3014,7 +3564,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/281.jpg"
+    "img": "/img/archive/281.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 282,
@@ -3025,7 +3577,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/282.jpg"
+    "img": "/img/archive/282.jpg",
+    "w": 360,
+    "h": 258
   },
   {
     "id": 283,
@@ -3036,7 +3590,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/283.jpg"
+    "img": "/img/archive/283.jpg",
+    "w": 360,
+    "h": 253
   },
   {
     "id": 284,
@@ -3047,7 +3603,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/284.jpg"
+    "img": "/img/archive/284.jpg",
+    "w": 360,
+    "h": 260
   },
   {
     "id": 285,
@@ -3058,7 +3616,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/285.jpg"
+    "img": "/img/archive/285.jpg",
+    "w": 360,
+    "h": 514
   },
   {
     "id": 286,
@@ -3069,7 +3629,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/286.jpg"
+    "img": "/img/archive/286.jpg",
+    "w": 360,
+    "h": 511
   },
   {
     "id": 287,
@@ -3080,7 +3642,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/287.jpg"
+    "img": "/img/archive/287.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 288,
@@ -3091,7 +3655,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/288.jpg"
+    "img": "/img/archive/288.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 289,
@@ -3102,7 +3668,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/289.jpg"
+    "img": "/img/archive/289.jpg",
+    "w": 360,
+    "h": 261
   },
   {
     "id": 290,
@@ -3113,7 +3681,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/290.jpg"
+    "img": "/img/archive/290.jpg",
+    "w": 360,
+    "h": 506
   },
   {
     "id": 291,
@@ -3124,7 +3694,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/291.jpg"
+    "img": "/img/archive/291.jpg",
+    "w": 360,
+    "h": 505
   },
   {
     "id": 292,
@@ -3135,7 +3707,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/292.jpg"
+    "img": "/img/archive/292.jpg",
+    "w": 360,
+    "h": 510
   },
   {
     "id": 293,
@@ -3146,7 +3720,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/293.jpg"
+    "img": "/img/archive/293.jpg",
+    "w": 360,
+    "h": 525
   },
   {
     "id": 294,
@@ -3157,7 +3733,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/294.jpg"
+    "img": "/img/archive/294.jpg",
+    "w": 360,
+    "h": 512
   },
   {
     "id": 295,
@@ -3168,7 +3746,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/295.jpg"
+    "img": "/img/archive/295.jpg",
+    "w": 360,
+    "h": 503
   },
   {
     "id": 297,
@@ -3179,7 +3759,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/297.jpg"
+    "img": "/img/archive/297.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 298,
@@ -3190,7 +3772,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/298.jpg"
+    "img": "/img/archive/298.jpg",
+    "w": 360,
+    "h": 260
   },
   {
     "id": 299,
@@ -3201,7 +3785,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/299.jpg"
+    "img": "/img/archive/299.jpg",
+    "w": 360,
+    "h": 255
   },
   {
     "id": 300,
@@ -3212,7 +3798,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/300.jpg"
+    "img": "/img/archive/300.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 302,
@@ -3223,7 +3811,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/302.jpg"
+    "img": "/img/archive/302.jpg",
+    "w": 360,
+    "h": 501
   },
   {
     "id": 303,
@@ -3234,7 +3824,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Turbo Attax F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/303.jpg"
+    "img": "/img/archive/303.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 304,
@@ -3245,7 +3837,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/304.jpg"
+    "img": "/img/archive/304.jpg",
+    "w": 360,
+    "h": 258
   },
   {
     "id": 305,
@@ -3256,7 +3850,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/305.jpg"
+    "img": "/img/archive/305.jpg",
+    "w": 360,
+    "h": 262
   },
   {
     "id": 306,
@@ -3267,7 +3863,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/306.jpg"
+    "img": "/img/archive/306.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 307,
@@ -3278,7 +3876,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/307.jpg"
+    "img": "/img/archive/307.jpg",
+    "w": 360,
+    "h": 514
   },
   {
     "id": 308,
@@ -3289,7 +3889,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/308.jpg"
+    "img": "/img/archive/308.jpg",
+    "w": 360,
+    "h": 258
   },
   {
     "id": 309,
@@ -3300,7 +3902,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/309.jpg"
+    "img": "/img/archive/309.jpg",
+    "w": 360,
+    "h": 256
   },
   {
     "id": 311,
@@ -3311,7 +3915,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/311.jpg"
+    "img": "/img/archive/311.jpg",
+    "w": 360,
+    "h": 501
   },
   {
     "id": 312,
@@ -3322,7 +3928,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/312.jpg"
+    "img": "/img/archive/312.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 314,
@@ -3333,7 +3941,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "Undated",
     "cardName": "",
-    "img": "/img/archive/314.jpg"
+    "img": "/img/archive/314.jpg",
+    "w": 360,
+    "h": 267
   },
   {
     "id": 315,
@@ -3344,7 +3954,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/315.jpg"
+    "img": "/img/archive/315.jpg",
+    "w": 360,
+    "h": 500
   },
   {
     "id": 316,
@@ -3355,7 +3967,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "Undated",
     "cardName": "",
-    "img": "/img/archive/316.jpg"
+    "img": "/img/archive/316.jpg",
+    "w": 360,
+    "h": 258
   },
   {
     "id": 317,
@@ -3366,7 +3980,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/317.jpg"
+    "img": "/img/archive/317.jpg",
+    "w": 360,
+    "h": 509
   },
   {
     "id": 318,
@@ -3377,7 +3993,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/318.jpg"
+    "img": "/img/archive/318.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 319,
@@ -3388,7 +4006,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/319.jpg"
+    "img": "/img/archive/319.jpg",
+    "w": 360,
+    "h": 496
   },
   {
     "id": 320,
@@ -3399,7 +4019,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/320.jpg"
+    "img": "/img/archive/320.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 321,
@@ -3410,7 +4032,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/321.jpg"
+    "img": "/img/archive/321.jpg",
+    "w": 360,
+    "h": 495
   },
   {
     "id": 323,
@@ -3421,7 +4045,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/323.jpg"
+    "img": "/img/archive/323.jpg",
+    "w": 360,
+    "h": 514
   },
   {
     "id": 324,
@@ -3432,7 +4058,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/324.jpg"
+    "img": "/img/archive/324.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 325,
@@ -3443,7 +4071,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/325.jpg"
+    "img": "/img/archive/325.jpg",
+    "w": 360,
+    "h": 259
   },
   {
     "id": 326,
@@ -3454,7 +4084,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/326.jpg"
+    "img": "/img/archive/326.jpg",
+    "w": 360,
+    "h": 499
   },
   {
     "id": 328,
@@ -3465,7 +4097,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/328.jpg"
+    "img": "/img/archive/328.jpg",
+    "w": 360,
+    "h": 490
   },
   {
     "id": 329,
@@ -3476,7 +4110,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/329.jpg"
+    "img": "/img/archive/329.jpg",
+    "w": 360,
+    "h": 499
   },
   {
     "id": 330,
@@ -3487,7 +4123,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/330.jpg"
+    "img": "/img/archive/330.jpg",
+    "w": 360,
+    "h": 503
   },
   {
     "id": 331,
@@ -3498,7 +4136,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/331.jpg"
+    "img": "/img/archive/331.jpg",
+    "w": 360,
+    "h": 498
   },
   {
     "id": 332,
@@ -3509,7 +4149,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/332.jpg"
+    "img": "/img/archive/332.jpg",
+    "w": 360,
+    "h": 505
   },
   {
     "id": 333,
@@ -3520,7 +4162,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/333.jpg"
+    "img": "/img/archive/333.jpg",
+    "w": 360,
+    "h": 261
   },
   {
     "id": 335,
@@ -3531,7 +4175,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/335.jpg"
+    "img": "/img/archive/335.jpg",
+    "w": 161,
+    "h": 226
   },
   {
     "id": 336,
@@ -3542,7 +4188,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/336.jpg"
+    "img": "/img/archive/336.jpg",
+    "w": 157,
+    "h": 223
   },
   {
     "id": 337,
@@ -3553,7 +4201,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/337.jpg"
+    "img": "/img/archive/337.jpg",
+    "w": 164,
+    "h": 225
   },
   {
     "id": 338,
@@ -3564,7 +4214,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/338.jpg"
+    "img": "/img/archive/338.jpg",
+    "w": 163,
+    "h": 227
   },
   {
     "id": 339,
@@ -3575,7 +4227,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/339.jpg"
+    "img": "/img/archive/339.jpg",
+    "w": 159,
+    "h": 226
   },
   {
     "id": 340,
@@ -3586,7 +4240,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/340.jpg"
+    "img": "/img/archive/340.jpg",
+    "w": 159,
+    "h": 226
   },
   {
     "id": 341,
@@ -3597,7 +4253,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/341.jpg"
+    "img": "/img/archive/341.jpg",
+    "w": 162,
+    "h": 227
   },
   {
     "id": 342,
@@ -3608,7 +4266,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/342.jpg"
+    "img": "/img/archive/342.jpg",
+    "w": 161,
+    "h": 222
   },
   {
     "id": 343,
@@ -3619,7 +4279,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/343.jpg"
+    "img": "/img/archive/343.jpg",
+    "w": 160,
+    "h": 226
   },
   {
     "id": 344,
@@ -3630,7 +4292,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/344.jpg"
+    "img": "/img/archive/344.jpg",
+    "w": 159,
+    "h": 223
   },
   {
     "id": 345,
@@ -3641,7 +4305,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/345.jpg"
+    "img": "/img/archive/345.jpg",
+    "w": 162,
+    "h": 222
   },
   {
     "id": 346,
@@ -3652,7 +4318,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/346.jpg"
+    "img": "/img/archive/346.jpg",
+    "w": 273,
+    "h": 389
   },
   {
     "id": 347,
@@ -3663,7 +4331,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/347.jpg"
+    "img": "/img/archive/347.jpg",
+    "w": 360,
+    "h": 257
   },
   {
     "id": 348,
@@ -3674,7 +4344,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/348.jpg"
+    "img": "/img/archive/348.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 349,
@@ -3685,7 +4357,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/349.jpg"
+    "img": "/img/archive/349.jpg",
+    "w": 360,
+    "h": 523
   },
   {
     "id": 350,
@@ -3696,7 +4370,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/350.jpg"
+    "img": "/img/archive/350.jpg",
+    "w": 360,
+    "h": 501
   },
   {
     "id": 351,
@@ -3707,7 +4383,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/351.jpg"
+    "img": "/img/archive/351.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 352,
@@ -3718,7 +4396,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/352.jpg"
+    "img": "/img/archive/352.jpg",
+    "w": 360,
+    "h": 499
   },
   {
     "id": 353,
@@ -3729,7 +4409,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/353.jpg"
+    "img": "/img/archive/353.jpg",
+    "w": 360,
+    "h": 264
   },
   {
     "id": 354,
@@ -3740,7 +4422,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/354.jpg"
+    "img": "/img/archive/354.jpg",
+    "w": 360,
+    "h": 507
   },
   {
     "id": 355,
@@ -3751,7 +4435,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/355.jpg"
+    "img": "/img/archive/355.jpg",
+    "w": 360,
+    "h": 259
   },
   {
     "id": 356,
@@ -3762,7 +4448,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/356.jpg"
+    "img": "/img/archive/356.jpg",
+    "w": 360,
+    "h": 499
   },
   {
     "id": 358,
@@ -3773,7 +4461,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/358.jpg"
+    "img": "/img/archive/358.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 359,
@@ -3784,7 +4474,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/359.jpg"
+    "img": "/img/archive/359.jpg",
+    "w": 360,
+    "h": 502
   },
   {
     "id": 360,
@@ -3795,7 +4487,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/360.jpg"
+    "img": "/img/archive/360.jpg",
+    "w": 360,
+    "h": 504
   },
   {
     "id": 361,
@@ -3806,7 +4500,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/361.jpg"
+    "img": "/img/archive/361.jpg",
+    "w": 360,
+    "h": 260
   },
   {
     "id": 362,
@@ -3817,7 +4513,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/362.jpg"
+    "img": "/img/archive/362.jpg",
+    "w": 360,
+    "h": 261
   },
   {
     "id": 363,
@@ -3828,7 +4526,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/363.jpg"
+    "img": "/img/archive/363.jpg",
+    "w": 360,
+    "h": 503
   },
   {
     "id": 364,
@@ -3839,7 +4539,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/364.jpg"
+    "img": "/img/archive/364.jpg",
+    "w": 360,
+    "h": 259
   },
   {
     "id": 366,
@@ -3850,7 +4552,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/366.jpg"
+    "img": "/img/archive/366.jpg",
+    "w": 360,
+    "h": 260
   },
   {
     "id": 367,
@@ -3861,7 +4565,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/367.jpg"
+    "img": "/img/archive/367.jpg",
+    "w": 360,
+    "h": 501
   },
   {
     "id": 368,
@@ -3872,7 +4578,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/368.jpg"
+    "img": "/img/archive/368.jpg",
+    "w": 360,
+    "h": 508
   },
   {
     "id": 369,
@@ -3883,7 +4591,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/369.jpg"
+    "img": "/img/archive/369.jpg",
+    "w": 360,
+    "h": 498
   },
   {
     "id": 370,
@@ -3894,7 +4604,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/370.jpg"
+    "img": "/img/archive/370.jpg",
+    "w": 360,
+    "h": 504
   },
   {
     "id": 371,
@@ -3905,7 +4617,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/371.jpg"
+    "img": "/img/archive/371.jpg",
+    "w": 360,
+    "h": 501
   },
   {
     "id": 372,
@@ -3916,7 +4630,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/372.jpg"
+    "img": "/img/archive/372.jpg",
+    "w": 360,
+    "h": 271
   },
   {
     "id": 373,
@@ -3927,7 +4643,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/373.jpg"
+    "img": "/img/archive/373.jpg",
+    "w": 360,
+    "h": 511
   },
   {
     "id": 375,
@@ -3938,7 +4656,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Turbo Attax F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/375.jpg"
+    "img": "/img/archive/375.jpg",
+    "w": 360,
+    "h": 514
   },
   {
     "id": 377,
@@ -3949,7 +4669,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/377.jpg"
+    "img": "/img/archive/377.jpg",
+    "w": 360,
+    "h": 497
   },
   {
     "id": 378,
@@ -3960,7 +4682,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/378.jpg"
+    "img": "/img/archive/378.jpg",
+    "w": 360,
+    "h": 499
   },
   {
     "id": 379,
@@ -3971,7 +4695,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/379.jpg"
+    "img": "/img/archive/379.jpg",
+    "w": 360,
+    "h": 255
   },
   {
     "id": 380,
@@ -3982,7 +4708,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/380.jpg"
+    "img": "/img/archive/380.jpg",
+    "w": 360,
+    "h": 265
   },
   {
     "id": 381,
@@ -3993,7 +4721,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/381.jpg"
+    "img": "/img/archive/381.jpg",
+    "w": 360,
+    "h": 260
   },
   {
     "id": 382,
@@ -4004,7 +4734,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/382.jpg"
+    "img": "/img/archive/382.jpg",
+    "w": 360,
+    "h": 260
   },
   {
     "id": 383,
@@ -4015,7 +4747,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Turbo Attax F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/383.jpg"
+    "img": "/img/archive/383.jpg",
+    "w": 360,
+    "h": 519
   },
   {
     "id": 384,
@@ -4026,7 +4760,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/384.jpg"
+    "img": "/img/archive/384.jpg",
+    "w": 360,
+    "h": 510
   },
   {
     "id": 385,
@@ -4037,7 +4773,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/385.jpg"
+    "img": "/img/archive/385.jpg",
+    "w": 316,
+    "h": 440
   },
   {
     "id": 386,
@@ -4048,7 +4786,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/386.jpg"
+    "img": "/img/archive/386.jpg",
+    "w": 315,
+    "h": 440
   },
   {
     "id": 388,
@@ -4059,7 +4799,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/388.jpg"
+    "img": "/img/archive/388.jpg",
+    "w": 315,
+    "h": 440
   },
   {
     "id": 389,
@@ -4070,7 +4812,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/389.jpg"
+    "img": "/img/archive/389.jpg",
+    "w": 306,
+    "h": 440
   },
   {
     "id": 390,
@@ -4081,7 +4825,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/390.jpg"
+    "img": "/img/archive/390.jpg",
+    "w": 302,
+    "h": 440
   },
   {
     "id": 392,
@@ -4092,7 +4838,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/392.jpg"
+    "img": "/img/archive/392.jpg",
+    "w": 440,
+    "h": 317
   },
   {
     "id": 393,
@@ -4103,7 +4851,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/393.jpg"
+    "img": "/img/archive/393.jpg",
+    "w": 310,
+    "h": 440
   },
   {
     "id": 394,
@@ -4114,7 +4864,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/394.jpg"
+    "img": "/img/archive/394.jpg",
+    "w": 440,
+    "h": 312
   },
   {
     "id": 395,
@@ -4125,7 +4877,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/395.jpg"
+    "img": "/img/archive/395.jpg",
+    "w": 440,
+    "h": 320
   },
   {
     "id": 396,
@@ -4136,7 +4890,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/396.jpg"
+    "img": "/img/archive/396.jpg",
+    "w": 440,
+    "h": 307
   },
   {
     "id": 397,
@@ -4147,7 +4903,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/397.jpg"
+    "img": "/img/archive/397.jpg",
+    "w": 440,
+    "h": 320
   },
   {
     "id": 398,
@@ -4158,7 +4916,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/398.jpg"
+    "img": "/img/archive/398.jpg",
+    "w": 440,
+    "h": 301
   },
   {
     "id": 400,
@@ -4169,7 +4929,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/400.jpg"
+    "img": "/img/archive/400.jpg",
+    "w": 440,
+    "h": 315
   },
   {
     "id": 401,
@@ -4180,7 +4942,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/401.jpg"
+    "img": "/img/archive/401.jpg",
+    "w": 440,
+    "h": 320
   },
   {
     "id": 402,
@@ -4191,7 +4955,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/402.jpg"
+    "img": "/img/archive/402.jpg",
+    "w": 312,
+    "h": 440
   },
   {
     "id": 403,
@@ -4202,7 +4968,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Turbo Attax F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/403.jpg"
+    "img": "/img/archive/403.jpg",
+    "w": 318,
+    "h": 440
   },
   {
     "id": 404,
@@ -4213,7 +4981,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/404.jpg"
+    "img": "/img/archive/404.jpg",
+    "w": 311,
+    "h": 440
   },
   {
     "id": 405,
@@ -4224,7 +4994,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "Undated",
     "cardName": "",
-    "img": "/img/archive/405.jpg"
+    "img": "/img/archive/405.jpg",
+    "w": 312,
+    "h": 440
   },
   {
     "id": 407,
@@ -4235,7 +5007,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/407.jpg"
+    "img": "/img/archive/407.jpg",
+    "w": 440,
+    "h": 316
   },
   {
     "id": 408,
@@ -4246,7 +5020,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/408.jpg"
+    "img": "/img/archive/408.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 409,
@@ -4257,7 +5033,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/409.jpg"
+    "img": "/img/archive/409.jpg",
+    "w": 316,
+    "h": 440
   },
   {
     "id": 410,
@@ -4268,7 +5046,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/410.jpg"
+    "img": "/img/archive/410.jpg",
+    "w": 323,
+    "h": 440
   },
   {
     "id": 411,
@@ -4279,7 +5059,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/411.jpg"
+    "img": "/img/archive/411.jpg",
+    "w": 308,
+    "h": 440
   },
   {
     "id": 412,
@@ -4290,7 +5072,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/412.jpg"
+    "img": "/img/archive/412.jpg",
+    "w": 330,
+    "h": 440
   },
   {
     "id": 413,
@@ -4301,7 +5085,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/413.jpg"
+    "img": "/img/archive/413.jpg",
+    "w": 440,
+    "h": 315
   },
   {
     "id": 414,
@@ -4312,7 +5098,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/414.jpg"
+    "img": "/img/archive/414.jpg",
+    "w": 440,
+    "h": 319
   },
   {
     "id": 415,
@@ -4323,7 +5111,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/415.jpg"
+    "img": "/img/archive/415.jpg",
+    "w": 440,
+    "h": 316
   },
   {
     "id": 416,
@@ -4334,7 +5124,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/416.jpg"
+    "img": "/img/archive/416.jpg",
+    "w": 440,
+    "h": 314
   },
   {
     "id": 417,
@@ -4345,7 +5137,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/417.jpg"
+    "img": "/img/archive/417.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 418,
@@ -4356,7 +5150,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/418.jpg"
+    "img": "/img/archive/418.jpg",
+    "w": 440,
+    "h": 312
   },
   {
     "id": 419,
@@ -4367,7 +5163,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/419.jpg"
+    "img": "/img/archive/419.jpg",
+    "w": 440,
+    "h": 314
   },
   {
     "id": 420,
@@ -4378,7 +5176,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/420.jpg"
+    "img": "/img/archive/420.jpg",
+    "w": 440,
+    "h": 315
   },
   {
     "id": 421,
@@ -4389,7 +5189,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/421.jpg"
+    "img": "/img/archive/421.jpg",
+    "w": 313,
+    "h": 440
   },
   {
     "id": 422,
@@ -4400,7 +5202,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/422.jpg"
+    "img": "/img/archive/422.jpg",
+    "w": 312,
+    "h": 440
   },
   {
     "id": 423,
@@ -4411,7 +5215,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/423.jpg"
+    "img": "/img/archive/423.jpg",
+    "w": 317,
+    "h": 440
   },
   {
     "id": 424,
@@ -4422,7 +5228,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/424.jpg"
+    "img": "/img/archive/424.jpg",
+    "w": 440,
+    "h": 312
   },
   {
     "id": 425,
@@ -4433,7 +5241,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/425.jpg"
+    "img": "/img/archive/425.jpg",
+    "w": 317,
+    "h": 440
   },
   {
     "id": 426,
@@ -4444,7 +5254,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/426.jpg"
+    "img": "/img/archive/426.jpg",
+    "w": 317,
+    "h": 440
   },
   {
     "id": 427,
@@ -4455,7 +5267,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/427.jpg"
+    "img": "/img/archive/427.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 428,
@@ -4466,7 +5280,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/428.jpg"
+    "img": "/img/archive/428.jpg",
+    "w": 440,
+    "h": 315
   },
   {
     "id": 429,
@@ -4477,7 +5293,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/429.jpg"
+    "img": "/img/archive/429.jpg",
+    "w": 440,
+    "h": 318
   },
   {
     "id": 430,
@@ -4488,7 +5306,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/430.jpg"
+    "img": "/img/archive/430.jpg",
+    "w": 440,
+    "h": 315
   },
   {
     "id": 431,
@@ -4499,7 +5319,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/431.jpg"
+    "img": "/img/archive/431.jpg",
+    "w": 440,
+    "h": 312
   },
   {
     "id": 432,
@@ -4510,7 +5332,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/432.jpg"
+    "img": "/img/archive/432.jpg",
+    "w": 440,
+    "h": 320
   },
   {
     "id": 433,
@@ -4521,7 +5345,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/433.jpg"
+    "img": "/img/archive/433.jpg",
+    "w": 440,
+    "h": 314
   },
   {
     "id": 434,
@@ -4532,7 +5358,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/434.jpg"
+    "img": "/img/archive/434.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 435,
@@ -4543,7 +5371,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/435.jpg"
+    "img": "/img/archive/435.jpg",
+    "w": 311,
+    "h": 440
   },
   {
     "id": 437,
@@ -4554,7 +5384,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/437.jpg"
+    "img": "/img/archive/437.jpg",
+    "w": 440,
+    "h": 319
   },
   {
     "id": 438,
@@ -4565,7 +5397,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/438.jpg"
+    "img": "/img/archive/438.jpg",
+    "w": 440,
+    "h": 314
   },
   {
     "id": 439,
@@ -4576,7 +5410,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/439.jpg"
+    "img": "/img/archive/439.jpg",
+    "w": 313,
+    "h": 440
   },
   {
     "id": 440,
@@ -4587,7 +5423,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/440.jpg"
+    "img": "/img/archive/440.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 441,
@@ -4598,7 +5436,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/441.jpg"
+    "img": "/img/archive/441.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 442,
@@ -4609,7 +5449,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Turbo Attax F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/442.jpg"
+    "img": "/img/archive/442.jpg",
+    "w": 325,
+    "h": 440
   },
   {
     "id": 443,
@@ -4620,7 +5462,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/443.jpg"
+    "img": "/img/archive/443.jpg",
+    "w": 311,
+    "h": 440
   },
   {
     "id": 444,
@@ -4631,7 +5475,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/444.jpg"
+    "img": "/img/archive/444.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 445,
@@ -4642,7 +5488,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/445.jpg"
+    "img": "/img/archive/445.jpg",
+    "w": 1086,
+    "h": 1512
   },
   {
     "id": 446,
@@ -4653,7 +5501,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/446.jpg"
+    "img": "/img/archive/446.jpg",
+    "w": 765,
+    "h": 531
   },
   {
     "id": 448,
@@ -4664,7 +5514,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/448.jpg"
+    "img": "/img/archive/448.jpg",
+    "w": 786,
+    "h": 571
   },
   {
     "id": 449,
@@ -4675,7 +5527,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/449.jpg"
+    "img": "/img/archive/449.jpg",
+    "w": 315,
+    "h": 440
   },
   {
     "id": 450,
@@ -4686,7 +5540,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/450.jpg"
+    "img": "/img/archive/450.jpg",
+    "w": 440,
+    "h": 320
   },
   {
     "id": 451,
@@ -4697,7 +5553,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/451.jpg"
+    "img": "/img/archive/451.jpg",
+    "w": 440,
+    "h": 320
   },
   {
     "id": 452,
@@ -4708,7 +5566,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/452.jpg"
+    "img": "/img/archive/452.jpg",
+    "w": 440,
+    "h": 312
   },
   {
     "id": 453,
@@ -4719,7 +5579,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/453.jpg"
+    "img": "/img/archive/453.jpg",
+    "w": 440,
+    "h": 317
   },
   {
     "id": 454,
@@ -4730,7 +5592,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/454.jpg"
+    "img": "/img/archive/454.jpg",
+    "w": 440,
+    "h": 312
   },
   {
     "id": 455,
@@ -4741,7 +5605,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/455.jpg"
+    "img": "/img/archive/455.jpg",
+    "w": 313,
+    "h": 440
   },
   {
     "id": 456,
@@ -4752,7 +5618,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/456.jpg"
+    "img": "/img/archive/456.jpg",
+    "w": 312,
+    "h": 440
   },
   {
     "id": 457,
@@ -4763,7 +5631,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/457.jpg"
+    "img": "/img/archive/457.jpg",
+    "w": 310,
+    "h": 440
   },
   {
     "id": 458,
@@ -4774,7 +5644,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Now F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/458.jpg"
+    "img": "/img/archive/458.jpg",
+    "w": 312,
+    "h": 440
   },
   {
     "id": 459,
@@ -4785,7 +5657,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Now F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/459.jpg"
+    "img": "/img/archive/459.jpg",
+    "w": 440,
+    "h": 315
   },
   {
     "id": 460,
@@ -4796,7 +5670,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Turbo Attax F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/460.jpg"
+    "img": "/img/archive/460.jpg",
+    "w": 313,
+    "h": 440
   },
   {
     "id": 461,
@@ -4807,7 +5683,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/461.jpg"
+    "img": "/img/archive/461.jpg",
+    "w": 309,
+    "h": 440
   },
   {
     "id": 462,
@@ -4818,7 +5696,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/462.jpg"
+    "img": "/img/archive/462.jpg",
+    "w": 312,
+    "h": 440
   },
   {
     "id": 463,
@@ -4829,7 +5709,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/463.jpg"
+    "img": "/img/archive/463.jpg",
+    "w": 311,
+    "h": 440
   },
   {
     "id": 464,
@@ -4840,7 +5722,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/464.jpg"
+    "img": "/img/archive/464.jpg",
+    "w": 315,
+    "h": 440
   },
   {
     "id": 465,
@@ -4851,7 +5735,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/465.jpg"
+    "img": "/img/archive/465.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 466,
@@ -4862,7 +5748,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/466.jpg"
+    "img": "/img/archive/466.jpg",
+    "w": 311,
+    "h": 440
   },
   {
     "id": 467,
@@ -4873,7 +5761,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/467.jpg"
+    "img": "/img/archive/467.jpg",
+    "w": 312,
+    "h": 440
   },
   {
     "id": 468,
@@ -4884,7 +5774,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/468.jpg"
+    "img": "/img/archive/468.jpg",
+    "w": 313,
+    "h": 440
   },
   {
     "id": 469,
@@ -4895,7 +5787,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/469.jpg"
+    "img": "/img/archive/469.jpg",
+    "w": 311,
+    "h": 440
   },
   {
     "id": 470,
@@ -4906,7 +5800,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/470.jpg"
+    "img": "/img/archive/470.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 471,
@@ -4917,7 +5813,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/471.jpg"
+    "img": "/img/archive/471.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 472,
@@ -4928,7 +5826,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/472.jpg"
+    "img": "/img/archive/472.jpg",
+    "w": 316,
+    "h": 440
   },
   {
     "id": 473,
@@ -4939,7 +5839,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/473.jpg"
+    "img": "/img/archive/473.jpg",
+    "w": 310,
+    "h": 440
   },
   {
     "id": 474,
@@ -4950,7 +5852,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/474.jpg"
+    "img": "/img/archive/474.jpg",
+    "w": 312,
+    "h": 440
   },
   {
     "id": 475,
@@ -4961,7 +5865,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/475.jpg"
+    "img": "/img/archive/475.jpg",
+    "w": 311,
+    "h": 440
   },
   {
     "id": 476,
@@ -4972,7 +5878,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/476.jpg"
+    "img": "/img/archive/476.jpg",
+    "w": 317,
+    "h": 440
   },
   {
     "id": 477,
@@ -4983,7 +5891,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/477.jpg"
+    "img": "/img/archive/477.jpg",
+    "w": 440,
+    "h": 318
   },
   {
     "id": 478,
@@ -4994,7 +5904,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/478.jpg"
+    "img": "/img/archive/478.jpg",
+    "w": 440,
+    "h": 313
   },
   {
     "id": 479,
@@ -5005,7 +5917,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/479.jpg"
+    "img": "/img/archive/479.jpg",
+    "w": 666,
+    "h": 490
   },
   {
     "id": 480,
@@ -5016,7 +5930,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/480.jpg"
+    "img": "/img/archive/480.jpg",
+    "w": 440,
+    "h": 317
   },
   {
     "id": 481,
@@ -5027,7 +5943,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/481.jpg"
+    "img": "/img/archive/481.jpg",
+    "w": 440,
+    "h": 318
   },
   {
     "id": 482,
@@ -5038,7 +5956,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/482.jpg"
+    "img": "/img/archive/482.jpg",
+    "w": 440,
+    "h": 319
   },
   {
     "id": 483,
@@ -5049,7 +5969,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/483.jpg"
+    "img": "/img/archive/483.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 484,
@@ -5060,7 +5982,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/484.jpg"
+    "img": "/img/archive/484.jpg",
+    "w": 319,
+    "h": 440
   },
   {
     "id": 485,
@@ -5071,7 +5995,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/485.jpg"
+    "img": "/img/archive/485.jpg",
+    "w": 317,
+    "h": 440
   },
   {
     "id": 486,
@@ -5082,7 +6008,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/486.jpg"
+    "img": "/img/archive/486.jpg",
+    "w": 440,
+    "h": 314
   },
   {
     "id": 487,
@@ -5093,7 +6021,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Paddock Pass F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/487.jpg"
+    "img": "/img/archive/487.jpg",
+    "w": 440,
+    "h": 319
   },
   {
     "id": 489,
@@ -5104,7 +6034,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/489.jpg"
+    "img": "/img/archive/489.jpg",
+    "w": 318,
+    "h": 440
   },
   {
     "id": 490,
@@ -5115,7 +6047,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/490.jpg"
+    "img": "/img/archive/490.jpg",
+    "w": 315,
+    "h": 440
   },
   {
     "id": 491,
@@ -5126,7 +6060,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/491.jpg"
+    "img": "/img/archive/491.jpg",
+    "w": 313,
+    "h": 440
   },
   {
     "id": 492,
@@ -5137,7 +6073,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/492.jpg"
+    "img": "/img/archive/492.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 493,
@@ -5148,7 +6086,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/493.jpg"
+    "img": "/img/archive/493.jpg",
+    "w": 313,
+    "h": 440
   },
   {
     "id": 494,
@@ -5159,7 +6099,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/494.jpg"
+    "img": "/img/archive/494.jpg",
+    "w": 440,
+    "h": 332
   },
   {
     "id": 495,
@@ -5170,7 +6112,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Turbo Attax F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/495.jpg"
+    "img": "/img/archive/495.jpg",
+    "w": 311,
+    "h": 440
   },
   {
     "id": 496,
@@ -5181,7 +6125,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/496.jpg"
+    "img": "/img/archive/496.jpg",
+    "w": 440,
+    "h": 305
   },
   {
     "id": 497,
@@ -5192,7 +6138,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/497.jpg"
+    "img": "/img/archive/497.jpg",
+    "w": 440,
+    "h": 314
   },
   {
     "id": 498,
@@ -5203,7 +6151,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/498.jpg"
+    "img": "/img/archive/498.jpg",
+    "w": 440,
+    "h": 310
   },
   {
     "id": 499,
@@ -5214,7 +6164,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/499.jpg"
+    "img": "/img/archive/499.jpg",
+    "w": 440,
+    "h": 310
   },
   {
     "id": 500,
@@ -5225,7 +6177,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/500.jpg"
+    "img": "/img/archive/500.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 501,
@@ -5236,7 +6190,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/501.jpg"
+    "img": "/img/archive/501.jpg",
+    "w": 326,
+    "h": 440
   },
   {
     "id": 504,
@@ -5247,7 +6203,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/504.jpg"
+    "img": "/img/archive/504.jpg",
+    "w": 309,
+    "h": 440
   },
   {
     "id": 505,
@@ -5258,7 +6216,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/505.jpg"
+    "img": "/img/archive/505.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 506,
@@ -5269,7 +6229,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/506.jpg"
+    "img": "/img/archive/506.jpg",
+    "w": 325,
+    "h": 440
   },
   {
     "id": 507,
@@ -5280,7 +6242,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/507.jpg"
+    "img": "/img/archive/507.jpg",
+    "w": 440,
+    "h": 309
   },
   {
     "id": 508,
@@ -5291,7 +6255,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/508.jpg"
+    "img": "/img/archive/508.jpg",
+    "w": 440,
+    "h": 309
   },
   {
     "id": 509,
@@ -5302,7 +6268,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/509.jpg"
+    "img": "/img/archive/509.jpg",
+    "w": 315,
+    "h": 440
   },
   {
     "id": 510,
@@ -5313,7 +6281,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/510.jpg"
+    "img": "/img/archive/510.jpg",
+    "w": 311,
+    "h": 440
   },
   {
     "id": 511,
@@ -5324,7 +6294,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/511.jpg"
+    "img": "/img/archive/511.jpg",
+    "w": 315,
+    "h": 440
   },
   {
     "id": 512,
@@ -5335,7 +6307,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/512.jpg"
+    "img": "/img/archive/512.jpg",
+    "w": 323,
+    "h": 440
   },
   {
     "id": 513,
@@ -5346,7 +6320,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/513.jpg"
+    "img": "/img/archive/513.jpg",
+    "w": 318,
+    "h": 440
   },
   {
     "id": 514,
@@ -5357,7 +6333,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/514.jpg"
+    "img": "/img/archive/514.jpg",
+    "w": 312,
+    "h": 440
   },
   {
     "id": 515,
@@ -5368,7 +6346,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/515.jpg"
+    "img": "/img/archive/515.jpg",
+    "w": 440,
+    "h": 313
   },
   {
     "id": 516,
@@ -5379,7 +6359,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/516.jpg"
+    "img": "/img/archive/516.jpg",
+    "w": 440,
+    "h": 322
   },
   {
     "id": 517,
@@ -5390,7 +6372,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/517.jpg"
+    "img": "/img/archive/517.jpg",
+    "w": 494,
+    "h": 696
   },
   {
     "id": 518,
@@ -5401,7 +6385,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/518.jpg"
+    "img": "/img/archive/518.jpg",
+    "w": 467,
+    "h": 339
   },
   {
     "id": 519,
@@ -5412,7 +6398,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2021",
     "cardName": "",
-    "img": "/img/archive/519.jpg"
+    "img": "/img/archive/519.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 520,
@@ -5423,7 +6411,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2022",
     "cardName": "",
-    "img": "/img/archive/520.jpg"
+    "img": "/img/archive/520.jpg",
+    "w": 309,
+    "h": 440
   },
   {
     "id": 521,
@@ -5434,7 +6424,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/521.jpg"
+    "img": "/img/archive/521.jpg",
+    "w": 312,
+    "h": 440
   },
   {
     "id": 522,
@@ -5445,7 +6437,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/522.jpg"
+    "img": "/img/archive/522.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 523,
@@ -5456,7 +6450,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/523.jpg"
+    "img": "/img/archive/523.jpg",
+    "w": 316,
+    "h": 440
   },
   {
     "id": 524,
@@ -5467,7 +6463,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2020",
     "cardName": "",
-    "img": "/img/archive/524.jpg"
+    "img": "/img/archive/524.jpg",
+    "w": 454,
+    "h": 628
   },
   {
     "id": 525,
@@ -5478,7 +6476,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/525.jpg"
+    "img": "/img/archive/525.jpg",
+    "w": 440,
+    "h": 316
   },
   {
     "id": 526,
@@ -5489,7 +6489,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/526.jpg"
+    "img": "/img/archive/526.jpg",
+    "w": 440,
+    "h": 298
   },
   {
     "id": 527,
@@ -5500,7 +6502,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/527.jpg"
+    "img": "/img/archive/527.jpg",
+    "w": 315,
+    "h": 440
   },
   {
     "id": 528,
@@ -5511,7 +6515,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/528.jpg"
+    "img": "/img/archive/528.jpg",
+    "w": 440,
+    "h": 313
   },
   {
     "id": 529,
@@ -5522,7 +6528,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Finest F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/529.jpg"
+    "img": "/img/archive/529.jpg",
+    "w": 312,
+    "h": 440
   },
   {
     "id": 530,
@@ -5533,7 +6541,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/530.jpg"
+    "img": "/img/archive/530.jpg",
+    "w": 316,
+    "h": 440
   },
   {
     "id": 531,
@@ -5544,7 +6554,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2023",
     "cardName": "",
-    "img": "/img/archive/531.jpg"
+    "img": "/img/archive/531.jpg",
+    "w": 440,
+    "h": 319
   },
   {
     "id": 533,
@@ -5555,7 +6567,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Now F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/533.jpg"
+    "img": "/img/archive/533.jpg",
+    "w": 315,
+    "h": 440
   },
   {
     "id": 534,
@@ -5566,7 +6580,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Now F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/534.jpg"
+    "img": "/img/archive/534.jpg",
+    "w": 315,
+    "h": 440
   },
   {
     "id": 535,
@@ -5577,7 +6593,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Now F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/535.jpg"
+    "img": "/img/archive/535.jpg",
+    "w": 440,
+    "h": 313
   },
   {
     "id": 536,
@@ -5588,7 +6606,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Now F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/536.jpg"
+    "img": "/img/archive/536.jpg",
+    "w": 313,
+    "h": 440
   },
   {
     "id": 537,
@@ -5599,7 +6619,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Now F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/537.jpg"
+    "img": "/img/archive/537.jpg",
+    "w": 315,
+    "h": 440
   },
   {
     "id": 538,
@@ -5610,7 +6632,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Now F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/538.jpg"
+    "img": "/img/archive/538.jpg",
+    "w": 313,
+    "h": 440
   },
   {
     "id": 539,
@@ -5621,7 +6645,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Now F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/539.jpg"
+    "img": "/img/archive/539.jpg",
+    "w": 314,
+    "h": 440
   },
   {
     "id": 540,
@@ -5632,7 +6658,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Now F1",
     "year": "2026",
     "cardName": "",
-    "img": "/img/archive/540.jpg"
+    "img": "/img/archive/540.jpg",
+    "w": 313,
+    "h": 440
   },
   {
     "id": 541,
@@ -5643,7 +6671,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Dynasty F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/541.jpg"
+    "img": "/img/archive/541.jpg",
+    "w": 440,
+    "h": 318
   },
   {
     "id": 542,
@@ -5654,7 +6684,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/542.jpg"
+    "img": "/img/archive/542.jpg",
+    "w": 329,
+    "h": 440
   },
   {
     "id": 543,
@@ -5665,7 +6697,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Lights Out F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/543.jpg"
+    "img": "/img/archive/543.jpg",
+    "w": 309,
+    "h": 440
   },
   {
     "id": 544,
@@ -5676,7 +6710,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Eccellenza F1",
     "year": "2025",
     "cardName": "",
-    "img": "/img/archive/544.jpg"
+    "img": "/img/archive/544.jpg",
+    "w": 440,
+    "h": 317
   },
   {
     "id": 545,
@@ -5687,7 +6723,9 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "setName": "Topps Chrome F1",
     "year": "2024",
     "cardName": "",
-    "img": "/img/archive/545.jpg"
+    "img": "/img/archive/545.jpg",
+    "w": 311,
+    "h": 440
   }
 ];
 

@@ -9,7 +9,10 @@
 //     Ergast-compatible Jolpica API. The archive has NO team column, so the
 //     constructor is resolved from the season the card belongs to.
 //
-// Images are downloaded separately into public/img/archive/{id}.jpg.
+// Images are downloaded separately into public/img/archive/{id}.jpg. The
+// builder reads each scan's real pixel size straight out of the JPEG SOF
+// marker, so the gallery can frame every card at its own aspect ratio instead
+// of cropping a fixed 5:7 window.
 //
 // Usage: npx tsx scripts/build-archive.ts
 
@@ -39,7 +42,40 @@ type OutCard = {
   year: string;
   cardName: string;
   img: string;
+  /** Real pixel size of public/img/archive/{id}.jpg, 0 when unreadable. */
+  w: number;
+  h: number;
 };
+
+/**
+ * Minimal JPEG dimension reader — walks markers to the first SOF and reads
+ * height/width. No dependency, no full decode; 515 files in a few ms.
+ */
+function jpegSize(file: string): { w: number; h: number } {
+  let buf: Buffer;
+  try {
+    buf = fs.readFileSync(file);
+  } catch {
+    return { w: 0, h: 0 };
+  }
+  if (buf.length < 4 || buf[0] !== 0xff || buf[1] !== 0xd8) return { w: 0, h: 0 };
+  let i = 2;
+  while (i < buf.length - 9) {
+    if (buf[i] !== 0xff) {
+      i += 1;
+      continue;
+    }
+    const marker = buf[i + 1];
+    // SOF0..SOF15, minus DHT (C4), JPG (C8) and DAC (CC).
+    if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+      return { h: buf.readUInt16BE(i + 5), w: buf.readUInt16BE(i + 7) };
+    }
+    const len = buf.readUInt16BE(i + 2);
+    if (len < 2) break;
+    i += 2 + len;
+  }
+  return { w: 0, h: 0 };
+}
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const raw: RawCard[] = JSON.parse(
@@ -147,9 +183,15 @@ const cards: OutCard[] = raw
       year,
       cardName: (r.card_name ?? "").trim(),
       img: `/img/archive/${r.id}.jpg`,
+      ...jpegSize(path.join(ROOT, "public/img/archive", `${r.id}.jpg`)),
     };
   })
   .sort((a, b) => a.id - b.id);
+
+const missing = cards.filter((c) => !c.w || !c.h);
+if (missing.length) {
+  console.warn(`no pixel size for ${missing.length} card(s):`, missing.map((c) => c.id).join(","));
+}
 
 // ---------------------------------------------------------------------------
 // Emit
@@ -169,6 +211,8 @@ const body = cards
       `    "year": ${q(c.year)}`,
       `    "cardName": ${q(c.cardName)}`,
       `    "img": ${q(c.img)}`,
+      `    "w": ${c.w}`,
+      `    "h": ${c.h}`,
     ];
     return `  {\n${fields.join(",\n")}\n  }`;
   })
@@ -194,6 +238,10 @@ const out = `// 1/1 Digital Archive — mirrored from allofone.app.
 // Sources: data/allofone-archive.json (cards + imagery) and
 // data/driver-team.json (constructor per season, from the Ergast-compatible
 // Jolpica API — the archive itself carries no team column).
+//
+// \`w\`/\`h\` are the real pixel size of each scan, read from the JPEG header at
+// build time. The gallery frames cards at their own aspect ratio so nothing is
+// cropped — see src/lib/archiveAspect.ts.
 
 export type ArchiveCard = {
   id: number;
@@ -207,6 +255,10 @@ export type ArchiveCard = {
   year: string;
   cardName: string;
   img: string;
+  /** Real scan width in px; 0 when the file could not be read. */
+  w: number;
+  /** Real scan height in px; 0 when the file could not be read. */
+  h: number;
 };
 
 export const ARCHIVE_CARDS: ArchiveCard[] = [
@@ -312,7 +364,9 @@ fs.writeFileSync(path.join(ROOT, "src/lib/archiveData.ts"), out);
 
 const byTeam = new Map<string, number>();
 for (const c of cards) byTeam.set(c.team, (byTeam.get(c.team) ?? 0) + 1);
+const portrait = cards.filter((c) => c.h && c.w / c.h < 1).length;
 console.log(
   `wrote ${cards.length} cards · ${years.length} years ${years.join(",")} · ${sets.length} sets · ${byTeam.size} teams`,
 );
+console.log(`scans: ${portrait} portrait / ${cards.length - portrait} landscape · ${missing.length} unmeasured`);
 console.log("teams:", [...byTeam.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12));

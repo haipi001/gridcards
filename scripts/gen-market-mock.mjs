@@ -88,6 +88,16 @@ for (const c of archive) {
   scansByDriver.get(name).push(`/img/archive/${c.id}.jpg`);
 }
 
+// A driver usually owns several scans, and a driver can own several 1/1
+// variants (SuperFractor 1/1, SuperFractor Auto 1/1 …). Handing every one of
+// them `scans[0]` made them all show the same photo, so walk the list instead.
+const scanCursor = new Map();
+function nextScan(subject, scans) {
+  const at = scanCursor.get(subject) ?? 0;
+  scanCursor.set(subject, at + 1);
+  return scans[at % scans.length];
+}
+
 /* ------------------------------------------------------------- handle pool --- */
 
 const HANDLE_A = [
@@ -333,10 +343,10 @@ for (const col of COLLECTIONS) {
     for (const v of LADDER[col.ladder]) {
       const id = `${slugify(subject)}-${col.id}-${slugify(v.parallel)}`;
       const printRun = v.printRun;
-      // A numbered edition only gets a scan when a real 1/1 of that driver
-      // exists; everything else falls back to generated livery art.
-      const image =
-        printRun === 1 && scans.length ? scans[0 % scans.length] : null;
+      // A 1/1 only gets a scan when a real one exists for that driver;
+      // everything else falls back to generated livery art. Successive 1/1s of
+      // the same driver get successive scans, never the same photo twice.
+      const image = printRun === 1 && scans.length ? nextScan(subject, scans) : null;
 
       const yuan = Math.round(
         (95 + pop * 420 + rnd() * 60) * v.mult * (0.85 + rnd() * 0.4),

@@ -1372,3 +1372,237 @@ html[data-theme="light"] .filter,
 html[data-theme="light"] .filterRail{border-color:var(--line)}
 html[data-theme="light"] .playerHero,
 html[data-theme="light"] .serialHero{border-bottom-color:var(--line)}
+
+/* --- stages: the display case goes light, the card inside stays dark ------- */
+/* A card is a physical object on a dark ground; the panel *around* it is just
+   furniture. Lightening the furniture removes the big black slabs without
+   touching a single rarity colour, livery or mix-blend-mode foil layer. */
+html[data-theme="light"] .mStage{
+  background:linear-gradient(180deg,#f3f6fa,#e6ebf2);
+}
+html[data-theme="light"] .serialVisual,
+html[data-theme="light"] .itemStage{
+  background:
+    radial-gradient(circle at 50% 25%,#c99a4a3d,transparent 56%),
+    linear-gradient(180deg,#f3f6fa,#e7ecf3);
+}
+html[data-theme="light"] .editionVisual{
+  background:
+    radial-gradient(circle at 50% 22%,color-mix(in srgb,var(--glow,#4a6f84) 20%,transparent),transparent 58%),
+    #eef2f7;
+}
+html[data-theme="light"] .postCardVisual{
+  background:radial-gradient(circle at 50% 25%,#c99a4a3d,transparent 54%),#eef2f7;
+}
+html[data-theme="light"] .archiveVisual{
+  background:linear-gradient(180deg,#e9eef4,#dfe6ee);
+  box-shadow:0 0 0 1px #11151a0e inset;
+}
+html[data-theme="light"] .portrait{
+  background:radial-gradient(circle at 50% 22%,var(--pA,#8da6b5),var(--pB,#26333c) 64%,#dde4ec);
+}
+html[data-theme="light"] .portraitMark{color:#11151a;text-shadow:none}
+
+/* --- remaining dark chips, toasts and hover rows --------------------------- */
+html[data-theme="light"] .mLive{background:#e7f6ee;border-color:#b9dfc9;color:#0f7a45}
+html[data-theme="light"] .mToast.success{background:#eaf7f0;border-color:#b9dfc9}
+html[data-theme="light"] .mToast.error{background:#fdecee;border-color:#eec0c6}
+html[data-theme="light"] .orderRow:hover{background:#f4f7fa}
+/* .catalogNotice is written with !important, so the override must match. */
+html[data-theme="light"] .catalogNotice{
+  background:#fdf6e7!important;border-color:#e6d5ae!important;color:#78601f!important;
+}
+html[data-theme="light"] .sourceFlag{background:#e8f2f8;border-color:#b6d3e2;color:#0a6a8f}
+html[data-theme="light"] .soonTag{background:#eef1f5;border-color:#ccd4dd;color:#5b6673}
+html[data-theme="light"] .future{opacity:.55}
+
+/* Hover shadows: black slabs look like holes on a light page. */
+html[data-theme="light"] .archiveCard:hover,
+html[data-theme="light"] .mTile:hover,
+html[data-theme="light"] .marketCard:hover,
+html[data-theme="light"] .watchItem:hover,
+html[data-theme="light"] .editionCard:hover{
+  box-shadow:0 14px 30px rgba(15,23,32,.13);
+}
+
+/* ==========================================================================
+   V22 · UNIFIED LADDER  (player page + homepage rail)
+   One card component for the whole rarity ladder, and a filter rail that only
+   ever contains controls that do something.
+   ========================================================================== */
+
+.mLadderShell{display:grid;grid-template-columns:250px minmax(0,1fr);gap:22px;align-items:start}
+@media(max-width:1000px){.mLadderShell{grid-template-columns:1fr}}
+
+.mLadderRail{
+  position:sticky;top:14px;
+  display:grid;gap:14px;align-content:start;
+  background:var(--s1);border:1px solid var(--line);border-radius:14px;padding:14px;
+}
+@media(max-width:1000px){.mLadderRail{position:static}}
+.railHead{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.railHead h3{margin:0;font-size:13px}
+.railClear{border:0;background:transparent;color:var(--cyan);font-size:11.5px;font-weight:800;padding:0}
+.railClear:disabled{color:var(--mut2);opacity:.55;cursor:default}
+.railGroup{display:grid;gap:7px}
+.railGroup small{font-size:9.5px;letter-spacing:.12em;color:var(--mut2);font-weight:850}
+
+.railRoadmap{
+  display:grid;gap:8px;
+  border:1px dashed var(--line2);border-radius:11px;
+  background:var(--s2);padding:11px 12px;
+}
+.railRoadmap small{font-size:9.5px;letter-spacing:.12em;color:var(--mut2);font-weight:850}
+.railRoadmap ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.railRoadmap li{display:grid;gap:2px}
+.railRoadmap li b{font-size:11.5px}
+.railRoadmap li span{font-size:10.5px;color:var(--mut)}
+.railRoadmap p{margin:0;font-size:10.5px;line-height:1.6}
+
+.filterStatic{display:grid;gap:6px}
+.filterStatic small{font-size:9.5px;letter-spacing:.12em;color:var(--mut2);font-weight:850}
+.filterStaticRow{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.filterStaticRow b{font-size:16px}
+.filterStatic p{margin:0;font-size:10.5px;line-height:1.6}
+
+.railActive{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:10px}
+.activeChip{
+  border:1px solid var(--line2);background:var(--s2);color:var(--text);
+  border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;
+}
+.activeChip:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* Ladder cards: real scan or generated art, same frame either way. */
+.editionVisual{height:185px}
+.editionScan{width:100%;height:100%;object-fit:contain;display:block}
+.editionSheen{
+  position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(115deg,#ffffff12,transparent 46%,#ffffff08);
+  mix-blend-mode:screen;
+}
+.realScanTag{
+  position:absolute;left:7px;top:7px;
+  font-size:8.5px;font-weight:850;letter-spacing:.08em;
+  color:#0b0d0f;background:#e3b95a;border-radius:4px;padding:2px 5px;
+}
+.tierMore{display:inline-block;margin-top:7px;font-size:11px;font-weight:750;color:var(--cyan)}
+.tierMore:hover{color:var(--text)}
+.serialFx{width:100%;height:100%;display:grid;place-items:center;padding:8px}
+.mGalleryCross{font-size:11.5px;font-weight:750;color:var(--cyan)}
+.mGalleryCross:hover{color:var(--text)}
+
+/* =================================
+   V23 · LIGHT TINTS
+   The V21 pass flipped the big chrome (topbar, panels, controls) but left ~90
+   tinted wells sitting at their dark values, so light mode still read as
+   "mostly black". These are the leftovers: neutral wells go to a light grey;
+   coloured wells keep their hue at 20% over white and pull their bright label
+   down to a dark tone of the same hue so the text still holds contrast.
+   Generated from an audit of every dark-ground rule with no light override.
+   ================================= */
+html[data-theme="light"] .spotlightStage{background:#eef1f5;}
+html[data-theme="light"] .copyThumb{background:#eef1f5;}
+html[data-theme="light"] .activityTable{background:#eef1f5;}
+html[data-theme="light"] .serialRows{background:#eef1f5;}
+html[data-theme="light"] .personExpand{background:#eef1f5;}
+html[data-theme="light"] .trendBox{background:#eef1f5;}
+html[data-theme="light"] .collectorBox{background:#eef1f5;}
+html[data-theme="light"] .marketMetric{background:#eef1f5;}
+html[data-theme="light"] .indexKpi{background:#eef1f5;}
+html[data-theme="light"] .metricGlossary>div{background:#eef1f5;}
+html[data-theme="light"] .expandScans{background:#eef1f5;}
+html[data-theme="light"] .claimItem{background:#eef1f5;}
+html[data-theme="light"] .orderCard{background:#eef1f5;}
+html[data-theme="light"] .uploadZone{background:#eef1f5;}
+html[data-theme="light"] .field input{background:#eef1f5;}
+html[data-theme="light"] .field select{background:#eef1f5;}
+html[data-theme="light"] .variantBtn{background:#eef1f5;}
+html[data-theme="light"] .indexHero>div{background:#eef1f5;}
+html[data-theme="light"] .serialDot{background:#eef1f5;}
+html[data-theme="light"] .orderSteps span{background:#eef1f5;}
+html[data-theme="light"] .ownedMeter{background:#eef1f5;}
+html[data-theme="light"] .copyMarketHead{background:#eef1f5;}
+html[data-theme="light"] .copyCard{background:#eef1f5;}
+html[data-theme="light"] .indexRow:hover{background:#eef1f5;}
+html[data-theme="light"] .proRow:hover{background:#eef1f5;}
+html[data-theme="light"] .activityRow:hover{background:#eef1f5;}
+html[data-theme="light"] .tapeRow:hover{background:#eef1f5;}
+html[data-theme="light"] .mFlag.live{background:#eef1f5;}
+html[data-theme="light"] .mReceipt{background:#eef1f5;}
+html[data-theme="light"] .mMeFlag.live{background:#eef1f5;}
+html[data-theme="light"] .marketCard.isOpen{background:#eef1f5;}
+html[data-theme="light"] .mFlag.frozen{background:#eef1f5;}
+html[data-theme="light"] .mFrozen{background:#eef1f5;}
+html[data-theme="light"] .mWarn{background:#eef1f5;}
+html[data-theme="light"] .mMeFlag.frozen{background:#eef1f5;}
+html[data-theme="light"] .indexHead{background:#eef1f5;}
+html[data-theme="light"] .proHead{background:#eef1f5;}
+html[data-theme="light"] .activityHead{background:#eef1f5;}
+html[data-theme="light"] .tapeHead{background:#eef1f5;}
+html[data-theme="light"] .mError{background:#eef1f5;}
+html[data-theme="light"] .copyError{background:#eef1f5;}
+html[data-theme="light"] .breadthGauge div{background:#e7ebf1;}
+html[data-theme="light"] .gradedSpotlight{background:#e7ebf1;}
+html[data-theme="light"] .ladderChip{background:#e7ebf1;}
+html[data-theme="light"] .scanThumb{background:#e7ebf1;}
+html[data-theme="light"] .noticeItem code{background:#e7ebf1;}
+html[data-theme="light"] .visual{background:#e7ebf1;}
+html[data-theme="light"] .claimBtn{background:#e7ebf1;}
+html[data-theme="light"] .serialDot.sold{background:#e7ebf1;}
+html[data-theme="light"] .loadBar{background:#e7ebf1;}
+html[data-theme="light"] .loadCard{background:#e7ebf1;}
+html[data-theme="light"] .serialDot.mine{background:#e7ebf1;}
+html[data-theme="light"] .uploadDrop.dragging .uploadZone{background:color-mix(in srgb, #0f1720 20%, #fff);}
+html[data-theme="light"] .eventPill.transfer{background:color-mix(in srgb, #171225 20%, #fff);color:color-mix(in srgb, #c4a7ff 52%, #0b1016);border-color:color-mix(in srgb, #503e78 40%, #fff);}
+html[data-theme="light"] .chip.hot{background:color-mix(in srgb, #1c150c 20%, #fff);color:color-mix(in srgb, #f3c976 52%, #0b1016);border-color:color-mix(in srgb, #6a4720 40%, #fff);}
+html[data-theme="light"] .eventPill.k-offer{background:color-mix(in srgb, #1c150c 20%, #fff);color:color-mix(in srgb, #f3c976 52%, #0b1016);}
+html[data-theme="light"] .eventPill.price-change{background:color-mix(in srgb, #251014 20%, #fff);color:color-mix(in srgb, #ff9ba4 52%, #0b1016);border-color:color-mix(in srgb, #68323a 40%, #fff);}
+html[data-theme="light"] .indexHero{background:#e7ebf1;}
+html[data-theme="light"] .catalogSectionHead .catalogIndex{background:#e7ebf1;}
+html[data-theme="light"] .eventPill.k-order{background:color-mix(in srgb, #171331 20%, #fff);color:color-mix(in srgb, #c3aaff 52%, #0b1016);border-color:color-mix(in srgb, #5a4a7a 40%, #fff);}
+html[data-theme="light"] .variantBtn.on{background:color-mix(in srgb, #0f1a22 20%, #fff);}
+html[data-theme="light"] .gradeBadge{background:#e7ebf1;}
+html[data-theme="light"] .eventPill{background:#e7ebf1;}
+html[data-theme="light"] .spotlightArrow:hover{background:#e7ebf1;}
+html[data-theme="light"] .eventPill.listing{background:color-mix(in srgb, #0d1c25 20%, #fff);color:color-mix(in srgb, #8fdcff 52%, #0b1016);border-color:color-mix(in srgb, #28516a 40%, #fff);}
+html[data-theme="light"] .ladderChip:hover{background:#e7ebf1;}
+html[data-theme="light"] .uploadError{background:color-mix(in srgb, #2a1214 20%, #fff);color:color-mix(in srgb, #ff8a8a 52%, #0b1016);border-color:color-mix(in srgb, #4a2024 40%, #fff);}
+html[data-theme="light"] .eventPill.sale{background:color-mix(in srgb, #0e2017 20%, #fff);color:color-mix(in srgb, #7ce9a4 52%, #0b1016);border-color:color-mix(in srgb, #245d3c 40%, #fff);}
+html[data-theme="light"] .eventPill.offer{background:color-mix(in srgb, #20190d 20%, #fff);color:color-mix(in srgb, #e4c47d 52%, #0b1016);border-color:color-mix(in srgb, #66522b 40%, #fff);}
+html[data-theme="light"] .ownedBar{background:#e7ebf1;}
+html[data-theme="light"] .marketHeroActions .btn:not(.primary):hover{background:#e7ebf1;}
+html[data-theme="light"] .bar{background:#e7ebf1;}
+html[data-theme="light"] .serialDot.listed{background:color-mix(in srgb, #10202a 20%, #fff);color:color-mix(in srgb, #bceaff 52%, #0b1016);border-color:color-mix(in srgb, #396177 40%, #fff);}
+html[data-theme="light"] .watchVisual{background:color-mix(in srgb, #16202a 20%, #fff);}
+html[data-theme="light"] .setLogo{background:color-mix(in srgb, #172029 20%, #fff);}
+html[data-theme="light"] .claimBtn.on{background:color-mix(in srgb, #10261d 20%, #fff);color:color-mix(in srgb, #7fe6b0 52%, #0b1016);}
+html[data-theme="light"] .serialDot.owned{background:color-mix(in srgb, #10261d 20%, #fff);color:color-mix(in srgb, #7fe6b0 52%, #0b1016);}
+html[data-theme="light"] .serialChip{background:color-mix(in srgb, #10261d 20%, #fff);color:color-mix(in srgb, #7fe6b0 52%, #0b1016);border-color:color-mix(in srgb, #2c5b45 40%, #fff);}
+html[data-theme="light"] .eventPill.sold{background:color-mix(in srgb, #10261d 20%, #fff);color:color-mix(in srgb, #7fe6b0 52%, #0b1016);}
+html[data-theme="light"] .eventPill.k-sale{background:color-mix(in srgb, #10261d 20%, #fff);color:color-mix(in srgb, #7fe6b0 52%, #0b1016);}
+html[data-theme="light"] .orderSteps span.done{background:color-mix(in srgb, #10261d 20%, #fff);color:color-mix(in srgb, #7fe6b0 52%, #0b1016);}
+html[data-theme="light"] .paletteKind{background:#dde4ec;}
+html[data-theme="light"] .eventPill.listed{background:color-mix(in srgb, #0f2431 20%, #fff);color:color-mix(in srgb, #7fd3ff 52%, #0b1016);}
+html[data-theme="light"] .eventPill.k-listing{background:color-mix(in srgb, #0f2431 20%, #fff);color:color-mix(in srgb, #7fd3ff 52%, #0b1016);}
+html[data-theme="light"] .paletteKind.k-card{background:color-mix(in srgb, #14243a 20%, #fff);color:color-mix(in srgb, #63a8f0 52%, #0b1016);}
+html[data-theme="light"] .paletteKind.k-section{background:color-mix(in srgb, #2b2338 20%, #fff);color:color-mix(in srgb, #b193ff 52%, #0b1016);}
+html[data-theme="light"] .paletteKind.k-nav{background:color-mix(in srgb, #2a2438 20%, #fff);color:color-mix(in srgb, #c9a8ff 52%, #0b1016);}
+html[data-theme="light"] .paletteKind.k-driver{background:color-mix(in srgb, #123a36 20%, #fff);color:color-mix(in srgb, #4fd8c4 52%, #0b1016);}
+html[data-theme="light"] .mBtn.frozen::after{background:color-mix(in srgb, #3a3226 20%, #fff);}
+
+/* --- the five wells the generated pass missed --------------------------------
+   They hide behind a more specific selector, a pseudo-state twin, or an
+   `!important` from the community wall. Hand-written on purpose.
+   -------------------------------------------------------------------------- */
+html[data-theme="light"] .roleSwitch{background:#e7ebf1;border-color:var(--line)}
+html[data-theme="light"] .marketTabs .chip{background:#eef1f5;color:var(--text)}
+html[data-theme="light"] .expandToggle{
+  background:#f2f5f8;border-top-color:var(--line);color:var(--mut);
+}
+html[data-theme="light"] .sk{
+  background:linear-gradient(90deg,#e7ebf1,#f0f3f7,#e7ebf1);background-size:200% 100%;
+}
+html[data-theme="light"] .post{
+  background:linear-gradient(180deg,#ffffff,#f6f8fa)!important;border-color:var(--line)!important;
+}
+html[data-theme="light"] .postCard{background:#fff!important;border-color:var(--line)!important}

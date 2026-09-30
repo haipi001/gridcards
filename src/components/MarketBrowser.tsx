@@ -50,6 +50,8 @@ const SPECIAL_SETS = [
 
 const SPECIAL_SLUGS = new Set(SPECIAL_SETS.map((s) => s.slug));
 
+type SortKey = "checklist" | "checklistDesc" | "name";
+
 type Query = {
   dataset: DatasetKey;
   sections: string[];
@@ -57,6 +59,15 @@ type Query = {
   kind: "all" | "person" | "object";
   name: string;
 };
+
+// Card numbers are strings on purpose ("196", "TT-1", "F1A-LH"): fall back to a
+// numeric compare when both sides parse, otherwise keep a stable text order.
+function compareCardNumber(a: string, b: string): number {
+  const na = Number(a);
+  const nb = Number(b);
+  if (Number.isFinite(na) && Number.isFinite(nb) && a.trim() && b.trim()) return na - nb;
+  return a.localeCompare(b, "en", { numeric: true });
+}
 
 function parseQuery(search: string): Query {
   const sp = new URLSearchParams(search);
@@ -73,6 +84,11 @@ function parseQuery(search: string): Query {
   };
 }
 
+function parseSort(search: string): SortKey {
+  const raw = new URLSearchParams(search).get("sort");
+  return raw === "checklistDesc" || raw === "name" ? raw : "checklist";
+}
+
 function toHref(q: Query): string {
   const sp = new URLSearchParams();
   if (q.dataset !== "base") sp.set("dataset", q.dataset);
@@ -81,6 +97,14 @@ function toHref(q: Query): string {
   if (q.kind !== "all") sp.set("kind", q.kind);
   if (q.name) sp.set("name", q.name);
   const qs = sp.toString();
+  return qs ? `/?${qs}` : "/";
+}
+
+function withSort(href: string, sort: SortKey): string {
+  const url = new URL(href, "http://x");
+  if (sort === "checklist") url.searchParams.delete("sort");
+  else url.searchParams.set("sort", sort);
+  const qs = url.searchParams.toString();
   return qs ? `/?${qs}` : "/";
 }
 
@@ -94,6 +118,7 @@ export default function MarketBrowser({
   ladders: LadderIndex;
 }) {
   const [open, setOpen] = useState<Set<string>>(() => new Set());
+  const [sort, setSort] = useState<SortKey>("checklist");
   const [q, setQ] = useState<Query>({
     dataset: "base",
     sections: [],
@@ -104,7 +129,10 @@ export default function MarketBrowser({
 
   // Adopt the real query string once we are in the browser.
   useEffect(() => {
-    const sync = () => setQ(parseQuery(window.location.search));
+    const sync = () => {
+      setQ(parseQuery(window.location.search));
+      setSort(parseSort(window.location.search));
+    };
     sync();
     window.addEventListener("popstate", sync);
     return () => window.removeEventListener("popstate", sync);
@@ -155,6 +183,13 @@ export default function MarketBrowser({
     return true;
   });
 
+  // The official PDF order is the default; the sort control only reorders what
+  // is already on screen (it never changes which records match).
+  if (sort === "name") filtered.sort((a, b) => a.name.localeCompare(b.name));
+  else if (sort === "checklistDesc")
+    filtered.sort((a, b) => compareCardNumber(b.cardNumber, a.cardNumber));
+  else filtered.sort((a, b) => compareCardNumber(a.cardNumber, b.cardNumber));
+
   // Group records by section, preserving official order (V8 section heads).
   const groups: Array<{ section: string; items: CatalogItem[] }> = [];
   for (const item of filtered) {
@@ -199,6 +234,39 @@ export default function MarketBrowser({
 
   const baseSections = sections.filter((s) => s.category === "base");
 
+  // What is currently narrowing the list, so the rail can show it and undo it.
+  const activeFilters: Array<{ label: string; clear: () => void }> = [];
+  if (q.kind !== "all")
+    activeFilters.push({
+      label: q.kind === "person" ? "人物" : "车队 / 物件",
+      clear: () => navigate(toHref({ ...q, kind: "all" })),
+    });
+  if (q.name)
+    activeFilters.push({
+      label: `名称：${q.name}`,
+      clear: () => setQ({ ...q, name: "" }),
+    });
+  for (const slug of q.sections)
+    activeFilters.push({
+      label: baseSections.find((s) => s.slug === slug)?.name ?? slug,
+      clear: () =>
+        setQ((prev) => ({
+          ...prev,
+          sections: prev.sections.filter((x) => x !== slug),
+        })),
+    });
+  if (q.dataset !== "base")
+    activeFilters.push({
+      label: DATASETS.find((d) => d.key === q.dataset)?.label ?? q.dataset,
+      clear: () => navigate(toHref({ ...q, dataset: "base", sections: [] })),
+    });
+
+  const resetFilters = () => {
+    setQ({ dataset: "base", sections: [], player: "", kind: "all", name: "" });
+    setSort("checklist");
+    navigate("/");
+  };
+
   return (
     <>
       {/* Dataset tabs */}
@@ -223,29 +291,17 @@ export default function MarketBrowser({
         {/* Filter rail */}
         <aside className="filterRail">
           <h3>Filters</h3>
-          <details className="filter" open>
-            <summary>
-              Year <span>⌄</span>
-            </summary>
-            <div className="inner yearFilter">
-              <div className="check">
-                <label>
-                  <input type="checkbox" checked readOnly />
-                  2020
-                </label>
-                <span className="count">LIVE</span>
-              </div>
-              {[2021, 2022, 2023, 2024, 2025].map((y) => (
-                <div className="check future" key={y}>
-                  <label>
-                    <input type="checkbox" disabled />
-                    {y}
-                  </label>
-                  <span className="count">SOON</span>
-                </div>
-              ))}
+          <div className="filterStatic">
+            <small>YEAR</small>
+            <div className="filterStaticRow">
+              <b>2020</b>
+              <span className="count">CURRENT DATASET</span>
             </div>
-          </details>
+            <p className="mut">
+              已录入 2020 Topps Chrome F1 官方 checklist；2021–2025
+              待官方卡谱发布后接入。
+            </p>
+          </div>
           <details className="filter" open>
             <summary>
               Card type <span>⌄</span>
@@ -286,20 +342,8 @@ export default function MarketBrowser({
               Checklist section <span>⌄</span>
             </summary>
             <div className="inner">
-              <form
-                action="/"
-                method="get"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const fd = new FormData(e.currentTarget);
-                  const next: Query = {
-                    ...q,
-                    sections: fd.getAll("section").map(String).filter(Boolean),
-                  };
-                  navigate(toHref(next));
-                }}
-              >
-                {baseSections.map((s) => (
+              {q.dataset === "base" ? (
+                baseSections.map((s) => (
                   <div className="check" key={s.slug}>
                     <label>
                       <input
@@ -316,7 +360,6 @@ export default function MarketBrowser({
                               : prev.sections.filter((x) => x !== s.slug),
                           }));
                         }}
-                        disabled={q.dataset !== "base"}
                       />
                       {s.name}
                     </label>
@@ -324,51 +367,32 @@ export default function MarketBrowser({
                       {sectionCounts.get(s.slug) ?? 0}
                     </span>
                   </div>
-                ))}
-                <button
-                  type="submit"
-                  className="btn"
-                  style={{ width: "100%", marginTop: 8, justifyContent: "center" }}
-                  disabled={q.dataset !== "base"}
-                >
-                  Apply
-                </button>
-              </form>
+                ))
+              ) : (
+                <p className="mut" style={{ fontSize: 11.5, lineHeight: 1.6 }}>
+                  当前数据集为单一分类，无需按 section 细分。
+                </p>
+              )}
             </div>
           </details>
-          <details className="filter soonFilter">
-            <summary>
-              Rarity / Parallel{" "}
-              <span>
-                <i className="soonTag">SOON</i> ⌄
-              </span>
-            </summary>
-            <div className="inner mut" style={{ fontSize: 11 }}>
-              随 Phase 7 Listing 引擎开放（1/1、/5、/25、/50、/99、Unnumbered）。
-            </div>
-          </details>
-          <details className="filter soonFilter">
-            <summary>
-              Grade{" "}
-              <span>
-                <i className="soonTag">SOON</i> ⌄
-              </span>
-            </summary>
-            <div className="inner mut" style={{ fontSize: 11 }}>
-              随实体 Copy 上架开放（PSA 10 / PSA 9 / BGS / CGC / Raw）。
-            </div>
-          </details>
-          <details className="filter soonFilter">
-            <summary>
-              Price{" "}
-              <span>
-                <i className="soonTag">SOON</i> ⌄
-              </span>
-            </summary>
-            <div className="inner mut" style={{ fontSize: 11 }}>
-              有真实挂牌后开放价格区间筛选。
-            </div>
-          </details>
+
+          <div className="railRoadmap">
+            <small>ROADMAP · 随真实挂牌开放</small>
+            <ul>
+              <li>
+                <b>Rarity / Parallel</b>
+                <span>1/1、/5、/25、/50、/99、Unnumbered</span>
+              </li>
+              <li>
+                <b>Grade</b>
+                <span>PSA 10 / PSA 9 / BGS / CGC / Raw</span>
+              </li>
+              <li>
+                <b>Price range</b>
+                <span>有真实挂牌后开放区间筛选</span>
+              </li>
+            </ul>
+          </div>
         </aside>
 
         {/* Results */}
@@ -395,10 +419,40 @@ export default function MarketBrowser({
                   : `展开全部 ${visiblePersonCards.length} 张人物卡`}
               </button>
             )}
-            <select className="sort" disabled>
-              <option>Checklist # ↑</option>
+            <select
+              className="sort"
+              value={sort}
+              onChange={(e) => {
+                const next = e.target.value as SortKey;
+                setSort(next);
+                navigate(withSort(toHref(q), next));
+              }}
+              aria-label="Sort checklist records"
+            >
+              <option value="checklist">Checklist # ↑</option>
+              <option value="checklistDesc">Checklist # ↓</option>
+              <option value="name">Name A → Z</option>
             </select>
           </div>
+
+          {activeFilters.length > 0 && (
+            <div className="railActive">
+              {activeFilters.map((f) => (
+                <button
+                  key={f.label}
+                  type="button"
+                  className="activeChip"
+                  onClick={f.clear}
+                  title="移除该条件"
+                >
+                  {f.label} ×
+                </button>
+              ))}
+              <button className="pill" type="button" onClick={resetFilters}>
+                清除全部
+              </button>
+            </div>
+          )}
           {q.dataset === "base" && (
             <div className="catalogNotice">
               Base checklist states 200 cards. The source PDF contains two lines

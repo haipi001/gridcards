@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import CardVisual from "@/components/CardVisual";
+import { slugify } from "@/lib/slug";
 import { CardEffectsViewer } from "@/components/card-effects/CardEffectsViewer";
 import { rarityMeta } from "@/market/rarity";
 import { resolveEffectFromMarketEffect } from "@/components/card-effects/effectProfiles";
@@ -21,6 +23,11 @@ export default function ItemGallery({ item }: { item: MarketItem }) {
   // The foil follows the parallel tier — a 1/1 SuperFractor should not render
   // with the same finish as a base card.
   const effect = resolveEffectFromMarketEffect(item.effect);
+  // Only person cards with a print run have serial slots to look at.
+  const editionHref =
+    item.kind === "person" && item.printRun
+      ? `/players/${slugify(item.subject)}/editions/${slugify(item.parallel)}/`
+      : null;
 
   return (
     <div className="mGallery">
@@ -80,6 +87,14 @@ export default function ItemGallery({ item }: { item: MarketItem }) {
         <div className="mGalleryHint">
           该版本暂无实物扫描图，卡面由车队涂装色生成 · 悬停查看浮动效果
         </div>
+      )}
+
+      {/* The edition page is the other half of this card: it owns the serial
+          slots, so link across whenever the ladder actually has this parallel. */}
+      {editionHref && (
+        <Link className="mGalleryCross" href={editionHref}>
+          查看全部编号槽位 →
+        </Link>
       )}
     </div>
   );

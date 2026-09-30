@@ -19,12 +19,10 @@ import {
   playerSlug,
   slugify,
 } from "@/lib/catalog";
-import type { EditionCardData } from "@/lib/parallels";
-import { money } from "@/lib/marketUi";
-import CardVisual from "@/components/CardVisual";
-import { archiveForDriver, type ArchiveCard } from "@/lib/archiveData";
+import PlayerLadder, { type LadderTier } from "@/components/PlayerLadder";
+import { scanForEdition } from "@/lib/editionScans";
+import { archiveForDriver } from "@/lib/archiveData";
 import { initials, teamLogo, teamTheme, variantArt } from "@/lib/teams";
-import { archiveAspect } from "@/lib/archiveAspect";
 
 export async function generateMetadata({
   params,
@@ -47,65 +45,71 @@ export function generateStaticParams() {
   return getPlayerNames().map((name) => ({ name: playerSlug(name) }));
 }
 
-function EditionCard({
-  edition,
-  player,
-  theme,
-}: {
-  edition: EditionCardData;
-  player: string;
-  theme: { a: string; b: string };
-}) {
-  const run = edition.printRun;
-  const href = `/players/${playerSlug(player)}/editions/${slugify(edition.variant)}`;
-  return (
-    <Link href={href} style={{ display: "block" }}>
-      <article className="editionCard">
-        <div
-          className="editionVisual"
-          style={{ "--glow": edition.c1 } as React.CSSProperties}
-        >
-          <div
-            className="cardObject"
-            style={
-              {
-                "--c1": edition.c1,
-                "--c2": edition.c2,
-              } as React.CSSProperties
-            }
-          >
-            <span className="cardNo">#{edition.cardNo}</span>
-            <CardVisual
-              className="cardArt"
-              art={variantArt(edition.variant)}
-              a={theme.a}
-              b={theme.b}
-            />
-            <span className="cardName">{player.toUpperCase()}</span>
-          </div>
-          {run ? (
-            <span className="serialFlag">
-              {run === 1 ? "1/1 · 1 COPY" : `/${run} · ${run} COPIES`}
-            </span>
-          ) : null}
-        </div>
-        <h4>{edition.label}</h4>
-        <div className="editionMeta">
-          <span>{edition.variant}</span>
-          <span>{run ? `${run} serial${run === 1 ? "" : "s"}` : "Edition"}</span>
-        </div>
-        <div className="editionPrice">
-          <div>
-            <small>LOW ASK · DEMO</small>
-            <b>{money(edition.askDemo)}</b>
-          </div>
-          <span className="link">
-            {run ? "View all serials →" : "View edition →"}
-          </span>
-        </div>
-      </article>
-    </Link>
-  );
+// The ladder is assembled server-side so the whole thing is in the prerendered
+// HTML; PlayerLadder only narrows it in the browser.
+function buildLadder(name: string): LadderTier[] {
+  const tiers = getPlayerTiers(name);
+  const out: LadderTier[] = tiers.map((t) => ({
+    cls: t.cls,
+    level: t.level,
+    name: t.name,
+    desc: t.desc,
+    cards: t.cards.map((edition) => {
+      const scan = scanForEdition(name, edition.variant);
+      return {
+        key: `${t.level}-${edition.variant}`,
+        label: edition.label,
+        variant: edition.variant,
+        printRun: edition.printRun,
+        cardNo: edition.cardNo,
+        askDemo: edition.askDemo,
+        art: variantArt(edition.variant),
+        c1: edition.c1,
+        c2: edition.c2,
+        href: `/players/${playerSlug(name)}/editions/${slugify(edition.variant)}/`,
+        marketHref: scan ? `/market/items/${scan.itemId}/` : null,
+        image: scan?.image ?? null,
+        effect: scan?.effect ?? null,
+        w: 0,
+        h: 0,
+      };
+    }),
+  }));
+
+  // Real 1/1 photographs that belong to no checklist variant still deserve a
+  // home: they land in a closing Archive tier, rendered by the very same card.
+  const scans = archiveForDriver(name);
+  const used = new Set(out.flatMap((t) => t.cards).map((c) => c.image).filter(Boolean));
+  const spare = scans.filter((s) => !used.has(s.img));
+  if (spare.length) {
+    // A popular driver has 60+ scans; the ladder stays readable by showing a
+    // slice and handing the rest to the archive, which is built for browsing.
+    out.push({
+      cls: "archive",
+      level: "1/1",
+      name: "Archive scans",
+      desc: `该人物另有 ${spare.length} 张 1/1 实物照，未对应到具体编号版本`,
+      more: { href: "/archive/", label: `查看全部 ${spare.length} 张 →` },
+      cards: spare.slice(0, 8).map((s) => ({
+        key: `archive-${s.id}`,
+        label: s.cardName || s.setName,
+        variant: `${s.setName} · ${s.year}`,
+        printRun: 1,
+        cardNo: String(s.id),
+        askDemo: 0,
+        art: "racer",
+        c1: "#8d7a2a",
+        c2: "#342642",
+        href: "/archive/",
+        marketHref: null,
+        image: s.img,
+        effect: "superfractor",
+        w: s.w,
+        h: s.h,
+      })),
+    });
+  }
+  return out;
 }
 
 export default async function PlayerPage({
@@ -126,7 +130,8 @@ export default async function PlayerPage({
 
   const editions = tiers.flatMap((t) => t.cards);
   const numberedCount = editions.filter((x) => x.printRun).length;
-  const digitals: ArchiveCard[] = archiveForDriver(name);
+  const ladder = buildLadder(name);
+  const scanCount = archiveForDriver(name).length;
 
   return (
     <div className="wrap">
@@ -158,6 +163,7 @@ export default async function PlayerPage({
             <div className="playerTags">
               <span className="pill">{editions.length} editions</span>
               <span className="pill">{numberedCount} numbered</span>
+              {scanCount > 0 && <span className="pill">{scanCount} 张 1/1 实物照</span>}
               <span className="pill">{rows.length} PDF records</span>
             </div>
             <div className="row" style={{ gap: 8, marginTop: 12 }}>
@@ -187,106 +193,30 @@ export default async function PlayerPage({
         </div>
       </div>
 
-      <div className="playerNav">
-        <button className="active">Card ladder</button>
-        <button type="button">
-          For sale<i className="soonTag">SOON</i>
-        </button>
-        <button type="button">
-          Sales<i className="soonTag">SOON</i>
-        </button>
-        <button type="button">
-          Collectors<i className="soonTag">SOON</i>
-        </button>
-      </div>
-
       <div className="rarityIntro">
         <div>
           <h2>Rarity ladder</h2>
-          <p>按稀有度从稀有到常见纵向展开 {name} 的全部卡牌版本。</p>
+          <p>
+            按稀有度从稀有到常见纵向展开 {name} 的全部版本。有实物照的版本直接显示
+            1/1 扫描图，没有的用涂装色生成卡面——同一套卡片、同一种展示方式。
+          </p>
         </div>
         <div className="row" style={{ gap: 8 }}>
-          <button className="pill">2020</button>
-          <button className="pill">
-            All sets<i className="soonTag">SOON</i>
-          </button>
+          <Link className="btn" href="/archive">
+            完整 1/1 图鉴 →
+          </Link>
         </div>
       </div>
 
-      <div className="infoBox" style={{ margin: "0 0 16px" }}>
+      <PlayerLadder tiers={ladder} />
+
+      <div className="infoBox" style={{ margin: "22px 0 0" }}>
         <b>统一人物嵌套规则</b>
         <p className="mut" style={{ margin: "7px 0 0", lineHeight: 1.55 }}>
           所有人物共用 Player → Rarity Tier → Edition/Variant → Serial Copy →
           Transaction。只有官方标注 print run 的版本才进入 Serial
           层；数量严格等于 print run。
         </p>
-      </div>
-
-      {digitals.length > 0 && (
-        <>
-          <div className="sectionTitle" style={{ marginTop: 30 }}>
-            <div>
-              <div className="eyebrow">1/1 DISCOVERY NETWORK</div>
-              <h2>Digital 1/1s — {name}</h2>
-              <p>{digitals.length} 张 1/1 数字卡影像，全网仅此一份。</p>
-            </div>
-            <Link className="btn" href="/archive">
-              Full archive →
-            </Link>
-          </div>
-          <div className="archiveGrid">
-            {digitals.map((card) => (
-              <div className="archiveCard" key={card.id}>
-                <div
-                  className="archiveVisual"
-                  style={
-                    archiveAspect(card.w, card.h)
-                      ? ({ aspectRatio: archiveAspect(card.w, card.h) } as React.CSSProperties)
-                      : undefined
-                  }
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={card.img}
-                    alt={`${card.driver} 1/1 digital card`}
-                    loading="lazy"
-                    width={card.w || 360}
-                    height={card.h || 500}
-                  />
-                  <span className="serialFlag">1/1</span>
-                </div>
-                <div className="archiveMeta">
-                  <b>{card.driver}</b>
-                  <span>
-                    {card.setName} · {card.year} · {card.serial}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
-
-      <div className="rarityLadder">
-        {tiers.map((t) => (
-          <section className={`tier ${t.cls}`} key={t.level + t.name}>
-            <div className="tierLabel">
-              <span className="level">{t.level}</span>
-              <h3>{t.name}</h3>
-              <span>{t.desc}</span>
-            </div>
-            <div className="tierCards">
-              {t.cards.map((x) => (
-                <EditionCard
-                  key={x.label + x.variant}
-                  edition={x}
-                  player={name}
-                  theme={theme}
-                />
-              ))}
-            </div>
-          </section>
-        ))}
       </div>
     </div>
   );

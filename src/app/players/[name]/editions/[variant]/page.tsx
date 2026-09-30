@@ -19,13 +19,14 @@ import {
   slugify,
 } from "@/lib/catalog";
 import { money } from "@/lib/marketUi";
-import CardVisual from "@/components/CardVisual";
+import EditionGallery from "@/components/EditionGallery";
+import { scanForEdition } from "@/lib/editionScans";
 import WatchButton from "@/components/WatchButton";
 import { OwnedMeter, SerialMap } from "@/components/SerialClaim";
 import SerialMarket from "@/components/SerialMarket";
 import { editionWatchEntry } from "@/lib/watchEntry";
 import { serialLabel, type ClaimEntry } from "@/lib/claims";
-import { teamTheme, variantArt } from "@/lib/teams";
+import { variantArt } from "@/lib/teams";
 
 export async function generateMetadata({
   params,
@@ -88,9 +89,10 @@ export default async function EditionPage({
     .find((x) => slugify(x.variant) === variantSlug);
   if (!edition) notFound();
 
-  const theme = teamTheme(rows.find((r) => r.team)?.team ?? null);
   const run = edition.printRun;
   const claim = claimEntry(name, edition, run ?? 0);
+  // Real photograph of this exact parallel, when the market holds one.
+  const scan = scanForEdition(name, edition.variant);
 
   return (
     <div className="wrap">
@@ -101,27 +103,16 @@ export default async function EditionPage({
       </div>
 
       <div className="serialHero" style={{ marginTop: 12 }}>
-        <div className="serialVisual">
-          <div
-            className="cardObject"
-            style={
-              {
-                "--c1": edition.c1,
-                "--c2": edition.c2,
-                width: "48%",
-              } as React.CSSProperties
-            }
-          >
-            <span className="cardNo">#{edition.cardNo}</span>
-            <CardVisual
-              className="cardArt"
-              art={variantArt(edition.variant)}
-              a={theme.a}
-              b={theme.b}
-            />
-            <span className="cardName">{name.toUpperCase()}</span>
-          </div>
-        </div>
+        <EditionGallery
+          name={name}
+          label={edition.label}
+          cardNo={edition.cardNo}
+          art={variantArt(edition.variant)}
+          c1={edition.c1}
+          c2={edition.c2}
+          image={scan?.image ?? null}
+          effect={scan?.effect ?? null}
+        />
         <div className="serialInfo">
           <div className="eyebrow">
             {run ? "NUMBERED EDITION" : "UNNUMBERED EDITION"}
@@ -136,6 +127,14 @@ export default async function EditionPage({
               ? `该版本官方印量为 ${run}。页面严格展开 ${run} 个具体编号：${serialLabel(1, run)}–${serialLabel(run, run)}，不会多一个也不会少一个。`
               : "未编号版本没有官方 print run，不生成编号槽位。"}
           </p>
+          {scan && (
+            <div className="row" style={{ gap: 8, marginTop: 10 }}>
+              <Link className="btn" href={`/market/items/${scan.itemId}/`}>
+                在市场查看 →
+              </Link>
+              <span className="sourceFlag">REAL SCAN</span>
+            </div>
+          )}
           <div className="marketMetrics">
             <div className="marketMetric">
               <small>LOWEST ASK</small>

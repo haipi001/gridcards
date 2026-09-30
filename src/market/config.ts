@@ -13,6 +13,14 @@ export const API_BASE = process.env.NEXT_PUBLIC_MARKET_API ?? "/mock";
 const IS_PROD = process.env.NODE_ENV === "production";
 const IS_MOCK = API_BASE === "/mock";
 
+/**
+ * True while reads come from /mock/*.json. In this mode filtering, sorting and
+ * pagination run in the browser (src/market/query.ts) because a static file
+ * cannot answer a query. Against a real API they move to the server and
+ * query.ts drops out of the read path. See docs/BACKEND.md.
+ */
+export const MOCK_MODE = IS_MOCK;
+
 /** Simulated network latency for list/detail reads (ms). 0 against a real API. */
 export const READ_LATENCY_MS = Number(
   process.env.NEXT_PUBLIC_MOCK_LATENCY ?? (IS_MOCK ? (IS_PROD ? 150 : 260) : 0),

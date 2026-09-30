@@ -48,11 +48,16 @@ scripts/            生成器、自检、vendor 脚本
 
 整个市场只读 6 个资源，换真实后端只动三处，页面代码零改动：
 
-1. `src/market/config.ts` — `API_BASE`：留空用 `/mock`，设 `NEXT_PUBLIC_MARKET_API` 指向真实服务。
+1. `src/market/config.ts` — `API_BASE` / `MOCK_MODE`：留空用 `/mock`，设 `NEXT_PUBLIC_MARKET_API` 指向真实服务。
 2. `src/market/api.ts` — 6 个 `load*` 函数改成 HTTP 请求（`fetchQuery` 替代 `fetchFile`）。
 3. `src/market/actions.ts` — 写入动作改真实接口，保留 `ActionResult` 契约。
 
 类型契约见 `src/market/types.ts`。详见 [docs/MARKET.md](docs/MARKET.md)。
+
+**接缝 1 与 2（只读）已经落地**：`server/` 是一个 FastAPI 实现（SQLite 起步，
+可换 Postgres），`src/market/api.ts` 会按 `MOCK_MODE` 自动切换，且后端返回的
+JSON 与 `public/mock/*.json` 逐字段一致。跑法与端点清单见
+[docs/BACKEND.md](docs/BACKEND.md)。写入（接缝 3）与存储（接缝 4）仍是本地实现。
 
 ## 上线前必须设置
 

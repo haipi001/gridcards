@@ -92,6 +92,11 @@ export const DEV_SWITCHES = !IS_PROD || process.env.NEXT_PUBLIC_DEV_SWITCHES ===
 
 界面只依赖 `src/market/` 这一层，替换时**页面与组件一行都不用改**。
 
+> 只读部分已经实现：`server/` 下有 FastAPI 后端，`src/market/api.ts` 按
+> `MOCK_MODE` 在 `/mock/*.json` 与真实接口之间切换。端点清单、本地跑法、
+> 一致性校验脚本见 [BACKEND.md](BACKEND.md)。本节的表格描述的是完整替换
+> （含写入）后的样子。
+
 | 位置 | 现在 | 换成真实接口 |
 |---|---|---|
 | `src/market/config.ts` | `API_BASE = "/mock"` | 设 `NEXT_PUBLIC_MARKET_API=https://api…/v1` |

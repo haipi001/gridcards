@@ -1,0 +1,495 @@
+"use client";
+
+// Client-side market browser.
+//
+// The app is statically exported, so there is no server to evaluate
+// ?dataset= / ?section= / ?player= at request time. Instead every one of the
+// 313 official checklist records ships with the page and filtering happens in
+// the browser from the URL query — the links keep working exactly as before.
+//
+// Server render = the default base checklist (real HTML, no blank first
+// paint). On mount the component reads the actual query string and re-filters,
+// so a shared /?dataset=tt link still lands on the right dataset.
+
+import { useCallback, useEffect, useMemo, useState } from "react";
+import CatalogCard from "@/components/CatalogCard";
+import { DATASETS, type CatalogItem, type DatasetKey } from "@/lib/marketUi";
+import type { SectionInfo } from "@/lib/catalog";
+import type { LadderIndex } from "@/lib/ladderIndex";
+
+const SPECIAL_SETS = [
+  {
+    key: "tt" as DatasetKey,
+    name: "Track Tags",
+    code: "TT",
+    slug: "track-tags",
+    desc: "INSERTS · TT-1–TT-15",
+  },
+  {
+    key: "54w" as DatasetKey,
+    name: "1954 Topps World on Wheels",
+    code: "54W",
+    slug: "world-on-wheels",
+    desc: "INSERTS · 54W-1–54W-35",
+  },
+  {
+    key: "variations" as DatasetKey,
+    name: "Base Card Image Variations",
+    code: "VAR",
+    slug: "base-card-image-variations",
+    desc: "IMAGE VARIATIONS",
+  },
+  {
+    key: "autographs" as DatasetKey,
+    name: "Chrome Autograph Variations",
+    code: "F1A",
+    slug: "chrome-autograph-variations",
+    desc: "AUTOGRAPHS",
+  },
+];
+
+const SPECIAL_SLUGS = new Set(SPECIAL_SETS.map((s) => s.slug));
+
+type Query = {
+  dataset: DatasetKey;
+  sections: string[];
+  player: string;
+  kind: "all" | "person" | "object";
+  name: string;
+};
+
+function parseQuery(search: string): Query {
+  const sp = new URLSearchParams(search);
+  const raw = sp.get("dataset");
+  return {
+    dataset: DATASETS.some((d) => d.key === raw) ? (raw as DatasetKey) : "base",
+    sections: sp.getAll("section").filter(Boolean),
+    player: sp.get("player")?.trim() ?? "",
+    kind:
+      sp.get("kind") === "person" || sp.get("kind") === "object"
+        ? (sp.get("kind") as "person" | "object")
+        : "all",
+    name: sp.get("name")?.trim() ?? "",
+  };
+}
+
+function toHref(q: Query): string {
+  const sp = new URLSearchParams();
+  if (q.dataset !== "base") sp.set("dataset", q.dataset);
+  for (const s of q.sections) sp.append("section", s);
+  if (q.player) sp.set("player", q.player);
+  if (q.kind !== "all") sp.set("kind", q.kind);
+  if (q.name) sp.set("name", q.name);
+  const qs = sp.toString();
+  return qs ? `/?${qs}` : "/";
+}
+
+export default function MarketBrowser({
+  items,
+  sections,
+  ladders,
+}: {
+  items: CatalogItem[];
+  sections: SectionInfo[];
+  ladders: LadderIndex;
+}) {
+  const [open, setOpen] = useState<Set<string>>(() => new Set());
+  const [q, setQ] = useState<Query>({
+    dataset: "base",
+    sections: [],
+    player: "",
+    kind: "all",
+    name: "",
+  });
+
+  // Adopt the real query string once we are in the browser.
+  useEffect(() => {
+    const sync = () => setQ(parseQuery(window.location.search));
+    sync();
+    window.addEventListener("popstate", sync);
+    return () => window.removeEventListener("popstate", sync);
+  }, []);
+
+  const navigate = useCallback((href: string) => {
+    window.history.pushState({}, "", href);
+    setQ(parseQuery(new URL(href, window.location.origin).search));
+  }, []);
+
+  // Modify clicks keep native behaviour (new tab); plain clicks are instant.
+  const intercept = (href: string) => (e: React.MouseEvent) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) {
+      return;
+    }
+    e.preventDefault();
+    navigate(href);
+  };
+
+  const datasetDef = DATASETS.find((d) => d.key === q.dataset)!;
+
+  const sectionCounts = new Map<string, number>();
+  const specialCounts = new Map<string, number>();
+  for (const item of items) {
+    const bucket = SPECIAL_SLUGS.has(item.sectionSlug)
+      ? specialCounts
+      : sectionCounts;
+    bucket.set(item.sectionSlug, (bucket.get(item.sectionSlug) ?? 0) + 1);
+  }
+
+  const allowed = datasetDef.sectionSlugs;
+  const filtered = items.filter((item) => {
+    if (q.kind === "person" && item.kind !== "person") return false;
+    if (q.kind === "object" && item.kind === "person") return false;
+    if (q.name && !item.name.toLowerCase().includes(q.name.toLowerCase()))
+      return false;
+    if (allowed) {
+      if (!allowed.includes(item.sectionSlug)) return false;
+    } else if (item.sectionCategory !== "base") {
+      return false;
+    }
+    if (q.dataset === "base" && q.sections.length > 0) {
+      if (!q.sections.includes(item.sectionSlug)) return false;
+    }
+    if (q.player && !item.name.toLowerCase().includes(q.player.toLowerCase())) {
+      return false;
+    }
+    return true;
+  });
+
+  // Group records by section, preserving official order (V8 section heads).
+  const groups: Array<{ section: string; items: CatalogItem[] }> = [];
+  for (const item of filtered) {
+    let g = groups.find((x) => x.section === item.sectionName);
+    if (!g) {
+      g = { section: item.sectionName, items: [] };
+      groups.push(g);
+    }
+    g.items.push(item);
+  }
+
+  // Checklist records per person, for the inline expansion header.
+  const recordsBy = useMemo(() => {
+    const map: Record<string, number> = {};
+    for (const item of items) {
+      if (item.kind !== "person") continue;
+      map[item.name] = (map[item.name] ?? 0) + 1;
+    }
+    return map;
+  }, [items]);
+
+  // Keyed by card id, not by person name: the same driver appears in several
+  // checklist sections, and expanding one record must not open all of them.
+  const toggleCard = useCallback((id: string) => {
+    setOpen((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }, []);
+
+  // Not memoized on purpose: `filtered` is rebuilt on every keystroke anyway,
+  // and the 313-record pass is cheaper than the memo bookkeeping.
+  const visiblePersonCards = filtered.filter(
+    (c) => c.kind === "person" && Boolean(ladders[c.name]?.rows.length),
+  );
+
+  const allOpen =
+    visiblePersonCards.length > 0 &&
+    visiblePersonCards.every((c) => open.has(c.id));
+
+  const baseSections = sections.filter((s) => s.category === "base");
+
+  return (
+    <>
+      {/* Dataset tabs */}
+      <div className="marketTabs">
+        {DATASETS.map((d) => {
+          const next: Query = { ...q, dataset: d.key, sections: [] };
+          const href = toHref(next);
+          return (
+            <a
+              key={d.key}
+              href={href}
+              className={`chip ${q.dataset === d.key ? "active" : ""}`}
+              onClick={intercept(href)}
+            >
+              {d.label}
+            </a>
+          );
+        })}
+      </div>
+
+      <div className="marketShell">
+        {/* Filter rail */}
+        <aside className="filterRail">
+          <h3>Filters</h3>
+          <details className="filter" open>
+            <summary>
+              Year <span>⌄</span>
+            </summary>
+            <div className="inner yearFilter">
+              <div className="check">
+                <label>
+                  <input type="checkbox" checked readOnly />
+                  2020
+                </label>
+                <span className="count">LIVE</span>
+              </div>
+              {[2021, 2022, 2023, 2024, 2025].map((y) => (
+                <div className="check future" key={y}>
+                  <label>
+                    <input type="checkbox" disabled />
+                    {y}
+                  </label>
+                  <span className="count">SOON</span>
+                </div>
+              ))}
+            </div>
+          </details>
+          <details className="filter" open>
+            <summary>
+              Card type <span>⌄</span>
+            </summary>
+            <div className="inner">
+              <div className="typeFilter">
+                {(
+                  [
+                    { key: "all", label: "全部" },
+                    { key: "person", label: "人物" },
+                    { key: "object", label: "车队 / 物件" },
+                  ] as const
+                ).map((k) => (
+                  <button
+                    key={k.key}
+                    className={`chip ${q.kind === k.key ? "active" : ""}`}
+                    type="button"
+                    onClick={() =>
+                      navigate(toHref({ ...q, kind: k.key }))
+                    }
+                  >
+                    {k.label}
+                  </button>
+                ))}
+              </div>
+              <input
+                className="nameFilter"
+                type="text"
+                value={q.name}
+                placeholder="按人物名筛选，如 Hamilton"
+                onChange={(e) => setQ({ ...q, name: e.target.value })}
+                aria-label="Filter by name"
+              />
+            </div>
+          </details>
+          <details className="filter" open>
+            <summary>
+              Checklist section <span>⌄</span>
+            </summary>
+            <div className="inner">
+              <form
+                action="/"
+                method="get"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const fd = new FormData(e.currentTarget);
+                  const next: Query = {
+                    ...q,
+                    sections: fd.getAll("section").map(String).filter(Boolean),
+                  };
+                  navigate(toHref(next));
+                }}
+              >
+                {baseSections.map((s) => (
+                  <div className="check" key={s.slug}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="section"
+                        value={s.slug}
+                        checked={q.sections.includes(s.slug)}
+                        onChange={(e) => {
+                          const on = e.currentTarget.checked;
+                          setQ((prev) => ({
+                            ...prev,
+                            sections: on
+                              ? [...prev.sections, s.slug]
+                              : prev.sections.filter((x) => x !== s.slug),
+                          }));
+                        }}
+                        disabled={q.dataset !== "base"}
+                      />
+                      {s.name}
+                    </label>
+                    <span className="count">
+                      {sectionCounts.get(s.slug) ?? 0}
+                    </span>
+                  </div>
+                ))}
+                <button
+                  type="submit"
+                  className="btn"
+                  style={{ width: "100%", marginTop: 8, justifyContent: "center" }}
+                  disabled={q.dataset !== "base"}
+                >
+                  Apply
+                </button>
+              </form>
+            </div>
+          </details>
+          <details className="filter soonFilter">
+            <summary>
+              Rarity / Parallel{" "}
+              <span>
+                <i className="soonTag">SOON</i> ⌄
+              </span>
+            </summary>
+            <div className="inner mut" style={{ fontSize: 11 }}>
+              随 Phase 7 Listing 引擎开放（1/1、/5、/25、/50、/99、Unnumbered）。
+            </div>
+          </details>
+          <details className="filter soonFilter">
+            <summary>
+              Grade{" "}
+              <span>
+                <i className="soonTag">SOON</i> ⌄
+              </span>
+            </summary>
+            <div className="inner mut" style={{ fontSize: 11 }}>
+              随实体 Copy 上架开放（PSA 10 / PSA 9 / BGS / CGC / Raw）。
+            </div>
+          </details>
+          <details className="filter soonFilter">
+            <summary>
+              Price{" "}
+              <span>
+                <i className="soonTag">SOON</i> ⌄
+              </span>
+            </summary>
+            <div className="inner mut" style={{ fontSize: 11 }}>
+              有真实挂牌后开放价格区间筛选。
+            </div>
+          </details>
+        </aside>
+
+        {/* Results */}
+        <main>
+          <div className="resultsTop">
+            <strong>
+              {filtered.length} checklist records · ordered by card #
+            </strong>
+            <span className="sourceFlag">PDF source</span>
+            {visiblePersonCards.length > 0 && (
+              <button
+                className="pill"
+                type="button"
+                onClick={() =>
+                  setOpen(
+                    allOpen
+                      ? new Set()
+                      : new Set(visiblePersonCards.map((c) => c.id)),
+                  )
+                }
+              >
+                {allOpen
+                  ? "收起全部"
+                  : `展开全部 ${visiblePersonCards.length} 张人物卡`}
+              </button>
+            )}
+            <select className="sort" disabled>
+              <option>Checklist # ↑</option>
+            </select>
+          </div>
+          {q.dataset === "base" && (
+            <div className="catalogNotice">
+              Base checklist states 200 cards. The source PDF contains two lines
+              numbered <b>#196</b>; both are preserved and flagged below rather
+              than silently corrected.
+            </div>
+          )}
+          <div className="marketGrid catalogGrid">
+            {groups.map((g, idx) => (
+              <div key={g.section} style={{ display: "contents" }}>
+                <div className="catalogSectionHead">
+                  <div>
+                    <span className="catalogIndex">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <b>{g.section}</b>
+                      <span>
+                        {g.items.length} checklist record
+                        {g.items.length === 1 ? "" : "s"} · official order
+                      </span>
+                    </div>
+                  </div>
+                  <span>
+                    {g.items[0]?.cardNumber ?? ""} →{" "}
+                    {g.items[g.items.length - 1]?.cardNumber ?? ""}
+                  </span>
+                </div>
+                {g.items.map((c) => (
+                  <CatalogCard
+                    key={c.id}
+                    card={c}
+                    ladder={ladders[c.name]}
+                    records={recordsBy[c.name]}
+                    expanded={open.has(c.id)}
+                    onToggle={() => toggleCard(c.id)}
+                  />
+                ))}
+              </div>
+            ))}
+          </div>
+          {filtered.length === 0 && (
+            <p className="mut" style={{ marginTop: 40, textAlign: "center" }}>
+              No checklist records match the current filters.
+            </p>
+          )}
+
+          {/* Special collection entries */}
+          {q.dataset === "base" && (
+            <>
+              <div className="sectionTitle marketSpecialTitle">
+                <div>
+                  <div className="eyebrow">PDF COLLECTION GROUPS</div>
+                  <h2>Checklist Collections</h2>
+                  <p>
+                    Base 之外，按源 PDF 出现顺序进入 Track Tags、1954 Topps World
+                    on Wheels、Base Card Image Variations 与 Chrome Autograph
+                    Variations。
+                  </p>
+                </div>
+              </div>
+              <div className="specialSetGrid">
+                {SPECIAL_SETS.map((s) => {
+                  const href = toHref({ ...q, dataset: s.key, sections: [] });
+                  return (
+                    <a
+                      key={s.code}
+                      href={href}
+                      className="specialSet"
+                      onClick={intercept(href)}
+                    >
+                      <div>
+                        <div className="eyebrow">{s.desc}</div>
+                        <div className="setCode">{s.code}</div>
+                        <h3>{s.name}</h3>
+                        <p>From the uploaded 2020 Topps Chrome F1 checklist.</p>
+                      </div>
+                      <div className="setFoot">
+                        <span>
+                          {specialCounts.get(s.slug) ?? 0} checklist entries
+                        </span>
+                        <span>Explore →</span>
+                      </div>
+                    </a>
+                  );
+                })}
+              </div>
+            </>
+          )}
+        </main>
+      </div>
+    </>
+  );
+}

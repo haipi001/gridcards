@@ -16,6 +16,11 @@
 # next.js
 /.next/
 /out/
+/out-dev/
+
+# playwright
+/test-results/
+/playwright-report/
 
 # production
 /build
@@ -32,6 +37,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -39,3 +45,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.data/
+
+# user uploads must never enter the repository (see THIRD_PARTY_NOTICES.md)
+public/img/uploads/

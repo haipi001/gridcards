@@ -1,0 +1,3986 @@
+[
+ {
+  "id": "O00001",
+  "itemId": "valtteri-bottas-chrome-base-red-refractor-5",
+  "serial": "1",
+  "priceCents": 681863,
+  "buyer": {
+   "id": "u_16",
+   "handle": "sectorace75",
+   "rating": 4.4,
+   "sales": 856,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00002",
+  "itemId": "valtteri-bottas-chrome-base-red-refractor-5",
+  "serial": "1",
+  "priceCents": 573476,
+  "buyer": {
+   "id": "u_25",
+   "handle": "slipstreamorca62",
+   "rating": 4.8,
+   "sales": 140,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00003",
+  "itemId": "valtteri-bottas-chrome-base-red-refractor-5",
+  "serial": "2",
+  "priceCents": 521397,
+  "buyer": {
+   "id": "u_65",
+   "handle": "turbolynx39",
+   "rating": 4.5,
+   "sales": 165,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00004",
+  "itemId": "valtteri-bottas-chrome-base-gold-refractor-50",
+  "serial": "34",
+  "priceCents": 193268,
+  "buyer": {
+   "id": "u_41",
+   "handle": "gridmantis73",
+   "rating": 4.8,
+   "sales": 912,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00005",
+  "itemId": "valtteri-bottas-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 98082,
+  "buyer": {
+   "id": "u_111",
+   "handle": "apexbull4",
+   "rating": 4.3,
+   "sales": 767,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00006",
+  "itemId": "sebastian-vettel-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 54862,
+  "buyer": {
+   "id": "u_9",
+   "handle": "chicaneorca14",
+   "rating": 4.6,
+   "sales": 868,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00007",
+  "itemId": "sebastian-vettel-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 67673,
+  "buyer": {
+   "id": "u_23",
+   "handle": "pitace85",
+   "rating": 4.7,
+   "sales": 864,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00008",
+  "itemId": "sebastian-vettel-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 74739,
+  "buyer": {
+   "id": "u_50",
+   "handle": "apexbull15",
+   "rating": 4.6,
+   "sales": 212,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00009",
+  "itemId": "sebastian-vettel-chrome-base-base",
+  "serial": null,
+  "priceCents": 31558,
+  "buyer": {
+   "id": "u_25",
+   "handle": "slipstreamorca62",
+   "rating": 4.8,
+   "sales": 140,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00010",
+  "itemId": "sebastian-vettel-chrome-base-base",
+  "serial": null,
+  "priceCents": 27317,
+  "buyer": {
+   "id": "u_19",
+   "handle": "slipstreamhawk73",
+   "rating": 4.3,
+   "sales": 218,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00011",
+  "itemId": "sebastian-vettel-chrome-base-base",
+  "serial": null,
+  "priceCents": 29996,
+  "buyer": {
+   "id": "u_97",
+   "handle": "slipstreamlynx44",
+   "rating": 4.6,
+   "sales": 591,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00012",
+  "itemId": "charles-leclerc-chrome-base-red-refractor-5",
+  "serial": "5",
+  "priceCents": 1092227,
+  "buyer": {
+   "id": "u_14",
+   "handle": "poleorca51",
+   "rating": 4.7,
+   "sales": 686,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00013",
+  "itemId": "charles-leclerc-chrome-base-red-refractor-5",
+  "serial": "4",
+  "priceCents": 1138042,
+  "buyer": {
+   "id": "u_87",
+   "handle": "qualiraven65",
+   "rating": 4.6,
+   "sales": 583,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00014",
+  "itemId": "charles-leclerc-chrome-base-red-refractor-5",
+  "serial": "5",
+  "priceCents": 1048458,
+  "buyer": {
+   "id": "u_108",
+   "handle": "poleorca83",
+   "rating": 4.8,
+   "sales": 21,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00015",
+  "itemId": "charles-leclerc-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 92673,
+  "buyer": {
+   "id": "u_83",
+   "handle": "pitotter21",
+   "rating": 4.5,
+   "sales": 381,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00016",
+  "itemId": "charles-leclerc-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 117938,
+  "buyer": {
+   "id": "u_27",
+   "handle": "apexace41",
+   "rating": 4.6,
+   "sales": 801,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00017",
+  "itemId": "charles-leclerc-chrome-base-base",
+  "serial": null,
+  "priceCents": 48075,
+  "buyer": {
+   "id": "u_79",
+   "handle": "sectorfox72",
+   "rating": 5,
+   "sales": 305,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00018",
+  "itemId": "alexander-albon-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 2829497,
+  "buyer": {
+   "id": "u_55",
+   "handle": "slipstreamlynx62",
+   "rating": 4.5,
+   "sales": 754,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00019",
+  "itemId": "alexander-albon-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 2911354,
+  "buyer": {
+   "id": "u_83",
+   "handle": "pitotter21",
+   "rating": 4.5,
+   "sales": 381,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00020",
+  "itemId": "alexander-albon-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 1996866,
+  "buyer": {
+   "id": "u_63",
+   "handle": "drsfox78",
+   "rating": 4.9,
+   "sales": 623,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00021",
+  "itemId": "alexander-albon-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 55774,
+  "buyer": {
+   "id": "u_49",
+   "handle": "drscomet7",
+   "rating": 4.8,
+   "sales": 659,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00022",
+  "itemId": "alexander-albon-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 64065,
+  "buyer": {
+   "id": "u_92",
+   "handle": "slipstreamraven35",
+   "rating": 4.5,
+   "sales": 399,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00023",
+  "itemId": "alexander-albon-chrome-base-base",
+  "serial": null,
+  "priceCents": 19133,
+  "buyer": {
+   "id": "u_59",
+   "handle": "qualiwolf73",
+   "rating": 4.3,
+   "sales": 286,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00024",
+  "itemId": "alexander-albon-chrome-base-base",
+  "serial": null,
+  "priceCents": 18223,
+  "buyer": {
+   "id": "u_29",
+   "handle": "polefox33",
+   "rating": 4.5,
+   "sales": 177,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00025",
+  "itemId": "alexander-albon-chrome-base-base",
+  "serial": null,
+  "priceCents": 18112,
+  "buyer": {
+   "id": "u_117",
+   "handle": "chicaneraven52",
+   "rating": 4.8,
+   "sales": 365,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00026",
+  "itemId": "max-verstappen-chrome-base-base",
+  "serial": null,
+  "priceCents": 16468,
+  "buyer": {
+   "id": "u_34",
+   "handle": "qualikite7",
+   "rating": 4.4,
+   "sales": 433,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00027",
+  "itemId": "max-verstappen-chrome-base-base",
+  "serial": null,
+  "priceCents": 20781,
+  "buyer": {
+   "id": "u_7",
+   "handle": "sectorlynx51",
+   "rating": 5,
+   "sales": 20,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00028",
+  "itemId": "max-verstappen-chrome-base-base",
+  "serial": null,
+  "priceCents": 14316,
+  "buyer": {
+   "id": "u_110",
+   "handle": "poleotter9",
+   "rating": 4.5,
+   "sales": 502,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00029",
+  "itemId": "lando-norris-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 1847955,
+  "buyer": {
+   "id": "u_120",
+   "handle": "chicanehawk55",
+   "rating": 4.6,
+   "sales": 208,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791100800000
+ },
+ {
+  "id": "O00030",
+  "itemId": "lando-norris-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 2073557,
+  "buyer": {
+   "id": "u_13",
+   "handle": "pitlynx10",
+   "rating": 4.4,
+   "sales": 604,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00031",
+  "itemId": "lando-norris-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 43713,
+  "buyer": {
+   "id": "u_60",
+   "handle": "turboorca56",
+   "rating": 4.7,
+   "sales": 420,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00032",
+  "itemId": "carlos-sainz-chrome-base-red-refractor-5",
+  "serial": "5",
+  "priceCents": 1064493,
+  "buyer": {
+   "id": "u_99",
+   "handle": "slipstreamace58",
+   "rating": 4.5,
+   "sales": 543,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00033",
+  "itemId": "carlos-sainz-chrome-base-red-refractor-5",
+  "serial": "2",
+  "priceCents": 812595,
+  "buyer": {
+   "id": "u_65",
+   "handle": "turbolynx39",
+   "rating": 4.5,
+   "sales": 165,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00034",
+  "itemId": "carlos-sainz-chrome-base-red-refractor-5",
+  "serial": "1",
+  "priceCents": 1084536,
+  "buyer": {
+   "id": "u_82",
+   "handle": "apexraven69",
+   "rating": 4.6,
+   "sales": 5,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00035",
+  "itemId": "carlos-sainz-chrome-base-base",
+  "serial": null,
+  "priceCents": 38219,
+  "buyer": {
+   "id": "u_81",
+   "handle": "kerbace17",
+   "rating": 5,
+   "sales": 457,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00036",
+  "itemId": "daniel-ricciardo-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 2134441,
+  "buyer": {
+   "id": "u_96",
+   "handle": "turbomantis80",
+   "rating": 4.5,
+   "sales": 214,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00037",
+  "itemId": "daniel-ricciardo-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 2969988,
+  "buyer": {
+   "id": "u_104",
+   "handle": "slipstreambull58",
+   "rating": 4.6,
+   "sales": 78,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00038",
+  "itemId": "daniel-ricciardo-chrome-base-red-refractor-5",
+  "serial": "3",
+  "priceCents": 601365,
+  "buyer": {
+   "id": "u_82",
+   "handle": "apexraven69",
+   "rating": 4.6,
+   "sales": 5,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00039",
+  "itemId": "daniel-ricciardo-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 82041,
+  "buyer": {
+   "id": "u_12",
+   "handle": "chicanemantis60",
+   "rating": 4.7,
+   "sales": 167,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00040",
+  "itemId": "esteban-ocon-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 1075698,
+  "buyer": {
+   "id": "u_35",
+   "handle": "apexfox63",
+   "rating": 4.4,
+   "sales": 429,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00041",
+  "itemId": "esteban-ocon-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 1447670,
+  "buyer": {
+   "id": "u_32",
+   "handle": "polelynx41",
+   "rating": 4.4,
+   "sales": 479,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00042",
+  "itemId": "esteban-ocon-chrome-base-base",
+  "serial": null,
+  "priceCents": 10553,
+  "buyer": {
+   "id": "u_48",
+   "handle": "pitfox39",
+   "rating": 4.8,
+   "sales": 484,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00043",
+  "itemId": "esteban-ocon-chrome-base-base",
+  "serial": null,
+  "priceCents": 9561,
+  "buyer": {
+   "id": "u_101",
+   "handle": "slipstreammantis83",
+   "rating": 4.7,
+   "sales": 659,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00044",
+  "itemId": "pierre-gasly-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 2511248,
+  "buyer": {
+   "id": "u_102",
+   "handle": "kerbmantis79",
+   "rating": 4.6,
+   "sales": 428,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00045",
+  "itemId": "pierre-gasly-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 2263612,
+  "buyer": {
+   "id": "u_115",
+   "handle": "turbobull72",
+   "rating": 4.4,
+   "sales": 877,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00046",
+  "itemId": "pierre-gasly-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 2133749,
+  "buyer": {
+   "id": "u_74",
+   "handle": "downforcecomet83",
+   "rating": 4.3,
+   "sales": 677,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00047",
+  "itemId": "pierre-gasly-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 76991,
+  "buyer": {
+   "id": "u_39",
+   "handle": "apexotter60",
+   "rating": 4.4,
+   "sales": 258,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00048",
+  "itemId": "pierre-gasly-chrome-base-base",
+  "serial": null,
+  "priceCents": 23482,
+  "buyer": {
+   "id": "u_67",
+   "handle": "chicanelynx55",
+   "rating": 4.3,
+   "sales": 282,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00049",
+  "itemId": "pierre-gasly-chrome-base-base",
+  "serial": null,
+  "priceCents": 22780,
+  "buyer": {
+   "id": "u_61",
+   "handle": "drskite19",
+   "rating": 4.7,
+   "sales": 37,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00050",
+  "itemId": "pierre-gasly-chrome-base-base",
+  "serial": null,
+  "priceCents": 25467,
+  "buyer": {
+   "id": "u_110",
+   "handle": "poleotter9",
+   "rating": 4.5,
+   "sales": 502,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00051",
+  "itemId": "daniil-kvyat-chrome-base-base",
+  "serial": null,
+  "priceCents": 29849,
+  "buyer": {
+   "id": "u_43",
+   "handle": "sectororca70",
+   "rating": 4.3,
+   "sales": 383,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00052",
+  "itemId": "sergio-perez-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 3458452,
+  "buyer": {
+   "id": "u_35",
+   "handle": "apexfox63",
+   "rating": 4.4,
+   "sales": 429,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00053",
+  "itemId": "sergio-perez-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 85033,
+  "buyer": {
+   "id": "u_107",
+   "handle": "sectorbull55",
+   "rating": 5,
+   "sales": 299,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00054",
+  "itemId": "sergio-perez-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 75246,
+  "buyer": {
+   "id": "u_102",
+   "handle": "kerbmantis79",
+   "rating": 4.6,
+   "sales": 428,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00055",
+  "itemId": "sergio-perez-chrome-base-base",
+  "serial": null,
+  "priceCents": 34425,
+  "buyer": {
+   "id": "u_115",
+   "handle": "turbobull72",
+   "rating": 4.4,
+   "sales": 877,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00056",
+  "itemId": "lance-stroll-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 2024969,
+  "buyer": {
+   "id": "u_86",
+   "handle": "sectororca36",
+   "rating": 4.4,
+   "sales": 96,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00057",
+  "itemId": "lance-stroll-chrome-base-gold-refractor-50",
+  "serial": "3",
+  "priceCents": 264787,
+  "buyer": {
+   "id": "u_3",
+   "handle": "turbobull83",
+   "rating": 4.5,
+   "sales": 815,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791100800000
+ },
+ {
+  "id": "O00058",
+  "itemId": "lance-stroll-chrome-base-gold-refractor-50",
+  "serial": "32",
+  "priceCents": 180571,
+  "buyer": {
+   "id": "u_21",
+   "handle": "kerbwolf7",
+   "rating": 4.4,
+   "sales": 289,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00059",
+  "itemId": "lance-stroll-chrome-base-gold-refractor-50",
+  "serial": "42",
+  "priceCents": 232301,
+  "buyer": {
+   "id": "u_70",
+   "handle": "slipstreammantis52",
+   "rating": 4.6,
+   "sales": 65,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00060",
+  "itemId": "lance-stroll-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 74091,
+  "buyer": {
+   "id": "u_102",
+   "handle": "kerbmantis79",
+   "rating": 4.6,
+   "sales": 428,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00061",
+  "itemId": "lance-stroll-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 74370,
+  "buyer": {
+   "id": "u_114",
+   "handle": "apexhawk33",
+   "rating": 4.7,
+   "sales": 570,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00062",
+  "itemId": "lance-stroll-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 77807,
+  "buyer": {
+   "id": "u_52",
+   "handle": "polekite83",
+   "rating": 4.8,
+   "sales": 764,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00063",
+  "itemId": "kimi-raikkonen-chrome-base-gold-refractor-50",
+  "serial": "14",
+  "priceCents": 327047,
+  "buyer": {
+   "id": "u_85",
+   "handle": "apexkite50",
+   "rating": 4.4,
+   "sales": 39,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00064",
+  "itemId": "kimi-raikkonen-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 95026,
+  "buyer": {
+   "id": "u_5",
+   "handle": "kerblynx22",
+   "rating": 4.6,
+   "sales": 221,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00065",
+  "itemId": "kimi-raikkonen-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 104601,
+  "buyer": {
+   "id": "u_34",
+   "handle": "qualikite7",
+   "rating": 4.4,
+   "sales": 433,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00066",
+  "itemId": "kimi-raikkonen-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 91616,
+  "buyer": {
+   "id": "u_50",
+   "handle": "apexbull15",
+   "rating": 4.6,
+   "sales": 212,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00067",
+  "itemId": "romain-grosjean-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 3708694,
+  "buyer": {
+   "id": "u_17",
+   "handle": "apexotter34",
+   "rating": 4.7,
+   "sales": 865,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00068",
+  "itemId": "romain-grosjean-chrome-base-red-refractor-5",
+  "serial": "1",
+  "priceCents": 984332,
+  "buyer": {
+   "id": "u_101",
+   "handle": "slipstreammantis83",
+   "rating": 4.7,
+   "sales": 659,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00069",
+  "itemId": "romain-grosjean-chrome-base-red-refractor-5",
+  "serial": "3",
+  "priceCents": 986801,
+  "buyer": {
+   "id": "u_12",
+   "handle": "chicanemantis60",
+   "rating": 4.7,
+   "sales": 167,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00070",
+  "itemId": "romain-grosjean-chrome-base-red-refractor-5",
+  "serial": "5",
+  "priceCents": 779801,
+  "buyer": {
+   "id": "u_57",
+   "handle": "downforcebull19",
+   "rating": 4.8,
+   "sales": 207,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00071",
+  "itemId": "romain-grosjean-chrome-base-base",
+  "serial": null,
+  "priceCents": 44887,
+  "buyer": {
+   "id": "u_49",
+   "handle": "drscomet7",
+   "rating": 4.8,
+   "sales": 659,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00072",
+  "itemId": "romain-grosjean-chrome-base-base",
+  "serial": null,
+  "priceCents": 49863,
+  "buyer": {
+   "id": "u_93",
+   "handle": "apexcomet6",
+   "rating": 4.2,
+   "sales": 177,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00073",
+  "itemId": "kevin-magnussen-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 1517030,
+  "buyer": {
+   "id": "u_11",
+   "handle": "turbomantis44",
+   "rating": 4.6,
+   "sales": 396,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00074",
+  "itemId": "kevin-magnussen-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 1466995,
+  "buyer": {
+   "id": "u_102",
+   "handle": "kerbmantis79",
+   "rating": 4.6,
+   "sales": 428,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00075",
+  "itemId": "kevin-magnussen-chrome-base-superfractor-1-1",
+  "serial": "1",
+  "priceCents": 1962575,
+  "buyer": {
+   "id": "u_29",
+   "handle": "polefox33",
+   "rating": 4.5,
+   "sales": 177,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00076",
+  "itemId": "kevin-magnussen-chrome-base-red-refractor-5",
+  "serial": "2",
+  "priceCents": 476019,
+  "buyer": {
+   "id": "u_65",
+   "handle": "turbolynx39",
+   "rating": 4.5,
+   "sales": 165,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00077",
+  "itemId": "kevin-magnussen-chrome-base-red-refractor-5",
+  "serial": "4",
+  "priceCents": 440513,
+  "buyer": {
+   "id": "u_14",
+   "handle": "poleorca51",
+   "rating": 4.7,
+   "sales": 686,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00078",
+  "itemId": "kevin-magnussen-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 49341,
+  "buyer": {
+   "id": "u_47",
+   "handle": "gridhawk51",
+   "rating": 4.4,
+   "sales": 385,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00079",
+  "itemId": "kevin-magnussen-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 40754,
+  "buyer": {
+   "id": "u_84",
+   "handle": "apexkite85",
+   "rating": 4.4,
+   "sales": 6,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00080",
+  "itemId": "kevin-magnussen-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 45201,
+  "buyer": {
+   "id": "u_46",
+   "handle": "poleace64",
+   "rating": 4.9,
+   "sales": 401,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00081",
+  "itemId": "nicholas-latifi-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 45391,
+  "buyer": {
+   "id": "u_87",
+   "handle": "qualiraven65",
+   "rating": 4.6,
+   "sales": 583,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00082",
+  "itemId": "nicholas-latifi-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 64065,
+  "buyer": {
+   "id": "u_111",
+   "handle": "apexbull4",
+   "rating": 4.3,
+   "sales": 767,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00083",
+  "itemId": "nicholas-latifi-chrome-base-refractor",
+  "serial": null,
+  "priceCents": 63126,
+  "buyer": {
+   "id": "u_37",
+   "handle": "sectorkite46",
+   "rating": 4.3,
+   "sales": 544,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00084",
+  "itemId": "nicholas-latifi-chrome-base-base",
+  "serial": null,
+  "priceCents": 30895,
+  "buyer": {
+   "id": "u_117",
+   "handle": "chicaneraven52",
+   "rating": 4.8,
+   "sales": 365,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00085",
+  "itemId": "nicholas-latifi-chrome-base-base",
+  "serial": null,
+  "priceCents": 27128,
+  "buyer": {
+   "id": "u_118",
+   "handle": "turbobull12",
+   "rating": 4.3,
+   "sales": 677,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00086",
+  "itemId": "nicholas-latifi-chrome-base-base",
+  "serial": null,
+  "priceCents": 35037,
+  "buyer": {
+   "id": "u_92",
+   "handle": "slipstreamraven35",
+   "rating": 4.5,
+   "sales": 399,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00087",
+  "itemId": "alexander-albon-chrome-autographs-red-auto-5",
+  "serial": "5",
+  "priceCents": 629746,
+  "buyer": {
+   "id": "u_48",
+   "handle": "pitfox39",
+   "rating": 4.8,
+   "sales": 484,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00088",
+  "itemId": "alexander-albon-chrome-autographs-red-auto-5",
+  "serial": "1",
+  "priceCents": 697213,
+  "buyer": {
+   "id": "u_15",
+   "handle": "sectorbull3",
+   "rating": 4.8,
+   "sales": 369,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00089",
+  "itemId": "alexander-albon-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 205679,
+  "buyer": {
+   "id": "u_50",
+   "handle": "apexbull15",
+   "rating": 4.6,
+   "sales": 212,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00090",
+  "itemId": "antonio-giovinazzi-chrome-autographs-red-auto-5",
+  "serial": "5",
+  "priceCents": 604197,
+  "buyer": {
+   "id": "u_10",
+   "handle": "chicaneorca84",
+   "rating": 4.9,
+   "sales": 805,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00091",
+  "itemId": "antonio-giovinazzi-chrome-autographs-red-auto-5",
+  "serial": "3",
+  "priceCents": 540528,
+  "buyer": {
+   "id": "u_75",
+   "handle": "pitotter44",
+   "rating": 4.5,
+   "sales": 296,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00092",
+  "itemId": "artem-markelov-chrome-autographs-red-auto-5",
+  "serial": "1",
+  "priceCents": 832143,
+  "buyer": {
+   "id": "u_23",
+   "handle": "pitace85",
+   "rating": 4.7,
+   "sales": 864,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00093",
+  "itemId": "andreas-seidl-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 105365,
+  "buyer": {
+   "id": "u_11",
+   "handle": "turbomantis44",
+   "rating": 4.6,
+   "sales": 396,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00094",
+  "itemId": "christian-horner-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 1026795,
+  "buyer": {
+   "id": "u_42",
+   "handle": "pitcomet58",
+   "rating": 4.3,
+   "sales": 703,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00095",
+  "itemId": "christian-horner-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 1389510,
+  "buyer": {
+   "id": "u_81",
+   "handle": "kerbace17",
+   "rating": 5,
+   "sales": 457,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00096",
+  "itemId": "christian-horner-chrome-autographs-red-auto-5",
+  "serial": "2",
+  "priceCents": 374972,
+  "buyer": {
+   "id": "u_18",
+   "handle": "chicanemantis40",
+   "rating": 4.9,
+   "sales": 364,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00097",
+  "itemId": "christian-horner-chrome-autographs-red-auto-5",
+  "serial": "5",
+  "priceCents": 460600,
+  "buyer": {
+   "id": "u_93",
+   "handle": "apexcomet6",
+   "rating": 4.2,
+   "sales": 177,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00098",
+  "itemId": "christian-horner-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 150278,
+  "buyer": {
+   "id": "u_76",
+   "handle": "slipstreamorca33",
+   "rating": 4.8,
+   "sales": 833,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00099",
+  "itemId": "christian-horner-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 155746,
+  "buyer": {
+   "id": "u_55",
+   "handle": "slipstreamlynx62",
+   "rating": 4.5,
+   "sales": 754,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00100",
+  "itemId": "callum-ilott-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 186069,
+  "buyer": {
+   "id": "u_66",
+   "handle": "turbolynx58",
+   "rating": 4.3,
+   "sales": 774,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791100800000
+ },
+ {
+  "id": "O00101",
+  "itemId": "charles-leclerc-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 2427340,
+  "buyer": {
+   "id": "u_61",
+   "handle": "drskite19",
+   "rating": 4.7,
+   "sales": 37,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00102",
+  "itemId": "charles-leclerc-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 2750809,
+  "buyer": {
+   "id": "u_34",
+   "handle": "qualikite7",
+   "rating": 4.4,
+   "sales": 433,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00103",
+  "itemId": "charles-leclerc-chrome-autographs-red-auto-5",
+  "serial": "1",
+  "priceCents": 973916,
+  "buyer": {
+   "id": "u_8",
+   "handle": "slipstreamkite28",
+   "rating": 4.9,
+   "sales": 753,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00104",
+  "itemId": "charles-leclerc-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 283414,
+  "buyer": {
+   "id": "u_91",
+   "handle": "slipstreamace67",
+   "rating": 4.6,
+   "sales": 789,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00105",
+  "itemId": "charles-leclerc-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 274841,
+  "buyer": {
+   "id": "u_42",
+   "handle": "pitcomet58",
+   "rating": 4.3,
+   "sales": 703,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00106",
+  "itemId": "charles-leclerc-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 222436,
+  "buyer": {
+   "id": "u_49",
+   "handle": "drscomet7",
+   "rating": 4.8,
+   "sales": 659,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00107",
+  "itemId": "carlos-sainz-chrome-autographs-red-auto-5",
+  "serial": "5",
+  "priceCents": 882045,
+  "buyer": {
+   "id": "u_117",
+   "handle": "chicaneraven52",
+   "rating": 4.8,
+   "sales": 365,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00108",
+  "itemId": "carlos-sainz-chrome-autographs-red-auto-5",
+  "serial": "1",
+  "priceCents": 805792,
+  "buyer": {
+   "id": "u_45",
+   "handle": "downforceorca19",
+   "rating": 4.6,
+   "sales": 6,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00109",
+  "itemId": "carlos-sainz-chrome-autographs-red-auto-5",
+  "serial": "1",
+  "priceCents": 920383,
+  "buyer": {
+   "id": "u_116",
+   "handle": "turboace30",
+   "rating": 4.7,
+   "sales": 482,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00110",
+  "itemId": "carlos-sainz-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 209125,
+  "buyer": {
+   "id": "u_53",
+   "handle": "sectorlynx33",
+   "rating": 4.5,
+   "sales": 543,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00111",
+  "itemId": "daniil-kvyat-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 3621229,
+  "buyer": {
+   "id": "u_37",
+   "handle": "sectorkite46",
+   "rating": 4.3,
+   "sales": 544,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00112",
+  "itemId": "daniil-kvyat-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 2409191,
+  "buyer": {
+   "id": "u_34",
+   "handle": "qualikite7",
+   "rating": 4.4,
+   "sales": 433,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00113",
+  "itemId": "daniil-kvyat-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 3126222,
+  "buyer": {
+   "id": "u_51",
+   "handle": "polehawk8",
+   "rating": 4.7,
+   "sales": 527,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00114",
+  "itemId": "daniil-kvyat-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 321023,
+  "buyer": {
+   "id": "u_82",
+   "handle": "apexraven69",
+   "rating": 4.6,
+   "sales": 5,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791100800000
+ },
+ {
+  "id": "O00115",
+  "itemId": "daniel-ricciardo-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 189225,
+  "buyer": {
+   "id": "u_38",
+   "handle": "slipstreamorca88",
+   "rating": 4.7,
+   "sales": 471,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00116",
+  "itemId": "daniel-ricciardo-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 152413,
+  "buyer": {
+   "id": "u_11",
+   "handle": "turbomantis44",
+   "rating": 4.6,
+   "sales": 396,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00117",
+  "itemId": "dan-ticktum-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 129033,
+  "buyer": {
+   "id": "u_106",
+   "handle": "drslynx27",
+   "rating": 4.8,
+   "sales": 415,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00118",
+  "itemId": "dan-ticktum-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 142532,
+  "buyer": {
+   "id": "u_87",
+   "handle": "qualiraven65",
+   "rating": 4.6,
+   "sales": 583,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00119",
+  "itemId": "dan-ticktum-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 114975,
+  "buyer": {
+   "id": "u_17",
+   "handle": "apexotter34",
+   "rating": 4.7,
+   "sales": 865,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00120",
+  "itemId": "esteban-ocon-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 1195534,
+  "buyer": {
+   "id": "u_10",
+   "handle": "chicaneorca84",
+   "rating": 4.9,
+   "sales": 805,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00121",
+  "itemId": "esteban-ocon-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 1055922,
+  "buyer": {
+   "id": "u_10",
+   "handle": "chicaneorca84",
+   "rating": 4.9,
+   "sales": 805,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00122",
+  "itemId": "esteban-ocon-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 982049,
+  "buyer": {
+   "id": "u_78",
+   "handle": "turbowolf50",
+   "rating": 5,
+   "sales": 112,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00123",
+  "itemId": "esteban-ocon-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 84409,
+  "buyer": {
+   "id": "u_32",
+   "handle": "polelynx41",
+   "rating": 4.4,
+   "sales": 479,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00124",
+  "itemId": "esteban-ocon-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 118706,
+  "buyer": {
+   "id": "u_24",
+   "handle": "gridraven25",
+   "rating": 4.8,
+   "sales": 440,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00125",
+  "itemId": "felipe-drugovich-chrome-autographs-red-auto-5",
+  "serial": "2",
+  "priceCents": 914716,
+  "buyer": {
+   "id": "u_25",
+   "handle": "slipstreamorca62",
+   "rating": 4.8,
+   "sales": 140,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00126",
+  "itemId": "felipe-drugovich-chrome-autographs-red-auto-5",
+  "serial": "2",
+  "priceCents": 740277,
+  "buyer": {
+   "id": "u_27",
+   "handle": "apexace41",
+   "rating": 4.6,
+   "sales": 801,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00127",
+  "itemId": "felipe-drugovich-chrome-autographs-red-auto-5",
+  "serial": "4",
+  "priceCents": 974561,
+  "buyer": {
+   "id": "u_35",
+   "handle": "apexfox63",
+   "rating": 4.4,
+   "sales": 429,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00128",
+  "itemId": "franz-tost-chrome-autographs-red-auto-5",
+  "serial": "4",
+  "priceCents": 739159,
+  "buyer": {
+   "id": "u_100",
+   "handle": "pitmantis54",
+   "rating": 4.6,
+   "sales": 539,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00129",
+  "itemId": "franz-tost-chrome-autographs-red-auto-5",
+  "serial": "1",
+  "priceCents": 648089,
+  "buyer": {
+   "id": "u_25",
+   "handle": "slipstreamorca62",
+   "rating": 4.8,
+   "sales": 140,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00130",
+  "itemId": "franz-tost-chrome-autographs-red-auto-5",
+  "serial": "5",
+  "priceCents": 618170,
+  "buyer": {
+   "id": "u_48",
+   "handle": "pitfox39",
+   "rating": 4.8,
+   "sales": 484,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00131",
+  "itemId": "franz-tost-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 248018,
+  "buyer": {
+   "id": "u_45",
+   "handle": "downforceorca19",
+   "rating": 4.6,
+   "sales": 6,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00132",
+  "itemId": "franz-tost-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 242016,
+  "buyer": {
+   "id": "u_68",
+   "handle": "slipstreamace8",
+   "rating": 4.5,
+   "sales": 666,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00133",
+  "itemId": "franz-tost-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 251458,
+  "buyer": {
+   "id": "u_10",
+   "handle": "chicaneorca84",
+   "rating": 4.9,
+   "sales": 805,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00134",
+  "itemId": "claire-williams-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 337027,
+  "buyer": {
+   "id": "u_54",
+   "handle": "qualiotter2",
+   "rating": 4.6,
+   "sales": 685,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00135",
+  "itemId": "claire-williams-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 351007,
+  "buyer": {
+   "id": "u_46",
+   "handle": "poleace64",
+   "rating": 4.9,
+   "sales": 401,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00136",
+  "itemId": "giuliano-alesi-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 1492390,
+  "buyer": {
+   "id": "u_117",
+   "handle": "chicaneraven52",
+   "rating": 4.8,
+   "sales": 365,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00137",
+  "itemId": "giuliano-alesi-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 1366494,
+  "buyer": {
+   "id": "u_4",
+   "handle": "polebull55",
+   "rating": 4.4,
+   "sales": 487,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00138",
+  "itemId": "giuliano-alesi-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 1564897,
+  "buyer": {
+   "id": "u_49",
+   "handle": "drscomet7",
+   "rating": 4.8,
+   "sales": 659,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00139",
+  "itemId": "giuliano-alesi-chrome-autographs-red-auto-5",
+  "serial": "1",
+  "priceCents": 353805,
+  "buyer": {
+   "id": "u_88",
+   "handle": "slipstreamwolf15",
+   "rating": 4.8,
+   "sales": 902,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791100800000
+ },
+ {
+  "id": "O00140",
+  "itemId": "giuliano-alesi-chrome-autographs-red-auto-5",
+  "serial": "3",
+  "priceCents": 364643,
+  "buyer": {
+   "id": "u_27",
+   "handle": "apexace41",
+   "rating": 4.6,
+   "sales": 801,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00141",
+  "itemId": "giuliano-alesi-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 94250,
+  "buyer": {
+   "id": "u_109",
+   "handle": "polehawk84",
+   "rating": 4.4,
+   "sales": 606,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00142",
+  "itemId": "giuliano-alesi-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 119057,
+  "buyer": {
+   "id": "u_35",
+   "handle": "apexfox63",
+   "rating": 4.4,
+   "sales": 429,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00143",
+  "itemId": "guilherme-samaia-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 3283231,
+  "buyer": {
+   "id": "u_96",
+   "handle": "turbomantis80",
+   "rating": 4.5,
+   "sales": 214,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00144",
+  "itemId": "guilherme-samaia-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 182259,
+  "buyer": {
+   "id": "u_111",
+   "handle": "apexbull4",
+   "rating": 4.3,
+   "sales": 767,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00145",
+  "itemId": "guilherme-samaia-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 261508,
+  "buyer": {
+   "id": "u_91",
+   "handle": "slipstreamace67",
+   "rating": 4.6,
+   "sales": 789,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00146",
+  "itemId": "guilherme-samaia-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 236329,
+  "buyer": {
+   "id": "u_96",
+   "handle": "turbomantis80",
+   "rating": 4.5,
+   "sales": 214,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00147",
+  "itemId": "george-russell-chrome-autographs-red-auto-5",
+  "serial": "1",
+  "priceCents": 700971,
+  "buyer": {
+   "id": "u_45",
+   "handle": "downforceorca19",
+   "rating": 4.6,
+   "sales": 6,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00148",
+  "itemId": "george-russell-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 176921,
+  "buyer": {
+   "id": "u_46",
+   "handle": "poleace64",
+   "rating": 4.9,
+   "sales": 401,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00149",
+  "itemId": "george-russell-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 162258,
+  "buyer": {
+   "id": "u_113",
+   "handle": "sectorace79",
+   "rating": 4.2,
+   "sales": 881,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00150",
+  "itemId": "guenther-steiner-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 1466418,
+  "buyer": {
+   "id": "u_110",
+   "handle": "poleotter9",
+   "rating": 4.5,
+   "sales": 502,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00151",
+  "itemId": "guenther-steiner-chrome-autographs-red-auto-5",
+  "serial": "5",
+  "priceCents": 344412,
+  "buyer": {
+   "id": "u_87",
+   "handle": "qualiraven65",
+   "rating": 4.6,
+   "sales": 583,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00152",
+  "itemId": "guanyu-zhou-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 210681,
+  "buyer": {
+   "id": "u_77",
+   "handle": "gridkite18",
+   "rating": 5,
+   "sales": 228,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00153",
+  "itemId": "guanyu-zhou-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 276584,
+  "buyer": {
+   "id": "u_44",
+   "handle": "kerbkite27",
+   "rating": 5,
+   "sales": 643,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00154",
+  "itemId": "guanyu-zhou-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 208750,
+  "buyer": {
+   "id": "u_34",
+   "handle": "qualikite7",
+   "rating": 4.4,
+   "sales": 433,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00155",
+  "itemId": "jehan-daruvala-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 2257344,
+  "buyer": {
+   "id": "u_84",
+   "handle": "apexkite85",
+   "rating": 4.4,
+   "sales": 6,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00156",
+  "itemId": "jehan-daruvala-chrome-autographs-red-auto-5",
+  "serial": "5",
+  "priceCents": 679408,
+  "buyer": {
+   "id": "u_32",
+   "handle": "polelynx41",
+   "rating": 4.4,
+   "sales": 479,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00157",
+  "itemId": "jehan-daruvala-chrome-autographs-red-auto-5",
+  "serial": "1",
+  "priceCents": 693215,
+  "buyer": {
+   "id": "u_39",
+   "handle": "apexotter60",
+   "rating": 4.4,
+   "sales": 258,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00158",
+  "itemId": "kevin-magnussen-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 2197077,
+  "buyer": {
+   "id": "u_71",
+   "handle": "pitwolf9",
+   "rating": 4.5,
+   "sales": 862,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00159",
+  "itemId": "kevin-magnussen-chrome-autographs-superfractor-auto-1-1",
+  "serial": "1",
+  "priceCents": 1841936,
+  "buyer": {
+   "id": "u_54",
+   "handle": "qualiotter2",
+   "rating": 4.6,
+   "sales": 685,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00160",
+  "itemId": "kevin-magnussen-chrome-autographs-red-auto-5",
+  "serial": "4",
+  "priceCents": 491728,
+  "buyer": {
+   "id": "u_89",
+   "handle": "kerbwolf26",
+   "rating": 4.6,
+   "sales": 222,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00161",
+  "itemId": "kevin-magnussen-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 145169,
+  "buyer": {
+   "id": "u_26",
+   "handle": "sectorcomet74",
+   "rating": 4.6,
+   "sales": 648,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791100800000
+ },
+ {
+  "id": "O00162",
+  "itemId": "kimi-raikkonen-chrome-autographs-chrome-auto",
+  "serial": null,
+  "priceCents": 192570,
+  "buyer": {
+   "id": "u_99",
+   "handle": "slipstreamace58",
+   "rating": 4.5,
+   "sales": 543,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00163",
+  "itemId": "lewis-hamilton-track-tags-base-insert",
+  "serial": null,
+  "priceCents": 36229,
+  "buyer": {
+   "id": "u_30",
+   "handle": "turbobull30",
+   "rating": 4.2,
+   "sales": 148,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791100800000
+ },
+ {
+  "id": "O00164",
+  "itemId": "sebastian-vettel-track-tags-gold-50",
+  "serial": "5",
+  "priceCents": 120542,
+  "buyer": {
+   "id": "u_31",
+   "handle": "downforcelynx20",
+   "rating": 4.5,
+   "sales": 818,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00165",
+  "itemId": "sebastian-vettel-track-tags-gold-50",
+  "serial": "6",
+  "priceCents": 111073,
+  "buyer": {
+   "id": "u_29",
+   "handle": "polefox33",
+   "rating": 4.5,
+   "sales": 177,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00166",
+  "itemId": "sebastian-vettel-track-tags-gold-50",
+  "serial": "17",
+  "priceCents": 89093,
+  "buyer": {
+   "id": "u_65",
+   "handle": "turbolynx39",
+   "rating": 4.5,
+   "sales": 165,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00167",
+  "itemId": "charles-leclerc-track-tags-base-insert",
+  "serial": null,
+  "priceCents": 95293,
+  "buyer": {
+   "id": "u_96",
+   "handle": "turbomantis80",
+   "rating": 4.5,
+   "sales": 214,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00168",
+  "itemId": "charles-leclerc-track-tags-base-insert",
+  "serial": null,
+  "priceCents": 97105,
+  "buyer": {
+   "id": "u_55",
+   "handle": "slipstreamlynx62",
+   "rating": 4.5,
+   "sales": 754,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00169",
+  "itemId": "max-verstappen-track-tags-gold-50",
+  "serial": "39",
+  "priceCents": 110336,
+  "buyer": {
+   "id": "u_23",
+   "handle": "pitace85",
+   "rating": 4.7,
+   "sales": 864,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00170",
+  "itemId": "max-verstappen-track-tags-gold-50",
+  "serial": "29",
+  "priceCents": 110073,
+  "buyer": {
+   "id": "u_113",
+   "handle": "sectorace79",
+   "rating": 4.2,
+   "sales": 881,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00171",
+  "itemId": "max-verstappen-track-tags-gold-50",
+  "serial": "3",
+  "priceCents": 119877,
+  "buyer": {
+   "id": "u_47",
+   "handle": "gridhawk51",
+   "rating": 4.4,
+   "sales": 385,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00172",
+  "itemId": "carlos-sainz-track-tags-gold-50",
+  "serial": "9",
+  "priceCents": 144834,
+  "buyer": {
+   "id": "u_2",
+   "handle": "kerbwolf25",
+   "rating": 4.7,
+   "sales": 820,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00173",
+  "itemId": "carlos-sainz-track-tags-gold-50",
+  "serial": "48",
+  "priceCents": 131248,
+  "buyer": {
+   "id": "u_86",
+   "handle": "sectororca36",
+   "rating": 4.4,
+   "sales": 96,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00174",
+  "itemId": "carlos-sainz-track-tags-gold-50",
+  "serial": "13",
+  "priceCents": 166461,
+  "buyer": {
+   "id": "u_64",
+   "handle": "sectorhawk36",
+   "rating": 4.4,
+   "sales": 930,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00175",
+  "itemId": "carlos-sainz-track-tags-base-insert",
+  "serial": null,
+  "priceCents": 62669,
+  "buyer": {
+   "id": "u_23",
+   "handle": "pitace85",
+   "rating": 4.7,
+   "sales": 864,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00176",
+  "itemId": "daniel-ricciardo-track-tags-base-insert",
+  "serial": null,
+  "priceCents": 40845,
+  "buyer": {
+   "id": "u_68",
+   "handle": "slipstreamace8",
+   "rating": 4.5,
+   "sales": 666,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00177",
+  "itemId": "daniel-ricciardo-track-tags-base-insert",
+  "serial": null,
+  "priceCents": 39143,
+  "buyer": {
+   "id": "u_84",
+   "handle": "apexkite85",
+   "rating": 4.4,
+   "sales": 6,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791100800000
+ },
+ {
+  "id": "O00178",
+  "itemId": "daniel-ricciardo-track-tags-base-insert",
+  "serial": null,
+  "priceCents": 37164,
+  "buyer": {
+   "id": "u_5",
+   "handle": "kerblynx22",
+   "rating": 4.6,
+   "sales": 221,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00179",
+  "itemId": "pierre-gasly-track-tags-gold-50",
+  "serial": "33",
+  "priceCents": 166313,
+  "buyer": {
+   "id": "u_115",
+   "handle": "turbobull72",
+   "rating": 4.4,
+   "sales": 877,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00180",
+  "itemId": "daniil-kvyat-track-tags-gold-50",
+  "serial": "40",
+  "priceCents": 205358,
+  "buyer": {
+   "id": "u_105",
+   "handle": "sectorace43",
+   "rating": 5,
+   "sales": 575,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00181",
+  "itemId": "sergio-perez-track-tags-gold-50",
+  "serial": "43",
+  "priceCents": 190246,
+  "buyer": {
+   "id": "u_84",
+   "handle": "apexkite85",
+   "rating": 4.4,
+   "sales": 6,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00182",
+  "itemId": "sergio-perez-track-tags-gold-50",
+  "serial": "31",
+  "priceCents": 204093,
+  "buyer": {
+   "id": "u_85",
+   "handle": "apexkite50",
+   "rating": 4.4,
+   "sales": 39,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00183",
+  "itemId": "antonio-giovinazzi-track-tags-gold-50",
+  "serial": "19",
+  "priceCents": 197467,
+  "buyer": {
+   "id": "u_25",
+   "handle": "slipstreamorca62",
+   "rating": 4.8,
+   "sales": 140,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00184",
+  "itemId": "antonio-giovinazzi-track-tags-gold-50",
+  "serial": "5",
+  "priceCents": 163547,
+  "buyer": {
+   "id": "u_12",
+   "handle": "chicanemantis60",
+   "rating": 4.7,
+   "sales": 167,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00185",
+  "itemId": "antonio-giovinazzi-track-tags-base-insert",
+  "serial": null,
+  "priceCents": 57748,
+  "buyer": {
+   "id": "u_57",
+   "handle": "downforcebull19",
+   "rating": 4.8,
+   "sales": 207,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00186",
+  "itemId": "artem-markelov-track-tags-base-insert",
+  "serial": null,
+  "priceCents": 93810,
+  "buyer": {
+   "id": "u_50",
+   "handle": "apexbull15",
+   "rating": 4.6,
+   "sales": 212,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00187",
+  "itemId": "charles-leclerc-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 75005,
+  "buyer": {
+   "id": "u_53",
+   "handle": "sectorlynx33",
+   "rating": 4.5,
+   "sales": 543,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00188",
+  "itemId": "charles-leclerc-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 81359,
+  "buyer": {
+   "id": "u_67",
+   "handle": "chicanelynx55",
+   "rating": 4.3,
+   "sales": 282,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00189",
+  "itemId": "max-verstappen-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 46765,
+  "buyer": {
+   "id": "u_58",
+   "handle": "chicanemantis8",
+   "rating": 4.7,
+   "sales": 583,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791100800000
+ },
+ {
+  "id": "O00190",
+  "itemId": "max-verstappen-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 43605,
+  "buyer": {
+   "id": "u_109",
+   "handle": "polehawk84",
+   "rating": 4.4,
+   "sales": 606,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00191",
+  "itemId": "max-verstappen-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 39709,
+  "buyer": {
+   "id": "u_36",
+   "handle": "polebull2",
+   "rating": 4.5,
+   "sales": 606,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00192",
+  "itemId": "lando-norris-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 26276,
+  "buyer": {
+   "id": "u_32",
+   "handle": "polelynx41",
+   "rating": 4.4,
+   "sales": 479,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00193",
+  "itemId": "sergio-perez-world-on-wheels-gold-50",
+  "serial": "45",
+  "priceCents": 142378,
+  "buyer": {
+   "id": "u_74",
+   "handle": "downforcecomet83",
+   "rating": 4.3,
+   "sales": 677,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00194",
+  "itemId": "lance-stroll-world-on-wheels-gold-50",
+  "serial": "36",
+  "priceCents": 112792,
+  "buyer": {
+   "id": "u_22",
+   "handle": "drsace47",
+   "rating": 4.8,
+   "sales": 850,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00195",
+  "itemId": "lance-stroll-world-on-wheels-gold-50",
+  "serial": "39",
+  "priceCents": 112775,
+  "buyer": {
+   "id": "u_93",
+   "handle": "apexcomet6",
+   "rating": 4.2,
+   "sales": 177,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00196",
+  "itemId": "lance-stroll-world-on-wheels-gold-50",
+  "serial": "5",
+  "priceCents": 141363,
+  "buyer": {
+   "id": "u_28",
+   "handle": "chicanemantis77",
+   "rating": 4.8,
+   "sales": 300,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00197",
+  "itemId": "lance-stroll-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 53297,
+  "buyer": {
+   "id": "u_4",
+   "handle": "polebull55",
+   "rating": 4.4,
+   "sales": 487,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00198",
+  "itemId": "lance-stroll-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 41690,
+  "buyer": {
+   "id": "u_52",
+   "handle": "polekite83",
+   "rating": 4.8,
+   "sales": 764,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00199",
+  "itemId": "kimi-raikkonen-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 77344,
+  "buyer": {
+   "id": "u_24",
+   "handle": "gridraven25",
+   "rating": 4.8,
+   "sales": 440,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00200",
+  "itemId": "kimi-raikkonen-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 62854,
+  "buyer": {
+   "id": "u_88",
+   "handle": "slipstreamwolf15",
+   "rating": 4.8,
+   "sales": 902,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00201",
+  "itemId": "kimi-raikkonen-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 70606,
+  "buyer": {
+   "id": "u_98",
+   "handle": "sectorfox87",
+   "rating": 4.9,
+   "sales": 810,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00202",
+  "itemId": "romain-grosjean-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 91811,
+  "buyer": {
+   "id": "u_50",
+   "handle": "apexbull15",
+   "rating": 4.6,
+   "sales": 212,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00203",
+  "itemId": "romain-grosjean-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 65661,
+  "buyer": {
+   "id": "u_28",
+   "handle": "chicanemantis77",
+   "rating": 4.8,
+   "sales": 300,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00204",
+  "itemId": "romain-grosjean-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 92017,
+  "buyer": {
+   "id": "u_78",
+   "handle": "turbowolf50",
+   "rating": 5,
+   "sales": 112,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00205",
+  "itemId": "george-russell-world-on-wheels-gold-50",
+  "serial": "4",
+  "priceCents": 121863,
+  "buyer": {
+   "id": "u_83",
+   "handle": "pitotter21",
+   "rating": 4.5,
+   "sales": 381,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00206",
+  "itemId": "george-russell-world-on-wheels-gold-50",
+  "serial": "49",
+  "priceCents": 105430,
+  "buyer": {
+   "id": "u_22",
+   "handle": "drsace47",
+   "rating": 4.8,
+   "sales": 850,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00207",
+  "itemId": "mercedes-amg-f1-w11-eq-performance-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 89612,
+  "buyer": {
+   "id": "u_10",
+   "handle": "chicaneorca84",
+   "rating": 4.9,
+   "sales": 805,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00208",
+  "itemId": "mercedes-amg-f1-w11-eq-performance-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 72865,
+  "buyer": {
+   "id": "u_115",
+   "handle": "turbobull72",
+   "rating": 4.4,
+   "sales": 877,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00209",
+  "itemId": "mercedes-amg-f1-w11-eq-performance-world-on-wheels-base-insert",
+  "serial": null,
+  "priceCents": 96853,
+  "buyer": {
+   "id": "u_106",
+   "handle": "drslynx27",
+   "rating": 4.8,
+   "sales": 415,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00210",
+  "itemId": "lewis-hamilton-image-variations-gold-50",
+  "serial": "50",
+  "priceCents": 137428,
+  "buyer": {
+   "id": "u_74",
+   "handle": "downforcecomet83",
+   "rating": 4.3,
+   "sales": 677,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00211",
+  "itemId": "lewis-hamilton-image-variations-gold-50",
+  "serial": "3",
+  "priceCents": 162282,
+  "buyer": {
+   "id": "u_51",
+   "handle": "polehawk8",
+   "rating": 4.7,
+   "sales": 527,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00212",
+  "itemId": "lewis-hamilton-image-variations-base-insert",
+  "serial": null,
+  "priceCents": 44978,
+  "buyer": {
+   "id": "u_9",
+   "handle": "chicaneorca14",
+   "rating": 4.6,
+   "sales": 868,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00213",
+  "itemId": "valtteri-bottas-image-variations-gold-50",
+  "serial": "42",
+  "priceCents": 152338,
+  "buyer": {
+   "id": "u_32",
+   "handle": "polelynx41",
+   "rating": 4.4,
+   "sales": 479,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791100800000
+ },
+ {
+  "id": "O00214",
+  "itemId": "valtteri-bottas-image-variations-gold-50",
+  "serial": "22",
+  "priceCents": 120936,
+  "buyer": {
+   "id": "u_112",
+   "handle": "qualikite18",
+   "rating": 4.7,
+   "sales": 305,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00215",
+  "itemId": "valtteri-bottas-image-variations-base-insert",
+  "serial": null,
+  "priceCents": 58733,
+  "buyer": {
+   "id": "u_62",
+   "handle": "downforceraven67",
+   "rating": 4.8,
+   "sales": 777,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790323200000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00216",
+  "itemId": "sebastian-vettel-image-variations-base-insert",
+  "serial": null,
+  "priceCents": 36133,
+  "buyer": {
+   "id": "u_118",
+   "handle": "turbobull12",
+   "rating": 4.3,
+   "sales": 677,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00217",
+  "itemId": "sebastian-vettel-image-variations-base-insert",
+  "serial": null,
+  "priceCents": 50440,
+  "buyer": {
+   "id": "u_22",
+   "handle": "drsace47",
+   "rating": 4.8,
+   "sales": 850,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00218",
+  "itemId": "sebastian-vettel-image-variations-base-insert",
+  "serial": null,
+  "priceCents": 45590,
+  "buyer": {
+   "id": "u_34",
+   "handle": "qualikite7",
+   "rating": 4.4,
+   "sales": 433,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00219",
+  "itemId": "alexander-albon-image-variations-gold-50",
+  "serial": "19",
+  "priceCents": 139942,
+  "buyer": {
+   "id": "u_82",
+   "handle": "apexraven69",
+   "rating": 4.6,
+   "sales": 5,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00220",
+  "itemId": "alexander-albon-image-variations-gold-50",
+  "serial": "13",
+  "priceCents": 139344,
+  "buyer": {
+   "id": "u_8",
+   "handle": "slipstreamkite28",
+   "rating": 4.9,
+   "sales": 753,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1790928000000
+ },
+ {
+  "id": "O00221",
+  "itemId": "max-verstappen-image-variations-gold-50",
+  "serial": "24",
+  "priceCents": 99015,
+  "buyer": {
+   "id": "u_60",
+   "handle": "turboorca56",
+   "rating": 4.7,
+   "sales": 420,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1790755200000
+ },
+ {
+  "id": "O00222",
+  "itemId": "lando-norris-image-variations-gold-50",
+  "serial": "7",
+  "priceCents": 133146,
+  "buyer": {
+   "id": "u_63",
+   "handle": "drsfox78",
+   "rating": 4.9,
+   "sales": 623,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00223",
+  "itemId": "esteban-ocon-image-variations-base-insert",
+  "serial": null,
+  "priceCents": 25447,
+  "buyer": {
+   "id": "u_84",
+   "handle": "apexkite85",
+   "rating": 4.4,
+   "sales": 6,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00224",
+  "itemId": "esteban-ocon-image-variations-base-insert",
+  "serial": null,
+  "priceCents": 23715,
+  "buyer": {
+   "id": "u_96",
+   "handle": "turbomantis80",
+   "rating": 4.5,
+   "sales": 214,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789632000000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00225",
+  "itemId": "lewis-hamilton-grand-prix-heroes-gold-50",
+  "serial": "20",
+  "priceCents": 120443,
+  "buyer": {
+   "id": "u_42",
+   "handle": "pitcomet58",
+   "rating": 4.3,
+   "sales": 703,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00226",
+  "itemId": "lewis-hamilton-grand-prix-heroes-base-insert",
+  "serial": null,
+  "priceCents": 34441,
+  "buyer": {
+   "id": "u_105",
+   "handle": "sectorace43",
+   "rating": 5,
+   "sales": 575,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00227",
+  "itemId": "lewis-hamilton-grand-prix-heroes-base-insert",
+  "serial": null,
+  "priceCents": 36246,
+  "buyer": {
+   "id": "u_105",
+   "handle": "sectorace43",
+   "rating": 5,
+   "sales": 575,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791705600000
+ },
+ {
+  "id": "O00228",
+  "itemId": "lewis-hamilton-grand-prix-heroes-base-insert",
+  "serial": null,
+  "priceCents": 33668,
+  "buyer": {
+   "id": "u_35",
+   "handle": "apexfox63",
+   "rating": 4.4,
+   "sales": 429,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789977600000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00229",
+  "itemId": "max-verstappen-grand-prix-heroes-gold-50",
+  "serial": "19",
+  "priceCents": 73682,
+  "buyer": {
+   "id": "u_110",
+   "handle": "poleotter9",
+   "rating": 4.5,
+   "sales": 502,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789718400000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00230",
+  "itemId": "charles-leclerc-grand-prix-heroes-gold-50",
+  "serial": "31",
+  "priceCents": 202822,
+  "buyer": {
+   "id": "u_116",
+   "handle": "turboace30",
+   "rating": 4.7,
+   "sales": 482,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00231",
+  "itemId": "charles-leclerc-grand-prix-heroes-gold-50",
+  "serial": "47",
+  "priceCents": 206115,
+  "buyer": {
+   "id": "u_22",
+   "handle": "drsace47",
+   "rating": 4.8,
+   "sales": 850,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791532800000
+ },
+ {
+  "id": "O00232",
+  "itemId": "aston-martin-red-bull-racing-grand-prix-heroes-gold-50",
+  "serial": "28",
+  "priceCents": 183996,
+  "buyer": {
+   "id": "u_41",
+   "handle": "gridmantis73",
+   "rating": 4.8,
+   "sales": 912,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791446400000
+ },
+ {
+  "id": "O00233",
+  "itemId": "aston-martin-red-bull-racing-grand-prix-heroes-gold-50",
+  "serial": "32",
+  "priceCents": 173989,
+  "buyer": {
+   "id": "u_116",
+   "handle": "turboace30",
+   "rating": 4.7,
+   "sales": 482,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790496000000,
+  "expiresAt": 1791014400000
+ },
+ {
+  "id": "O00234",
+  "itemId": "aston-martin-red-bull-racing-grand-prix-heroes-gold-50",
+  "serial": "30",
+  "priceCents": 232955,
+  "buyer": {
+   "id": "u_32",
+   "handle": "polelynx41",
+   "rating": 4.4,
+   "sales": 479,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791187200000
+ },
+ {
+  "id": "O00235",
+  "itemId": "scuderia-ferrari-team-logos-gold-50",
+  "serial": "10",
+  "priceCents": 201920,
+  "buyer": {
+   "id": "u_76",
+   "handle": "slipstreamorca33",
+   "rating": 4.8,
+   "sales": 833,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00236",
+  "itemId": "scuderia-ferrari-team-logos-gold-50",
+  "serial": "22",
+  "priceCents": 191460,
+  "buyer": {
+   "id": "u_3",
+   "handle": "turbobull83",
+   "rating": 4.5,
+   "sales": 815,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00237",
+  "itemId": "scuderia-ferrari-team-logos-gold-50",
+  "serial": "15",
+  "priceCents": 180139,
+  "buyer": {
+   "id": "u_12",
+   "handle": "chicanemantis60",
+   "rating": 4.7,
+   "sales": 167,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00238",
+  "itemId": "aston-martin-red-bull-racing-team-logos-gold-50",
+  "serial": "9",
+  "priceCents": 195178,
+  "buyer": {
+   "id": "u_52",
+   "handle": "polekite83",
+   "rating": 4.8,
+   "sales": 764,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00239",
+  "itemId": "aston-martin-red-bull-racing-team-logos-gold-50",
+  "serial": "2",
+  "priceCents": 168655,
+  "buyer": {
+   "id": "u_120",
+   "handle": "chicanehawk55",
+   "rating": 4.6,
+   "sales": 208,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791878400000
+ },
+ {
+  "id": "O00240",
+  "itemId": "aston-martin-red-bull-racing-team-logos-base-insert",
+  "serial": null,
+  "priceCents": 63845,
+  "buyer": {
+   "id": "u_37",
+   "handle": "sectorkite46",
+   "rating": 4.3,
+   "sales": 544,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791100800000
+ },
+ {
+  "id": "O00241",
+  "itemId": "aston-martin-red-bull-racing-team-logos-base-insert",
+  "serial": null,
+  "priceCents": 60300,
+  "buyer": {
+   "id": "u_74",
+   "handle": "downforcecomet83",
+   "rating": 4.3,
+   "sales": 677,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791619200000
+ },
+ {
+  "id": "O00242",
+  "itemId": "aston-martin-red-bull-racing-team-logos-base-insert",
+  "serial": null,
+  "priceCents": 71957,
+  "buyer": {
+   "id": "u_61",
+   "handle": "drskite19",
+   "rating": 4.7,
+   "sales": 37,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790236800000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00243",
+  "itemId": "mclaren-f1-team-team-logos-gold-50",
+  "serial": "8",
+  "priceCents": 158834,
+  "buyer": {
+   "id": "u_22",
+   "handle": "drsace47",
+   "rating": 4.8,
+   "sales": 850,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790582400000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00244",
+  "itemId": "mclaren-f1-team-team-logos-gold-50",
+  "serial": "11",
+  "priceCents": 192885,
+  "buyer": {
+   "id": "u_49",
+   "handle": "drscomet7",
+   "rating": 4.8,
+   "sales": 659,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790064000000,
+  "expiresAt": 1790841600000
+ },
+ {
+  "id": "O00245",
+  "itemId": "bwt-racing-point-f1-team-team-logos-base-insert",
+  "serial": null,
+  "priceCents": 53220,
+  "buyer": {
+   "id": "u_4",
+   "handle": "polebull55",
+   "rating": 4.4,
+   "sales": 487,
+   "verified": true
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791792000000
+ },
+ {
+  "id": "O00246",
+  "itemId": "bwt-racing-point-f1-team-team-logos-base-insert",
+  "serial": null,
+  "priceCents": 56153,
+  "buyer": {
+   "id": "u_61",
+   "handle": "drskite19",
+   "rating": 4.7,
+   "sales": 37,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790409600000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00247",
+  "itemId": "haas-f1-team-team-logos-gold-50",
+  "serial": "43",
+  "priceCents": 98026,
+  "buyer": {
+   "id": "u_61",
+   "handle": "drskite19",
+   "rating": 4.7,
+   "sales": 37,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789891200000,
+  "expiresAt": 1791360000000
+ },
+ {
+  "id": "O00248",
+  "itemId": "haas-f1-team-team-logos-gold-50",
+  "serial": "19",
+  "priceCents": 98313,
+  "buyer": {
+   "id": "u_66",
+   "handle": "turbolynx58",
+   "rating": 4.3,
+   "sales": 774,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1790150400000,
+  "expiresAt": 1791273600000
+ },
+ {
+  "id": "O00249",
+  "itemId": "williams-racing-team-logos-gold-50",
+  "serial": "1",
+  "priceCents": 136568,
+  "buyer": {
+   "id": "u_92",
+   "handle": "slipstreamraven35",
+   "rating": 4.5,
+   "sales": 399,
+   "verified": false
+  },
+  "status": "OPEN",
+  "createdAt": 1789804800000,
+  "expiresAt": 1791792000000
+ }
+]

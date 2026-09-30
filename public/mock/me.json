@@ -1,0 +1,328 @@
+{
+ "user": {
+  "id": "u_me",
+  "handle": "you",
+  "rating": 4.8,
+  "sales": 27,
+  "verified": true,
+  "currency": "CNY",
+  "balanceCents": 1286400,
+  "pendingCents": 96400,
+  "lockedCents": 182000
+ },
+ "assets": [
+  {
+   "copyId": "C0001",
+   "itemId": "lewis-hamilton-chrome-base-base",
+   "serial": "8935",
+   "serialTotal": null,
+   "acquiredCents": 28158,
+   "at": 1779782400000,
+   "grade": "PSA 10",
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0002",
+   "itemId": "max-verstappen-chrome-base-red-refractor-5",
+   "serial": "2",
+   "serialTotal": 5,
+   "acquiredCents": 889895,
+   "at": 1782201600000,
+   "grade": null,
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0003",
+   "itemId": "max-verstappen-chrome-base-gold-refractor-50",
+   "serial": "48",
+   "serialTotal": 50,
+   "acquiredCents": 244937,
+   "at": 1784620800000,
+   "grade": null,
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0004",
+   "itemId": "max-verstappen-chrome-base-base",
+   "serial": "8091",
+   "serialTotal": null,
+   "acquiredCents": 23414,
+   "at": 1785139200000,
+   "grade": "PSA 10",
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0005",
+   "itemId": "carlos-sainz-chrome-base-red-refractor-5",
+   "serial": "5",
+   "serialTotal": 5,
+   "acquiredCents": 850779,
+   "at": 1758528000000,
+   "grade": null,
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0006",
+   "itemId": "daniel-ricciardo-chrome-base-base",
+   "serial": "6729",
+   "serialTotal": null,
+   "acquiredCents": 45239,
+   "at": 1763452800000,
+   "grade": null,
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0007",
+   "itemId": "sergio-perez-chrome-base-red-refractor-5",
+   "serial": "3",
+   "serialTotal": 5,
+   "acquiredCents": 1330074,
+   "at": 1775376000000,
+   "grade": "Raw",
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0008",
+   "itemId": "kimi-raikkonen-chrome-base-red-refractor-5",
+   "serial": "1",
+   "serialTotal": 5,
+   "acquiredCents": 1134517,
+   "at": 1780646400000,
+   "grade": "Raw",
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0009",
+   "itemId": "kimi-raikkonen-chrome-base-base",
+   "serial": "1740",
+   "serialTotal": null,
+   "acquiredCents": 30120,
+   "at": 1767772800000,
+   "grade": null,
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0010",
+   "itemId": "kevin-magnussen-chrome-base-superfractor-1-1",
+   "serial": "1",
+   "serialTotal": 1,
+   "acquiredCents": 2597382,
+   "at": 1762761600000,
+   "grade": null,
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0011",
+   "itemId": "kevin-magnussen-chrome-base-refractor",
+   "serial": "8272",
+   "serialTotal": null,
+   "acquiredCents": 56939,
+   "at": 1759478400000,
+   "grade": null,
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0012",
+   "itemId": "nicholas-latifi-chrome-base-refractor",
+   "serial": "3770",
+   "serialTotal": null,
+   "acquiredCents": 55399,
+   "at": 1761638400000,
+   "grade": null,
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0013",
+   "itemId": "cyril-abiteboul-chrome-autographs-red-auto-5",
+   "serial": "5",
+   "serialTotal": 5,
+   "acquiredCents": 734190,
+   "at": 1765008000000,
+   "grade": "PSA 9",
+   "status": "HELD"
+  },
+  {
+   "copyId": "C0014",
+   "itemId": "cyril-abiteboul-chrome-autographs-chrome-auto",
+   "serial": "6853",
+   "serialTotal": null,
+   "acquiredCents": 202887,
+   "at": 1774598400000,
+   "grade": null,
+   "status": "HELD"
+  }
+ ],
+ "listings": [
+  {
+   "id": "ML0001",
+   "itemId": "lewis-hamilton-chrome-base-base",
+   "copyId": "C0001",
+   "serial": "8935",
+   "serialTotal": null,
+   "priceCents": 42795,
+   "status": "ACTIVE",
+   "views": 187,
+   "watchers": 9,
+   "createdAt": 1790582400000,
+   "expiresAt": 1792224000000
+  },
+  {
+   "id": "ML0002",
+   "itemId": "max-verstappen-chrome-base-red-refractor-5",
+   "copyId": "C0002",
+   "serial": "2",
+   "serialTotal": 5,
+   "priceCents": 979075,
+   "status": "ACTIVE",
+   "views": 109,
+   "watchers": 5,
+   "createdAt": 1790236800000,
+   "expiresAt": 1791964800000
+  },
+  {
+   "id": "ML0003",
+   "itemId": "max-verstappen-chrome-base-gold-refractor-50",
+   "copyId": "C0003",
+   "serial": "48",
+   "serialTotal": 50,
+   "priceCents": 330566,
+   "status": "ACTIVE",
+   "views": 13,
+   "watchers": 1,
+   "createdAt": 1790582400000,
+   "expiresAt": 1791878400000
+  },
+  {
+   "id": "ML0004",
+   "itemId": "max-verstappen-chrome-base-base",
+   "copyId": "C0004",
+   "serial": "8091",
+   "serialTotal": null,
+   "priceCents": 33107,
+   "status": "ACTIVE",
+   "views": 20,
+   "watchers": 18,
+   "createdAt": 1790409600000,
+   "expiresAt": 1791619200000
+  },
+  {
+   "id": "ML0005",
+   "itemId": "carlos-sainz-chrome-base-red-refractor-5",
+   "copyId": "C0005",
+   "serial": "5",
+   "serialTotal": 5,
+   "priceCents": 1940158,
+   "status": "ACTIVE",
+   "views": 135,
+   "watchers": 8,
+   "createdAt": 1788940800000,
+   "expiresAt": 1791705600000
+  }
+ ],
+ "offersMade": [
+  {
+   "id": "MO0001",
+   "itemId": "charles-leclerc-chrome-base-superfractor-1-1",
+   "priceCents": 4786792,
+   "status": "OPEN",
+   "createdAt": 1790409600000,
+   "expiresAt": 1791187200000
+  },
+  {
+   "id": "MO0002",
+   "itemId": "max-verstappen-chrome-base-superfractor-1-1",
+   "priceCents": 1332163,
+   "status": "ACCEPTED",
+   "createdAt": 1790582400000,
+   "expiresAt": 1790928000000
+  },
+  {
+   "id": "MO0003",
+   "itemId": "lando-norris-chrome-base-refractor",
+   "priceCents": 60612,
+   "status": "ACCEPTED",
+   "createdAt": 1790496000000,
+   "expiresAt": 1791360000000
+  },
+  {
+   "id": "MO0004",
+   "itemId": "george-russell-chrome-base-base",
+   "priceCents": 27965,
+   "status": "OPEN",
+   "createdAt": 1789891200000,
+   "expiresAt": 1790928000000
+  }
+ ],
+ "offersReceived": [
+  {
+   "id": "MR0001",
+   "itemId": "charles-leclerc-chrome-base-red-refractor-5",
+   "priceCents": 1297020,
+   "buyer": {
+    "id": "u_25",
+    "handle": "slipstreamorca62",
+    "rating": 4.8,
+    "sales": 140,
+    "verified": true
+   },
+   "status": "OPEN",
+   "createdAt": 1790323200000,
+   "expiresAt": 1791446400000
+  },
+  {
+   "id": "MR0002",
+   "itemId": "max-verstappen-chrome-base-base",
+   "priceCents": 22650,
+   "buyer": {
+    "id": "u_115",
+    "handle": "turbobull72",
+    "rating": 4.4,
+    "sales": 877,
+    "verified": true
+   },
+   "status": "OPEN",
+   "createdAt": 1790150400000,
+   "expiresAt": 1790841600000
+  },
+  {
+   "id": "MR0003",
+   "itemId": "daniel-ricciardo-chrome-base-red-refractor-5",
+   "priceCents": 655476,
+   "buyer": {
+    "id": "u_67",
+    "handle": "chicanelynx55",
+    "rating": 4.3,
+    "sales": 282,
+    "verified": false
+   },
+   "status": "OPEN",
+   "createdAt": 1790064000000,
+   "expiresAt": 1791619200000
+  },
+  {
+   "id": "MR0004",
+   "itemId": "esteban-ocon-chrome-base-superfractor-1-1",
+   "priceCents": 1521681,
+   "buyer": {
+    "id": "u_8",
+    "handle": "slipstreamkite28",
+    "rating": 4.9,
+    "sales": 753,
+    "verified": true
+   },
+   "status": "OPEN",
+   "createdAt": 1790150400000,
+   "expiresAt": 1791273600000
+  }
+ ],
+ "watchlist": [
+  "valtteri-bottas-chrome-base-gold-refractor-50",
+  "alexander-albon-chrome-base-refractor",
+  "lando-norris-chrome-base-refractor",
+  "esteban-ocon-chrome-base-red-refractor-5",
+  "pierre-gasly-chrome-base-base",
+  "daniil-kvyat-chrome-base-base",
+  "kevin-magnussen-chrome-base-superfractor-1-1",
+  "nicholas-latifi-chrome-base-base"
+ ]
+}

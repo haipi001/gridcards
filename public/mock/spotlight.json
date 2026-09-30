@@ -1,0 +1,380 @@
+{
+ "hero": [
+  {
+   "itemId": "lewis-hamilton-chrome-base-superfractor-1-1",
+   "title": "Lewis Hamilton",
+   "parallel": "SuperFractor 1/1",
+   "image": "/img/archive/14.jpg",
+   "art": {
+    "kind": "racer",
+    "c1": "#00d7b6",
+    "c2": "#0b3a3f"
+   },
+   "floorCents": 2927700,
+   "tag": "ULTIMATE · 1/1"
+  },
+  {
+   "itemId": "valtteri-bottas-chrome-base-superfractor-1-1",
+   "title": "Valtteri Bottas",
+   "parallel": "SuperFractor 1/1",
+   "image": "/img/archive/55.jpg",
+   "art": {
+    "kind": "racer",
+    "c1": "#00d7b6",
+    "c2": "#0b3a3f"
+   },
+   "floorCents": 2737900,
+   "tag": "ULTIMATE · 1/1"
+  },
+  {
+   "itemId": "sebastian-vettel-chrome-base-superfractor-1-1",
+   "title": "Sebastian Vettel",
+   "parallel": "SuperFractor 1/1",
+   "image": "/img/archive/36.jpg",
+   "art": {
+    "kind": "racer",
+    "c1": "#e8002d",
+    "c2": "#3d0a12"
+   },
+   "floorCents": 2893600,
+   "tag": "ULTIMATE · 1/1"
+  },
+  {
+   "itemId": "charles-leclerc-chrome-base-superfractor-1-1",
+   "title": "Charles Leclerc",
+   "parallel": "SuperFractor 1/1",
+   "image": "/img/archive/18.jpg",
+   "art": {
+    "kind": "racer",
+    "c1": "#e8002d",
+    "c2": "#3d0a12"
+   },
+   "floorCents": 5469800,
+   "tag": "ULTIMATE · 1/1"
+  },
+  {
+   "itemId": "alexander-albon-chrome-base-superfractor-1-1",
+   "title": "Alexander Albon",
+   "parallel": "SuperFractor 1/1",
+   "image": null,
+   "art": {
+    "kind": "racer",
+    "c1": "#1e41ff",
+    "c2": "#141a4d"
+   },
+   "floorCents": 3126900,
+   "tag": "ULTIMATE · 1/1"
+  },
+  {
+   "itemId": "max-verstappen-chrome-base-superfractor-1-1",
+   "title": "Max Verstappen",
+   "parallel": "SuperFractor 1/1",
+   "image": "/img/archive/2.jpg",
+   "art": {
+    "kind": "racer",
+    "c1": "#1e41ff",
+    "c2": "#141a4d"
+   },
+   "floorCents": 1885200,
+   "tag": "ULTIMATE · 1/1"
+  }
+ ],
+ "hotSeries": [
+  {
+   "rank": 1,
+   "seriesId": "chrome-base",
+   "name": "2020 Topps Chrome F1 · Base Set",
+   "volume24hCents": 347675700,
+   "change24h": 0.075,
+   "floorCents": 14900,
+   "itemCount": 100,
+   "c1": "#1f6fb2",
+   "c2": "#0b1a2b"
+  },
+  {
+   "rank": 2,
+   "seriesId": "chrome-autographs",
+   "name": "Chrome Autograph Variations",
+   "volume24hCents": 343005200,
+   "change24h": 0.173,
+   "floorCents": 132900,
+   "itemCount": 78,
+   "c1": "#8f6a29",
+   "c2": "#2b1f14"
+  },
+  {
+   "rank": 3,
+   "seriesId": "world-on-wheels",
+   "name": "1954 Topps World on Wheels",
+   "volume24hCents": 16645100,
+   "change24h": 0.157,
+   "floorCents": 26900,
+   "itemCount": 36,
+   "c1": "#8d5228",
+   "c2": "#2a1c11"
+  },
+  {
+   "rank": 4,
+   "seriesId": "track-tags",
+   "name": "Track Tags",
+   "volume24hCents": 9927500,
+   "change24h": -0.119,
+   "floorCents": 50000,
+   "itemCount": 28,
+   "c1": "#375f76",
+   "c2": "#16232c"
+  },
+  {
+   "rank": 5,
+   "seriesId": "team-logos",
+   "name": "Team Logos",
+   "volume24hCents": 9333800,
+   "change24h": -0.039,
+   "floorCents": 28800,
+   "itemCount": 20,
+   "c1": "#2f8f7a",
+   "c2": "#10201d"
+  },
+  {
+   "rank": 6,
+   "seriesId": "grand-prix-heroes",
+   "name": "Grand Prix Heroes",
+   "volume24hCents": 9231800,
+   "change24h": -0.052,
+   "floorCents": 42900,
+   "itemCount": 20,
+   "c1": "#6d4fa8",
+   "c2": "#1d1730"
+  }
+ ],
+ "rareSales": [
+  {
+   "id": "E00057",
+   "itemId": "charles-leclerc-chrome-base-superfractor-1-1",
+   "title": "Charles Leclerc",
+   "parallel": "SuperFractor 1/1",
+   "serial": "1",
+   "priceCents": 8341431,
+   "at": 1789725600000,
+   "buyer": "apexbull4",
+   "seller": "qualikite7"
+  },
+  {
+   "id": "E00059",
+   "itemId": "charles-leclerc-chrome-base-superfractor-1-1",
+   "title": "Charles Leclerc",
+   "parallel": "SuperFractor 1/1",
+   "serial": "1",
+   "priceCents": 8331226,
+   "at": 1788692400000,
+   "buyer": "gridkite18",
+   "seller": "sectorwolf83"
+  },
+  {
+   "id": "E00559",
+   "itemId": "guanyu-zhou-chrome-autographs-superfractor-auto-1-1",
+   "title": "Guanyu Zhou",
+   "parallel": "SuperFractor Auto 1/1",
+   "serial": "1",
+   "priceCents": 7226330,
+   "at": 1786050000000,
+   "buyer": "drscomet84",
+   "seller": "slipstreamlynx62"
+  },
+  {
+   "id": "E00508",
+   "itemId": "claire-williams-chrome-autographs-superfractor-auto-1-1",
+   "title": "Claire Williams",
+   "parallel": "SuperFractor Auto 1/1",
+   "serial": "1",
+   "priceCents": 7144131,
+   "at": 1784023200000,
+   "buyer": "pitlynx49",
+   "seller": "turbolynx58"
+  },
+  {
+   "id": "E00058",
+   "itemId": "charles-leclerc-chrome-base-superfractor-1-1",
+   "title": "Charles Leclerc",
+   "parallel": "SuperFractor 1/1",
+   "serial": "1",
+   "priceCents": 6979428,
+   "at": 1786316400000,
+   "buyer": "sectorfox72",
+   "seller": "qualiraven65"
+  },
+  {
+   "id": "E00198",
+   "itemId": "sergio-perez-chrome-base-superfractor-1-1",
+   "title": "Sergio Pérez",
+   "parallel": "SuperFractor 1/1",
+   "serial": "1",
+   "priceCents": 6339447,
+   "at": 1787090400000,
+   "buyer": "pitmantis54",
+   "seller": "turbomantis44"
+  },
+  {
+   "id": "E00196",
+   "itemId": "sergio-perez-chrome-base-superfractor-1-1",
+   "title": "Sergio Pérez",
+   "parallel": "SuperFractor 1/1",
+   "serial": "1",
+   "priceCents": 6106539,
+   "at": 1787313600000,
+   "buyer": "apexbull4",
+   "seller": "apexkite85"
+  },
+  {
+   "id": "E00225",
+   "itemId": "kimi-raikkonen-chrome-base-superfractor-1-1",
+   "title": "Kimi Räikkönen",
+   "parallel": "SuperFractor 1/1",
+   "serial": "1",
+   "priceCents": 5928990,
+   "at": 1789286400000,
+   "buyer": "chicanelynx55",
+   "seller": "downforceraven67"
+  }
+ ],
+ "leaderboard": [
+  {
+   "rank": 1,
+   "handle": "drscomet84",
+   "avatar": "#53d486",
+   "trades": 933,
+   "volumeCents": 4204098,
+   "change": -0.027
+  },
+  {
+   "rank": 2,
+   "handle": "sectorhawk36",
+   "avatar": "#e3b95a",
+   "trades": 930,
+   "volumeCents": 6498840,
+   "change": 0.216
+  },
+  {
+   "rank": 3,
+   "handle": "gridmantis73",
+   "avatar": "#2f9cff",
+   "trades": 912,
+   "volumeCents": 6120432,
+   "change": 0.02
+  },
+  {
+   "rank": 4,
+   "handle": "slipstreamwolf15",
+   "avatar": "#a987ff",
+   "trades": 902,
+   "volumeCents": 7317024,
+   "change": -0.101
+  },
+  {
+   "rank": 5,
+   "handle": "poleotter7",
+   "avatar": "#a987ff",
+   "trades": 897,
+   "volumeCents": 7778784,
+   "change": 0.04
+  },
+  {
+   "rank": 6,
+   "handle": "sectorace79",
+   "avatar": "#2f9cff",
+   "trades": 881,
+   "volumeCents": 6675337,
+   "change": -0.036
+  },
+  {
+   "rank": 7,
+   "handle": "turbobull72",
+   "avatar": "#e3b95a",
+   "trades": 877,
+   "volumeCents": 3453626,
+   "change": 0.187
+  },
+  {
+   "rank": 8,
+   "handle": "chicaneorca14",
+   "avatar": "#ff6f7b",
+   "trades": 868,
+   "volumeCents": 7740824,
+   "change": 0.031
+  }
+ ],
+ "movers": [
+  {
+   "itemId": "andreas-seidl-chrome-autographs-superfractor-auto-1-1",
+   "title": "Andreas Seidl",
+   "parallel": "SuperFractor Auto 1/1",
+   "change24h": 0.22,
+   "floorCents": 1950500,
+   "art": {
+    "kind": "racer",
+    "c1": "#ff8700",
+    "c2": "#3b2000"
+   }
+  },
+  {
+   "itemId": "daniil-kvyat-chrome-autographs-red-auto-5",
+   "title": "Daniil Kvyat",
+   "parallel": "Red Auto /5",
+   "change24h": 0.218,
+   "floorCents": 1143000,
+   "art": {
+    "kind": "racer",
+    "c1": "#4a6fa5",
+    "c2": "#152232"
+   }
+  },
+  {
+   "itemId": "daniil-kvyat-chrome-autographs-chrome-auto",
+   "title": "Daniil Kvyat",
+   "parallel": "Chrome Auto",
+   "change24h": 0.218,
+   "floorCents": 350100,
+   "art": {
+    "kind": "racer",
+    "c1": "#4a6fa5",
+    "c2": "#152232"
+   }
+  },
+  {
+   "itemId": "nicholas-latifi-chrome-base-refractor",
+   "title": "Nicholas Latifi",
+   "parallel": "Refractor",
+   "change24h": 0.215,
+   "floorCents": 69600,
+   "art": {
+    "kind": "racer",
+    "c1": "#0082fa",
+    "c2": "#062a4d"
+   }
+  },
+  {
+   "itemId": "guenther-steiner-chrome-autographs-superfractor-auto-1-1",
+   "title": "Guenther Steiner",
+   "parallel": "SuperFractor Auto 1/1",
+   "change24h": 0.215,
+   "floorCents": 1982500,
+   "art": {
+    "kind": "racer",
+    "c1": "#d9dee3",
+    "c2": "#2a2f34"
+   }
+  },
+  {
+   "itemId": "esteban-ocon-world-on-wheels-gold-50",
+   "title": "Esteban Ocon",
+   "parallel": "Gold /50",
+   "change24h": 0.213,
+   "floorCents": 68400,
+   "art": {
+    "kind": "racer",
+    "c1": "#ffe04f",
+    "c2": "#3a3300"
+   }
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# The site is a static export, so CI has to answer one question: does `out/`
+# still build clean? Everything before `npm run build` is a cheap gate that
+# fails faster and with a better message than the compiler would.
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Types
+        run: npm run typecheck
+
+      - name: Data integrity
+        run: npm run verify
+
+      - name: Build static export
+        run: npm run build
+        env:
+          # Canonical / OG / sitemap URLs are baked in at build time.
+          NEXT_PUBLIC_SITE_URL: https://gridcards.example.com
+
+      - name: Upload export
+        uses: actions/upload-artifact@v4
+        with:
+          name: gridcards-out
+          path: out
+          retention-days: 7

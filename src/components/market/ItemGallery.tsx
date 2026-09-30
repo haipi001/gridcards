@@ -37,7 +37,7 @@ export default function ItemGallery({ item }: { item: MarketItem }) {
             />
           </div>
         ) : (
-          <div className="mStageCard">
+          <div className="mStageCard" data-effect={item.effect ?? "none"}>
             {item.image ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={item.image} alt={`${item.title} · ${item.parallel}`} />

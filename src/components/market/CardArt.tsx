@@ -11,18 +11,22 @@ export function CardFace({
   image,
   rarity,
   title,
+  effect,
   className,
 }: {
   art: Art;
   image: string | null;
   rarity: RarityTier;
   title: string;
+  /** Foil tier, straight from MarketItem.effect. Drives the CSS foil layer. */
+  effect?: string;
   className?: string;
 }) {
   const meta = rarityMeta(rarity);
   return (
     <div
       className={`mFace${className ? ` ${className}` : ""}`}
+      data-effect={effect ?? "none"}
       style={{ "--rarity": meta.color, "--rarityGlow": meta.glow } as React.CSSProperties}
     >
       {image ? (

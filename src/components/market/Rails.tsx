@@ -146,6 +146,7 @@ export function MoversRow({
               image={null}
               rarity="rare"
               title={m.title}
+              effect={m.effect}
             />
           </div>
           <b>{m.title}</b>

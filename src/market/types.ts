@@ -234,6 +234,7 @@ export type Spotlight = {
     change24h: number;
     floorCents: number;
     art: CardArt;
+    effect: string;
   }>;
 };
 

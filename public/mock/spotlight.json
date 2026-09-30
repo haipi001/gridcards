@@ -314,7 +314,8 @@
     "kind": "racer",
     "c1": "#ff8700",
     "c2": "#3b2000"
-   }
+   },
+   "effect": "superfractor"
   },
   {
    "itemId": "daniil-kvyat-chrome-autographs-red-auto-5",
@@ -326,7 +327,8 @@
     "kind": "racer",
     "c1": "#4a6fa5",
     "c2": "#152232"
-   }
+   },
+   "effect": "gold"
   },
   {
    "itemId": "daniil-kvyat-chrome-autographs-chrome-auto",
@@ -338,7 +340,8 @@
     "kind": "racer",
     "c1": "#4a6fa5",
     "c2": "#152232"
-   }
+   },
+   "effect": "refractor"
   },
   {
    "itemId": "nicholas-latifi-chrome-base-refractor",
@@ -350,7 +353,8 @@
     "kind": "racer",
     "c1": "#0082fa",
     "c2": "#062a4d"
-   }
+   },
+   "effect": "prism"
   },
   {
    "itemId": "guenther-steiner-chrome-autographs-superfractor-auto-1-1",
@@ -362,7 +366,8 @@
     "kind": "racer",
     "c1": "#d9dee3",
     "c2": "#2a2f34"
-   }
+   },
+   "effect": "superfractor"
   },
   {
    "itemId": "esteban-ocon-world-on-wheels-gold-50",
@@ -374,7 +379,8 @@
     "kind": "racer",
     "c1": "#ffe04f",
     "c2": "#3a3300"
-   }
+   },
+   "effect": "refractor"
   }
  ]
 }

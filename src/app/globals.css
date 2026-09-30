@@ -520,6 +520,22 @@ button:has(.soonTag):hover{opacity:.65;background:inherit;color:inherit}
 .mFaceArt{width:100%;height:100%;display:block}
 .mFaceSheen{position:absolute;inset:0;background:linear-gradient(115deg,#ffffff10,transparent 42%,#ffffff0a);mix-blend-mode:screen;pointer-events:none}
 .mFaceEdge{position:absolute;inset:0;border-radius:12px;box-shadow:inset 0 0 0 1px var(--rarity),inset 0 0 26px -8px var(--rarityGlow);pointer-events:none}
+/* Foil layer by parallel tier, driven by MarketItem.effect (= EFFECT_BY_RARITY
+   in gen-market-mock.mjs): none/prism/refractor/gold/superfractor. Static
+   gradients only — nothing animates, so reduced-motion needs no special case.
+   Done in CSS rather than SVG <defs> because hundreds of cards share one page
+   and gradient ids would collide. */
+.mFace[data-effect="none"] .mFaceSheen,
+.mStageCard[data-effect="none"] .mStageSheen{background:linear-gradient(115deg,#ffffff09,transparent 48%,#ffffff05)}
+.mFace[data-effect="prism"] .mFaceSheen,
+.mStageCard[data-effect="prism"] .mStageSheen{background:linear-gradient(115deg,#8fe3ff1e,#c9a7ff16 26%,transparent 54%,#ffffff10)}
+.mFace[data-effect="refractor"] .mFaceSheen,
+.mStageCard[data-effect="refractor"] .mStageSheen{background:linear-gradient(115deg,#ffd97a2b,#fff3c918 32%,transparent 58%,#ffcf6b1c)}
+.mFace[data-effect="gold"] .mFaceSheen,
+.mStageCard[data-effect="gold"] .mStageSheen{background:linear-gradient(115deg,#ff6f5c33,#ffd36b24 30%,transparent 56%,#ff8a5c20)}
+.mFace[data-effect="superfractor"] .mFaceSheen,
+.mStageCard[data-effect="superfractor"] .mStageSheen{background:linear-gradient(115deg,#ff5f6d38,#ffc3712e 16%,#7bffb026 34%,#5ec8ff30 52%,#c17bff33 70%,#ff7bd036)}
+.mFace[data-effect="superfractor"] .mFaceEdge{box-shadow:inset 0 0 0 1px var(--rarity),inset 0 0 30px -6px var(--rarityGlow),inset 0 0 60px -20px var(--rarity)}
 .mRarity{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;letter-spacing:.13em;color:var(--rarity);border:1px solid var(--rarity);border-radius:5px;padding:3px 7px;background:color-mix(in srgb,var(--rarity) 12%,transparent)}
 .mRarity i{width:5px;height:5px;border-radius:50%;background:var(--rarity);box-shadow:0 0 7px var(--rarityGlow)}
 .mRarity.sm{font-size:8.5px;padding:2px 5px}

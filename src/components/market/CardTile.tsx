@@ -22,6 +22,7 @@ export default function CardTile({
           image={item.image}
           rarity={item.rarity}
           title={`${item.title} · ${item.parallel}`}
+          effect={item.effect}
         />
         <span className="mTileSerial">
           {item.printRun ? `${item.printRun}` : "—"}

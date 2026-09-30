@@ -150,6 +150,7 @@ export default function MyAssetsBoard({ enabled }: { enabled: boolean }) {
                       image={it.image}
                       rarity={it.rarity}
                       title={it.title}
+                      effect={it.effect}
                     />
                   </Link>
                   <div className="mCopyBody">
@@ -359,6 +360,7 @@ export default function MyAssetsBoard({ enabled }: { enabled: boolean }) {
                       image={it.image}
                       rarity={it.rarity}
                       title={it.title}
+                      effect={it.effect}
                     />
                   </div>
                   <div className="mTileBody">

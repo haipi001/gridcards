@@ -693,6 +693,7 @@ const spotlight = {
       change24h: it.change24h,
       floorCents: it.floorCents,
       art: it.art,
+      effect: it.effect,
     })),
 };
 

@@ -1679,7 +1679,7 @@ html[data-theme="light"] .editionVisual{
 
 /* --- card text: a little more air, numbers aligned ------------------------ */
 .editionCard h4{margin:11px 0 4px;font-size:13px;letter-spacing:-.005em}
-.editionMeta{font-size:10.5px;color:var(--mut2)}
+.editionMeta{font-size:10.5px;color:var(--mut)}
 .editionPrice{margin-top:10px;padding-top:9px;border-top:1px solid var(--line)}
 .editionPrice small{font-size:9.5px}
 .editionPrice b{font-size:14px;font-variant-numeric:tabular-nums}
@@ -1708,9 +1708,227 @@ html[data-theme="light"] .editionVisual{
 .demoStripLink{color:var(--mut)}
 .demoStripLink:hover{color:var(--text)}
 
+/* --- micro-type contrast --------------------------------------------------
+   An audit of every text node on the market page (3,159 of them) found 457
+   below WCAG AA in light mode and 427 in dark. The overwhelming majority were
+   the 9–10px labels drawn in the third-level ink token, so the fix starts
+   there: --mut2 now clears 5:1 on every ground it is used on, in both themes.
+   Then the handful of rules that hard-coded an ink that only works on a dark
+   card face. */
+:root{--mut2:#7f8a96}
+html[data-theme="light"]{--mut2:#5f6a77;--green:#0d7d47}
+
+.cardSub,
+.sectionBadge,
+.setFoot,
+.cardStats .metric small,
+.filterRail h3,
+.filterGroup small,
+.catalogSectionHead span,
+.metric small{color:var(--mut)}
+.sectionBadge{font-size:9.5px;letter-spacing:.06em;bottom:9px}
+.datasetLine b{color:var(--text)}
+.count{color:var(--mut2)}
+html[data-theme="light"] .catalogIndex{color:#0a6b8c}
+html[data-theme="light"] .sectionBadge{text-shadow:none}
+html[data-theme="light"] .cardSub{color:var(--mut)}
+
+/* --- market rail: the rarity band control -------------------------------- */
+.chipCount{
+  font-style:normal;font-size:9.5px;font-weight:800;
+  margin-left:5px;padding:1px 5px;border-radius:5px;
+  background:color-mix(in srgb,currentColor 14%,transparent);
+  font-variant-numeric:tabular-nums;
+}
+.mChip:disabled{opacity:.4;cursor:not-allowed}
+.mChip{
+  min-height:30px;
+}
+.railNote{
+  margin:0;font-size:10.5px;line-height:1.6;color:var(--mut);
+}
+.filterRail .check{color:var(--text)}
+.filterRail .check input{accent-color:var(--cyan)}
+.filter summary:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+
 /* --- light mode: two grounds the tint pass left dark --------------------- */
 html[data-theme="light"] .railRoadmap{background:#f2f5f9}
 html[data-theme="light"] .railRoadmap li span{color:var(--mut)}
 html[data-theme="light"] .mStageGlow{box-shadow:0 26px 60px -22px var(--rarityGlow)}
 html[data-theme="light"] .sideTitle{color:var(--text)}
+
+/* ==========================================================================
+   V27 · CLAIMS · SOCIAL · PROFILE
+   Every card can be claimed with a photo; posts, likes and comments live on
+   the device; My Space is one board over all four local stores.
+   All new surfaces use the theme tokens, so light mode needs no overrides
+   beyond the handful listed at the end of this block.
+   ========================================================================== */
+
+/* --- claim affordance on cards ------------------------------------------- */
+.cardActions{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 13px 12px}
+.cardActionsNote{font-size:9.5px;letter-spacing:.05em;color:#6b7580;text-transform:uppercase;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.claimBtn.compact{height:26px;padding:0 9px;font-size:10px;border-radius:7px}
+.ladderItem{display:grid;gap:5px;min-width:0}
+.ladderChip{display:block}
+.claimRow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.claimRow .mut{font-size:11px}
+
+/* --- modal plumbing ------------------------------------------------------- */
+.modalWide{width:min(660px,calc(100% - 28px))}
+.modalBody{max-height:min(62vh,560px);overflow:auto;padding-right:2px}
+.modalFoot{border-top:1px solid var(--line);margin-top:16px;padding-top:14px}
+.modal h2{font-size:19px}
+.dialogFoot{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.dialogSpacer{flex:1}
+.dialogHint{font-size:11px;color:var(--mut)}
+.dialogWarn{font-size:11.5px;color:#ffb0b0;display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dialogText{width:100%;min-height:72px;resize:vertical;background:#111417;border:1px solid var(--line2);border-radius:9px;color:#fff;padding:10px;font-size:13px}
+.claimSummary{display:grid;gap:3px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.claimSummary b{font-size:14px}
+.claimSummary .mut{font-size:11px}
+.dialogSerials{max-height:210px;overflow:auto}
+.formSection h4{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:#7b858f}
+
+/* --- photo picker --------------------------------------------------------- */
+.photoPicker{display:grid;gap:9px}
+.photoSlots{display:flex;gap:9px;flex-wrap:wrap}
+.photoSlot{position:relative;width:96px;border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:#0d1014}
+.photoSlot img{display:block;width:96px;height:128px;object-fit:cover}
+.photoSlot button{position:absolute;right:4px;top:4px;width:22px;height:22px;border:0;border-radius:6px;background:#0a0c0ed9;color:#fff;font-size:13px;line-height:1}
+.photoSlotMeta{display:block;padding:4px 6px;font-size:9px;color:#77828d;letter-spacing:.02em}
+.photoAdd{width:96px;height:150px;border:1px dashed var(--line2);border-radius:10px;background:#0d1014;display:grid;align-content:center;justify-items:center;gap:4px;padding:8px;cursor:pointer}
+.photoAdd b{font-size:20px;line-height:1;color:#9aa4ae}
+.photoAdd em{font-style:normal;font-size:11px;color:#8d9aa7;text-align:center}
+.photoAdd small{font-size:9px;color:#6b7784;text-align:center}
+.photoAdd:hover{border-color:var(--cyan);background:#0f1720}
+.photoNote{margin:0;font-size:10.5px;line-height:1.6;color:var(--mut)}
+
+/* --- evidence ------------------------------------------------------------- */
+.evidenceStrip{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.evidenceItem{position:relative;width:74px;border:1px solid var(--line2);border-radius:9px;overflow:hidden}
+.evidenceItem img{display:block;width:74px;height:98px;object-fit:cover}
+.evidenceEmpty{display:block;width:74px;height:98px;background:repeating-linear-gradient(45deg,#14181c,#14181c 6px,#101317 6px,#101317 12px)}
+.evidenceItem button{width:100%;border:0;background:#12161a;color:#9aa4ae;font-size:10px;padding:4px 0}
+.evidenceItem button:hover{color:#ff8fa3}
+
+/* --- composer ------------------------------------------------------------- */
+.composerExtra{padding-top:12px}
+.composerCard{display:flex;align-items:center;gap:10px;margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:9px 11px;background:#0f1317;flex-wrap:wrap}
+.composerCard .eyebrow{font-size:9px}
+.composerCard b{font-size:12.5px;flex:1;min-width:0}
+.composerAttach{margin-top:10px;display:grid;gap:7px}
+.composerClaimList{display:flex;flex-wrap:wrap;gap:6px;max-height:132px;overflow:auto}
+.composerClaimList button{border:1px solid var(--line2);background:#111417;color:#c9d0d8;border-radius:8px;padding:6px 9px;font-size:11px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.composerClaimList button:hover{border-color:#5b6672;color:#fff}
+.composerNote{margin:9px 0 0;font-size:10.5px;line-height:1.6;color:var(--mut)}
+.toolStatic{cursor:default}
+.tool.on{border:1px solid #2f5b72;background:#0f2029;color:#9fdcff}
+.toolCount{align-self:center;font-size:10px;color:#6b7784;font-variant-numeric:tabular-nums}
+.composer .tool.on{color:#9fdcff}
+
+/* --- post ----------------------------------------------------------------- */
+.postYou{margin-left:6px;font-size:8px;letter-spacing:.08em;font-weight:850;color:#0b1016;background:#7fe6b0;border-radius:4px;padding:1px 4px;vertical-align:middle}
+.postDelete{border:1px solid var(--line2);background:transparent;color:var(--mut);border-radius:7px;padding:5px 8px;font-size:11px}
+.postDelete:hover{color:#ff8fa3;border-color:#5c2a30}
+.postImages{display:grid;gap:6px;margin:12px 0;border-radius:11px;overflow:hidden}
+.postImages.n1{grid-template-columns:minmax(0,420px)}
+.postImages.n2{grid-template-columns:1fr 1fr}
+.postImages.n3{grid-template-columns:repeat(3,1fr)}
+.postImage{border:0;padding:0;background:#0d1014;cursor:zoom-in;position:relative;aspect-ratio:3/4}
+.postImage img{display:block;width:100%;height:100%;object-fit:cover}
+.postImageEmpty{position:absolute;inset:0;background:repeating-linear-gradient(45deg,#14181c,#14181c 8px,#101317 8px,#101317 16px)}
+.postImages.n1 .postImage{aspect-ratio:4/3}
+.postZoom{width:100%;border-radius:10px;display:block}
+.postTopics{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.postTopic{font-size:10.5px;font-weight:800;color:#8fdcff;background:#0d1c25;border:1px solid #28516a;border-radius:6px;padding:3px 7px}
+.postActions button.on{color:#ff8fa3}
+.postComments{border-top:1px solid var(--line);margin-top:12px;padding-top:12px;display:grid;gap:9px}
+.postComment{display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;align-items:baseline;font-size:12px}
+.postComment b{color:#c9d0d8}
+.postComment em{font-style:normal;font-size:10px;color:#6b7784}
+.postComment button{border:0;background:none;color:#6b7784;font-size:10px;padding:0}
+.postComment button:hover{color:#ff8fa3}
+.postCommentForm{display:flex;gap:8px;margin-top:4px}
+.postCommentForm .input{flex:1;height:38px}
+.postCardMark{width:54%;aspect-ratio:5/7;border-radius:8px;background:linear-gradient(160deg,#3a4a57,#131a20 70%);border:1px solid #ffffff1f;display:block;transform:rotate(-4deg)}
+
+/* --- profile -------------------------------------------------------------- */
+.profileAvatarPic{border:3px solid var(--line2)}
+.profileStats>div{min-width:78px}
+/* Six stat tiles and six tabs in one row do not fit a phone; without this the
+   profile page scrolls sideways at 390px. */
+@media(max-width:760px){
+  .profileStats{flex-wrap:wrap;gap:14px 18px}
+  .profileStats>div{min-width:92px}
+  .profileTabs{flex-wrap:wrap}
+}
+.profileBar{height:8px;border-radius:8px;background:#161b20;overflow:hidden;margin:12px 0 8px}
+.profileBar i{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,#53d486,#7be5ff);transition:width .25s}
+.quickGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media(max-width:960px){.quickGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.quickCard{border:1px solid var(--line);background:#0c0f11;border-radius:12px;padding:15px;display:grid;gap:5px;transition:.16s}
+.quickCard:hover{border-color:#4a5560;transform:translateY(-2px)}
+.quickCard b{font-size:13px}
+.quickCard span{font-size:11px;color:var(--mut);line-height:1.55}
+.recentList{display:grid;gap:8px;margin-top:12px}
+.recentRow{display:flex;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:#0f1317}
+.recentRow:hover{border-color:#4a5560}
+.recentRow b{font-size:12.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.recentRow .mut{font-size:10.5px;white-space:nowrap}
+.panelHead{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.claimItemRich{min-height:210px}
+.claimItemTop{display:flex;align-items:start;justify-content:space-between;gap:8px}
+.scopeTag{font-size:9px;font-weight:850;letter-spacing:.06em;padding:2px 5px;border-radius:5px;border:1px solid #2c3944;background:#101820;color:#8fa3b5;flex:none}
+.scopeTag.card{border-color:#2c5b45;background:#10261d;color:#7fe6b0}
+.claimNote{margin:6px 0 0;font-size:11px;line-height:1.6;color:var(--mut);border-left:2px solid var(--line2);padding-left:8px}
+.claimThumbs{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.claimThumb{position:relative;display:block;width:56px;height:74px;border:1px solid var(--line2);border-radius:7px;overflow:hidden;background:#0d1014}
+.claimThumb img{width:100%;height:100%;object-fit:cover;display:block}
+.claimThumb i{display:block;width:100%;height:100%;background:repeating-linear-gradient(45deg,#14181c,#14181c 5px,#101317 5px,#101317 10px)}
+.claimThumb button{position:absolute;right:2px;top:2px;width:18px;height:18px;border:0;border-radius:5px;background:#0a0c0ed9;color:#fff;font-size:11px;line-height:1;padding:0}
+.claimThumb button:hover{color:#ff8fa3}
+.claimFootBtns{display:flex;gap:10px}
+.dataPanel{display:grid;gap:14px}
+.dataPanel .panel{margin:0}
+.handleInput{display:flex;align-items:center;gap:6px}
+.handleInput b{color:var(--mut);font-size:13px}
+.avatarPick{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.avatarPick button{width:38px;height:38px;border-radius:50%;border:2px solid transparent;padding:0}
+.avatarPick button.on{border-color:var(--text);box-shadow:0 0 0 2px #ffffff22}
+.dataActions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.dataMsg{margin-top:10px;font-size:11.5px;color:var(--mut);border:1px solid var(--line);border-radius:9px;padding:8px 10px;background:#0f1317}
+.btn.danger{border-color:#5c2a30;color:#ff8fa3;background:transparent}
+.btn.danger:hover{background:#2a1214;border-color:#7d3a42;color:#ffb3c0}
+.chip em{font-style:normal;margin-left:6px;font-size:10px;opacity:.7;font-variant-numeric:tabular-nums}
+.meCard{display:flex;gap:10px;align-items:center}
+.meCard b{display:block;font-size:13px}
+.meCard .mut{font-size:11px}
+.sideActions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.sideActions .btn{flex:1;justify-content:center}
+
+/* --- light mode additions ------------------------------------------------- */
+html[data-theme="light"] .dialogText{background:#fff;color:var(--text);border-color:var(--line2)}
+html[data-theme="light"] .photoSlot,
+html[data-theme="light"] .photoAdd,
+html[data-theme="light"] .claimThumb,
+html[data-theme="light"] .evidenceItem{background:#eef1f5}
+html[data-theme="light"] .evidenceItem button,
+html[data-theme="light"] .photoSlot button{background:#ffffffd9;color:var(--mut)}
+html[data-theme="light"] .composerClaimList button,
+html[data-theme="light"] .dialogText{color:var(--text)}
+html[data-theme="light"] .composerCard,
+html[data-theme="light"] .recentRow,
+html[data-theme="light"] .dataMsg,
+html[data-theme="light"] .quickCard{background:#fff}
+html[data-theme="light"] .postImage,
+html[data-theme="light"] .postCardVisual{background:#e9edf2}
+html[data-theme="light"] .scopeTag{background:#eef1f5;color:var(--mut);border-color:var(--line2)}
+html[data-theme="light"] .tool.on{background:#e6f2f8;color:#0a6076;border-color:#b6d7e4}
+html[data-theme="light"] .profileBar{background:#e3e8ee}
+html[data-theme="light"] .cardActionsNote{color:var(--mut)}
+html[data-theme="light"] .postComment b{color:var(--text)}
+html[data-theme="light"] .postTopic{background:#e6f2f8;color:#0a6076;border-color:#b6d7e4}
+html[data-theme="light"] .claimRow{border-top-color:var(--line)}
+html[data-theme="light"] .claimNote{border-left-color:var(--line2)}
 

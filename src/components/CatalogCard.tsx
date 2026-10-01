@@ -1,6 +1,8 @@
 import Link from "next/link";
 import WatchButton from "@/components/WatchButton";
 import PersonExpand from "@/components/PersonExpand";
+import ClaimButton from "@/components/claim/ClaimButton";
+import { cardClaimId } from "@/lib/claims";
 import { catalogWatchEntry } from "@/lib/watchEntry";
 import CardVisual from "@/components/CardVisual";
 import type { LadderEntry } from "@/lib/ladderIndex";
@@ -109,6 +111,25 @@ export default function CatalogCard({
           </div>
         </div>
       </Link>
+
+      {/* Outside the <Link>: a button cannot legally live inside an anchor. */}
+      <div className="cardActions">
+        <ClaimButton
+          compact
+          entry={{
+            id: cardClaimId(card.sectionSlug, card.cardNumber),
+            scope: "card",
+            title: `#${card.cardNumber} · ${card.name}`,
+            player: card.name,
+            run: 0,
+            href,
+            cardNo: card.cardNumber,
+          }}
+        />
+        <span className="cardActionsNote">
+          {card.sectionName}
+        </span>
+      </div>
 
       {expandable && (
         <>

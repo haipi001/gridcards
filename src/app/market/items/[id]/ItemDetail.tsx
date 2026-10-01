@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import ItemGallery from "@/components/market/ItemGallery";
 import TradePanel from "@/components/market/TradePanel";
+import ClaimButton from "@/components/claim/ClaimButton";
+import { editionClaimId } from "@/lib/claims";
 import {
   ActivityTable,
   AttributeGrid,
@@ -103,6 +105,26 @@ export default function ItemDetail({ id }: { id: string }) {
             enabled={enabled}
             onTraded={() => setNonce((n) => n + 1)}
           />
+
+          {/* A claim is a personal note, never an ownership transfer — the
+              market engine only reads it as its weakest ownership hint. */}
+          <div className="claimRow">
+            <ClaimButton
+              entry={{
+                id: editionClaimId(item.subject, item.parallel),
+                scope: "edition",
+                title: `${item.title} · ${item.parallel}`,
+                player: item.subject,
+                run: item.printRun ?? 0,
+                href: `/market/items/${item.id}/`,
+                variant: item.parallel,
+                cardNo: item.cardNumber,
+              }}
+            />
+            <span className="mut">
+              在这台设备上标记“我持有”，可上传实拍照片作为凭证 · 不产生所有权转移
+            </span>
+          </div>
         </div>
       </div>
 

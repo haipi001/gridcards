@@ -22,6 +22,7 @@ import { money } from "@/lib/marketUi";
 import EditionGallery from "@/components/EditionGallery";
 import { scanForEdition } from "@/lib/editionScans";
 import WatchButton from "@/components/WatchButton";
+import ClaimButton from "@/components/claim/ClaimButton";
 import { OwnedMeter, SerialMap } from "@/components/SerialClaim";
 import SerialMarket from "@/components/SerialMarket";
 import { editionWatchEntry } from "@/lib/watchEntry";
@@ -165,6 +166,7 @@ export default async function EditionPage({
               entry={editionWatchEntry(name, edition, rows.find((r) => r.team)?.team ?? null)}
               variant="btn"
             />
+            <ClaimButton entry={claim} />
           </div>
           <div className="serialTabs">
             <button className="active">

@@ -23,7 +23,8 @@ export type WatchEntry = {
 };
 
 const STORAGE_KEY = "gridcards:watchlist:v1";
-const EVENT = "gridcards:watch";
+export const WATCH_EVENT = "gridcards:watch";
+const EVENT = WATCH_EVENT;
 
 function safeParse(raw: string | null): WatchEntry[] {
   if (!raw) return [];

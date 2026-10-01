@@ -5,6 +5,8 @@
 // checklist. Same data as the player page, same DEMO labelling.
 
 import Link from "next/link";
+import ClaimButton from "@/components/claim/ClaimButton";
+import { editionClaimId } from "@/lib/claims";
 import { money } from "@/lib/marketUi";
 import type { LadderOneOfOne, LadderRow } from "@/lib/ladderIndex";
 
@@ -83,18 +85,31 @@ export default function PersonExpand({
                 {rows
                   .filter((r) => r.tier === tier)
                   .map((r) => (
-                    <Link
-                      className="ladderChip"
-                      key={r.href + r.variant}
-                      href={r.href}
-                      title={`${r.label} · ${r.variant}`}
-                    >
-                      <b>{r.variant}</b>
-                      <span>
-                        {r.printRun ? `/${r.printRun}` : "unnumbered"} ·{" "}
-                        {money(r.askDemo)} DEMO
-                      </span>
-                    </Link>
+                    <div className="ladderItem" key={r.href + r.variant}>
+                      <Link
+                        className="ladderChip"
+                        href={r.href}
+                        title={`${r.label} · ${r.variant}`}
+                      >
+                        <b>{r.variant}</b>
+                        <span>
+                          {r.printRun ? `/${r.printRun}` : "unnumbered"} ·{" "}
+                          {money(r.askDemo)} DEMO
+                        </span>
+                      </Link>
+                      <ClaimButton
+                        compact
+                        entry={{
+                          id: editionClaimId(name, r.variant),
+                          scope: "edition",
+                          title: `${name} · ${r.variant}`,
+                          player: name,
+                          run: r.printRun ?? 0,
+                          href: r.href,
+                          variant: r.variant,
+                        }}
+                      />
+                    </div>
                   ))}
               </div>
             </div>

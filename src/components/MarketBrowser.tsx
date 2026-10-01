@@ -52,12 +52,29 @@ const SPECIAL_SLUGS = new Set(SPECIAL_SETS.map((s) => s.slug));
 
 type SortKey = "checklist" | "checklistDesc" | "name";
 
+/**
+ * Rarity bands, answered from the real ladder index rather than invented:
+ * every person in the checklist ships with their editions and print runs, so
+ * "does this driver have a 1/1?" is a fact we can filter on today.
+ */
+type Rarity = "all" | "oneofone" | "short" | "long" | "unnumbered";
+
+const RARITY_BANDS: Array<{ key: Rarity; label: string; hint: string }> = [
+  { key: "all", label: "全部", hint: "不过滤" },
+  { key: "oneofone", label: "1/1", hint: "有 1/1 版本" },
+  { key: "short", label: "≤ /25", hint: "有 /5 · /25 短印量版本" },
+  { key: "long", label: "≥ /50", hint: "有 /50 及以上印量版本" },
+  { key: "unnumbered", label: "未编号", hint: "有未编号版本" },
+];
+
 type Query = {
   dataset: DatasetKey;
   sections: string[];
   player: string;
   kind: "all" | "person" | "object";
   name: string;
+  rarity: Rarity;
+  scans: boolean;
 };
 
 // Card numbers are strings on purpose ("196", "TT-1", "F1A-LH"): fall back to a
@@ -72,6 +89,7 @@ function compareCardNumber(a: string, b: string): number {
 function parseQuery(search: string): Query {
   const sp = new URLSearchParams(search);
   const raw = sp.get("dataset");
+  const rarity = sp.get("rarity");
   return {
     dataset: DATASETS.some((d) => d.key === raw) ? (raw as DatasetKey) : "base",
     sections: sp.getAll("section").filter(Boolean),
@@ -81,6 +99,10 @@ function parseQuery(search: string): Query {
         ? (sp.get("kind") as "person" | "object")
         : "all",
     name: sp.get("name")?.trim() ?? "",
+    rarity: RARITY_BANDS.some((b) => b.key === rarity)
+      ? (rarity as Rarity)
+      : "all",
+    scans: sp.get("scans") === "1",
   };
 }
 
@@ -96,6 +118,8 @@ function toHref(q: Query): string {
   if (q.player) sp.set("player", q.player);
   if (q.kind !== "all") sp.set("kind", q.kind);
   if (q.name) sp.set("name", q.name);
+  if (q.rarity !== "all") sp.set("rarity", q.rarity);
+  if (q.scans) sp.set("scans", "1");
   const qs = sp.toString();
   return qs ? `/?${qs}` : "/";
 }
@@ -125,6 +149,8 @@ export default function MarketBrowser({
     player: "",
     kind: "all",
     name: "",
+    rarity: "all",
+    scans: false,
   });
 
   // Adopt the real query string once we are in the browser.
@@ -164,11 +190,32 @@ export default function MarketBrowser({
   }
 
   const allowed = datasetDef.sectionSlugs;
+
+  // Does this checklist record own a print run in the requested band? Objects
+  // (team / collection records) carry no ladder, so a rarity filter narrows to
+  // people by definition — the same rule the player pages follow.
+  const inBand = (name: string, band: Rarity): boolean => {
+    const rows = ladders[name]?.rows ?? [];
+    if (band === "all") return true;
+    return rows.some((r) => {
+      const run = r.printRun;
+      if (band === "oneofone") return run === 1;
+      if (band === "short") return run !== null && run > 1 && run <= 25;
+      if (band === "long") return run !== null && run >= 50;
+      return run === null; // unnumbered
+    });
+  };
+
   const filtered = items.filter((item) => {
     if (q.kind === "person" && item.kind !== "person") return false;
     if (q.kind === "object" && item.kind === "person") return false;
     if (q.name && !item.name.toLowerCase().includes(q.name.toLowerCase()))
       return false;
+    if (q.rarity !== "all") {
+      if (item.kind !== "person") return false;
+      if (!inBand(item.name, q.rarity)) return false;
+    }
+    if (q.scans && !(ladders[item.name]?.oneOfOneCount ?? 0)) return false;
     if (allowed) {
       if (!allowed.includes(item.sectionSlug)) return false;
     } else if (item.sectionCategory !== "base") {
@@ -234,6 +281,37 @@ export default function MarketBrowser({
 
   const baseSections = sections.filter((s) => s.category === "base");
 
+  // How many people would match each rarity band — the rail states its own
+  // effect before you click, and never offers a filter that yields nothing.
+  const bandCounts = useMemo(() => {
+    const people = Array.from(new Set(items.filter((i) => i.kind === "person").map((i) => i.name)));
+    const counts: Record<Rarity, number> = {
+      all: people.length,
+      oneofone: 0,
+      short: 0,
+      long: 0,
+      unnumbered: 0,
+    };
+    for (const name of people) {
+      for (const band of ["oneofone", "short", "long", "unnumbered"] as Rarity[]) {
+        if (inBand(name, band)) counts[band] += 1;
+      }
+    }
+    return counts;
+    // inBand reads only ladders, which is stable for the life of the page.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, ladders]);
+
+  const scanCount = useMemo(
+    () =>
+      new Set(
+        items
+          .filter((i) => i.kind === "person" && (ladders[i.name]?.oneOfOneCount ?? 0) > 0)
+          .map((i) => i.name),
+      ).size,
+    [items, ladders],
+  );
+
   // What is currently narrowing the list, so the rail can show it and undo it.
   const activeFilters: Array<{ label: string; clear: () => void }> = [];
   if (q.kind !== "all")
@@ -245,6 +323,16 @@ export default function MarketBrowser({
     activeFilters.push({
       label: `名称：${q.name}`,
       clear: () => setQ({ ...q, name: "" }),
+    });
+  if (q.rarity !== "all")
+    activeFilters.push({
+      label: `印量：${RARITY_BANDS.find((b) => b.key === q.rarity)?.label ?? q.rarity}`,
+      clear: () => navigate(toHref({ ...q, rarity: "all" })),
+    });
+  if (q.scans)
+    activeFilters.push({
+      label: "有 1/1 实物照",
+      clear: () => navigate(toHref({ ...q, scans: false })),
     });
   for (const slug of q.sections)
     activeFilters.push({
@@ -262,7 +350,15 @@ export default function MarketBrowser({
     });
 
   const resetFilters = () => {
-    setQ({ dataset: "base", sections: [], player: "", kind: "all", name: "" });
+    setQ({
+      dataset: "base",
+      sections: [],
+      player: "",
+      kind: "all",
+      name: "",
+      rarity: "all",
+      scans: false,
+    });
     setSort("checklist");
     navigate("/");
   };
@@ -339,6 +435,51 @@ export default function MarketBrowser({
           </details>
           <details className="filter" open>
             <summary>
+              Parallel 印量 <span>⌄</span>
+            </summary>
+            <div className="inner">
+              <div className="mChips">
+                {RARITY_BANDS.map((b) => {
+                  const n = bandCounts[b.key];
+                  const on = q.rarity === b.key;
+                  return (
+                    <button
+                      key={b.key}
+                      type="button"
+                      className={`mChip${on ? " on" : ""}`}
+                      aria-pressed={on}
+                      title={b.hint}
+                      disabled={b.key !== "all" && n === 0}
+                      onClick={() =>
+                        navigate(
+                          toHref({ ...q, rarity: on ? "all" : b.key, kind: "all" }),
+                        )
+                      }
+                    >
+                      {b.label}
+                      <em className="chipCount">{n}</em>
+                    </button>
+                  );
+                })}
+              </div>
+              <label className="check">
+                <span>有 1/1 实物照</span>
+                <input
+                  type="checkbox"
+                  checked={q.scans}
+                  onChange={(e) =>
+                    navigate(toHref({ ...q, scans: e.currentTarget.checked }))
+                  }
+                />
+              </label>
+              <p className="railNote">
+                {scanCount} 位人物的 1/1 实物照已归档；印量按官方 checklist
+                的 print run 判定，不是估算。
+              </p>
+            </div>
+          </details>
+          <details className="filter" open>
+            <summary>
               Checklist section <span>⌄</span>
             </summary>
             <div className="inner">
@@ -380,16 +521,16 @@ export default function MarketBrowser({
             <small>ROADMAP · 随真实挂牌开放</small>
             <ul>
               <li>
-                <b>Rarity / Parallel</b>
-                <span>1/1、/5、/25、/50、/99、Unnumbered</span>
-              </li>
-              <li>
                 <b>Grade</b>
                 <span>PSA 10 / PSA 9 / BGS / CGC / Raw</span>
               </li>
               <li>
                 <b>Price range</b>
                 <span>有真实挂牌后开放区间筛选</span>
+              </li>
+              <li>
+                <b>Seller / ships to</b>
+                <span>卖家上传管线（Phase 6）上线后启用</span>
               </li>
             </ul>
           </div>

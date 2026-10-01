@@ -8,6 +8,7 @@ import WatchlistLink from "@/components/WatchlistLink";
 import ThemeToggle, { THEME_BOOTSTRAP } from "@/components/ThemeToggle";
 import SiteFooter from "@/components/SiteFooter";
 import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
+import { ToastProvider } from "@/components/market/Toast";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, pageMeta } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -95,9 +96,14 @@ export default function RootLayout({
             <Link className="avatarBtn" href="/profile/" aria-label="My Space"></Link>
           </div>
         </header>
-        <main id="main" tabIndex={-1}>
-          {children}
-        </main>
+        {/* One toast host for the whole app. Community and Profile need it just
+            as much as the market does, and a second host would only ever be
+            empty — so it lives here instead of inside the market shell. */}
+        <ToastProvider>
+          <main id="main" tabIndex={-1}>
+            {children}
+          </main>
+        </ToastProvider>
         <SiteFooter />
         <ServiceWorkerRegister />
       </body>

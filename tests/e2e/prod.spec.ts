@@ -233,3 +233,170 @@ test("home checklist cards show real card photographs", async ({ page }) => {
   // 179 of 313 records now have a real scan; the base dataset renders a subset.
   expect(photos).toBeGreaterThan(generated / 2);
 });
+
+// ---------------------------------------------------------------------------
+// V27 · claims (every card), social posting, My Space
+// ---------------------------------------------------------------------------
+
+test("every checklist card carries a claim button", async ({ page }) => {
+  await page.goto("/");
+  await page.waitForSelector(".marketCard");
+  const cards = await page.locator(".marketCard").count();
+  const buttons = await page.locator(".marketCard .cardActions .claimBtn").count();
+  expect(cards).toBeGreaterThan(0);
+  // "所有卡都要能认领" — one affordance per record, not on a chosen few.
+  expect(buttons).toBe(cards);
+});
+
+test("claiming a card flips the button and persists on this device", async ({ page }) => {
+  await page.goto("/");
+  await page.waitForSelector(".marketCard");
+  const btn = page.locator(".marketCard .cardActions .claimBtn").first();
+  await expect(btn).toContainText("认领");
+
+  await btn.click();
+  const dialog = page.locator(".modal.open");
+  await expect(dialog).toBeVisible();
+  // The evidence picker is part of the claim flow, not a separate screen.
+  await expect(dialog.locator(".photoPicker")).toBeVisible();
+
+  await dialog.getByRole("button", { name: "提交认领" }).click();
+  await expect(dialog).toBeHidden();
+  await expect(btn).toContainText("已认领");
+
+  const stored = await page.evaluate(
+    () => JSON.parse(localStorage.getItem("gridcards:claims:v1") ?? "[]") as unknown[],
+  );
+  expect(stored).toHaveLength(1);
+  // A claim must never masquerade as ownership — no owner field, ever.
+  expect(JSON.stringify(stored)).not.toContain("owner");
+});
+
+test("the claim dialog accepts a photo as evidence", async ({ page }) => {
+  await page.goto("/");
+  await page.waitForSelector(".marketCard");
+  await page.locator(".marketCard .cardActions .claimBtn").first().click();
+  const dialog = page.locator(".modal.open");
+  await expect(dialog).toBeVisible();
+
+  // A 2x2 PNG is below the 300px short-edge floor, so the ingest must reject
+  // it loudly instead of storing a fake "proof" photo.
+  await dialog.locator("input[type=file]").setInputFiles({
+    name: "tiny.png",
+    mimeType: "image/png",
+    buffer: Buffer.from(
+      "iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFElEQVR4nGP8z8DAwMDAxAADjAwMAA8sAgWQ6V0ZAAAAAElFTkSuQmCC",
+      "base64",
+    ),
+  });
+  await expect(dialog.locator(".uploadError")).toContainText("图片太小");
+});
+
+test("community composer publishes a post that lands at the top of the feed", async ({ page }) => {
+  await page.goto("/community/");
+  await page.waitForSelector(".composer");
+  const text = `mail day #MailDay 收到一张 Hamilton`;
+  await page.locator(".composer textarea").fill(text);
+  await page.locator(".composer").getByRole("button", { name: "Post" }).click();
+
+  const first = page.locator("article.post").first();
+  await expect(first).toContainText("@you");
+  await expect(first).toContainText("mail day");
+  // Hashtags are extracted, not hand-typed.
+  await expect(first.locator(".postTopic").first()).toContainText("#MailDay");
+
+  // Liking is a local toggle.
+  const like = first.locator(".postActions button").first();
+  await like.click();
+  await expect(like).toHaveClass(/on/);
+});
+
+test("my space shows the claims written on this device", async ({ page }) => {
+  await page.addInitScript(() => {
+    try {
+      localStorage.setItem(
+        "gridcards:claims:v1",
+        JSON.stringify([
+          {
+            id: "card:base#1",
+            scope: "card",
+            title: "#1 · Lewis Hamilton",
+            player: "Lewis Hamilton",
+            run: 0,
+            href: "/players/lewis-hamilton/",
+            serials: [],
+            note: "show pickup",
+            evidence: [],
+            createdAt: 1,
+            updatedAt: 1,
+          },
+        ]),
+      );
+    } catch {}
+  });
+  await page.goto("/profile/");
+  await expect(page.locator(".profileTabs")).toBeVisible();
+
+  await page.locator(".profileTabs button", { hasText: "认领" }).click();
+  await expect(page.locator(".claimItem").first()).toContainText("Lewis Hamilton");
+  await expect(page.locator(".claimItem").first()).toContainText("show pickup");
+});
+
+test("my space exposes identity, backup and per-store clearing", async ({ page }) => {
+  await page.goto("/profile/");
+  await page.locator(".profileTabs button", { hasText: "身份与数据" }).click();
+  await expect(page.locator(".dataPanel")).toBeVisible();
+  await expect(page.getByRole("button", { name: "导出 JSON 备份" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "从备份导入" })).toBeVisible();
+  await expect(page.getByRole("button", { name: /清空认领/ })).toBeVisible();
+});
+
+for (const path of ["/community/", "/profile/"]) {
+  test(`light mode leaves no dark well on ${path}`, async ({ page }) => {
+    await page.addInitScript(() => {
+      try {
+        localStorage.setItem("gc-theme", "light");
+      } catch {}
+    });
+    await page.goto(path);
+    await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+    await page.waitForSelector(".topbar");
+
+    const offenders = await page.evaluate(() => {
+      const MOUNT =
+        ".mStage,.mStageCard,.archiveVisual,.itemStage,.cardFx,.cardObject,.mFace,.serialVisual,.editionVisual,.portrait,.editionScan,.modal,.postCardVisual";
+      const ALLOW = ["primary", "active", "buySmall", "avatarBtn"];
+      const lum = (r: number, g: number, b: number) => (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      const out: string[] = [];
+      for (const el of Array.from(document.querySelectorAll<HTMLElement>("body *"))) {
+        const box = el.getBoundingClientRect();
+        if (box.width * box.height < 6000) continue;
+        const cs = getComputedStyle(el);
+        if (cs.backgroundImage !== "none") continue; // gradients audited separately
+        const m = cs.backgroundColor.match(/rgba?\(([^)]+)\)/);
+        if (!m) continue;
+        const p = m[1].split(",").map((n) => parseFloat(n));
+        const alpha = p[3] === undefined ? 1 : p[3];
+        if (alpha < 0.6) continue;
+        if (lum(p[0], p[1], p[2]) > 0.18) continue;
+        if (el.closest(MOUNT)) continue;
+        const cls = typeof el.className === "string" ? el.className : "";
+        if (ALLOW.some((t) => cls.split(/\s+/).includes(t))) continue;
+        out.push(`${cls ? `.${cls}` : el.tagName} ${cs.backgroundColor}`);
+      }
+      return out.slice(0, 8);
+    });
+
+    expect(offenders).toEqual([]);
+  });
+
+  test(`no horizontal overflow at 390px on ${path}`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(path);
+    await page.waitForSelector(".topbar");
+    const overflow = await page.evaluate(
+      () => document.documentElement.scrollWidth - window.innerWidth,
+    );
+    expect(overflow).toBeLessThanOrEqual(1);
+  });
+}

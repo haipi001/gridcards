@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ToastProvider } from "./Toast";
 import { useLocationSearch } from "@/lib/browserStore";
 import { DEV_SWITCHES, tradeEnabled } from "@/market/config";
 
@@ -84,7 +83,9 @@ export default function MarketShell({
         </form>
       </nav>
 
-      <ToastProvider>{children}</ToastProvider>
+      {/* The toast host now lives in the root layout so Community and Profile
+          can use it too; a second one here would only render empty. */}
+      {children}
     </div>
   );
 }

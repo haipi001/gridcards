@@ -4,7 +4,7 @@
    "itemId": "lewis-hamilton-chrome-base-superfractor-1-1",
    "title": "Lewis Hamilton",
    "parallel": "SuperFractor 1/1",
-   "image": "/img/archive/14.jpg",
+   "image": "/img/archive/16.jpg",
    "art": {
     "kind": "racer",
     "c1": "#00d7b6",
@@ -43,7 +43,7 @@
    "itemId": "charles-leclerc-chrome-base-superfractor-1-1",
    "title": "Charles Leclerc",
    "parallel": "SuperFractor 1/1",
-   "image": "/img/archive/18.jpg",
+   "image": "/img/archive/23.jpg",
    "art": {
     "kind": "racer",
     "c1": "#e8002d",
@@ -56,7 +56,7 @@
    "itemId": "alexander-albon-chrome-base-superfractor-1-1",
    "title": "Alexander Albon",
    "parallel": "SuperFractor 1/1",
-   "image": null,
+   "image": "/img/archive/97.jpg",
    "art": {
     "kind": "racer",
     "c1": "#1e41ff",
@@ -315,7 +315,8 @@
     "c1": "#ff8700",
     "c2": "#3b2000"
    },
-   "effect": "superfractor"
+   "effect": "superfractor",
+   "image": null
   },
   {
    "itemId": "daniil-kvyat-chrome-autographs-red-auto-5",
@@ -328,7 +329,8 @@
     "c1": "#4a6fa5",
     "c2": "#152232"
    },
-   "effect": "gold"
+   "effect": "gold",
+   "image": "/img/archive/344.jpg"
   },
   {
    "itemId": "daniil-kvyat-chrome-autographs-chrome-auto",
@@ -341,7 +343,8 @@
     "c1": "#4a6fa5",
     "c2": "#152232"
    },
-   "effect": "refractor"
+   "effect": "refractor",
+   "image": "/img/archive/344.jpg"
   },
   {
    "itemId": "nicholas-latifi-chrome-base-refractor",
@@ -354,7 +357,8 @@
     "c1": "#0082fa",
     "c2": "#062a4d"
    },
-   "effect": "prism"
+   "effect": "prism",
+   "image": "/img/archive/524.jpg"
   },
   {
    "itemId": "guenther-steiner-chrome-autographs-superfractor-auto-1-1",
@@ -367,7 +371,8 @@
     "c1": "#d9dee3",
     "c2": "#2a2f34"
    },
-   "effect": "superfractor"
+   "effect": "superfractor",
+   "image": null
   },
   {
    "itemId": "esteban-ocon-world-on-wheels-gold-50",
@@ -380,7 +385,8 @@
     "c1": "#ffe04f",
     "c2": "#3a3300"
    },
-   "effect": "refractor"
+   "effect": "refractor",
+   "image": "/img/archive/341.jpg"
   }
  ]
 }

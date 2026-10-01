@@ -21,6 +21,7 @@ export function catalogWatchEntry(card: CatalogItem): WatchEntry {
     art: artKind(card.sectionSlug, card.kind),
     a: theme.a,
     b: theme.b,
+    img: card.image ?? undefined,
   };
 }
 

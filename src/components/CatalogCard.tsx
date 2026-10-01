@@ -60,7 +60,18 @@ export default function CatalogCard({
           <WatchButton entry={catalogWatchEntry(card)} />
           <div className="cardObject">
             <span className="cardNo">#{card.cardNumber}</span>
-            <CardVisual className="cardArt" art={art} a={theme.a} b={theme.b} />
+            {card.image ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                className="cardArt cardArtPhoto"
+                src={card.image}
+                alt={card.name}
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <CardVisual className="cardArt" art={art} a={theme.a} b={theme.b} />
+            )}
             {logo && (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img

@@ -58,35 +58,44 @@ const TIER_NAMES: Record<string, string> = {
   archive: "ARCHIVE",
 };
 
+// One frame, two fillings. A real 1/1 photograph and a generated livery card
+// are both "a card inside the display case": .editionFace owns the size, the
+// radius and the shadow, so the two never look like different products.
 function Card({ card }: { card: LadderCard }) {
   const run = card.printRun;
   const effect = card.effect ?? "none";
+  const cta = !run
+    ? "查看版本 →"
+    : run === 1
+      ? "查看这张卡 →"
+      : `查看全部 ${run} 个编号 →`;
+  const copyLine = !run ? "unnumbered" : run === 1 ? "1 copy" : `${run} copies`;
   return (
     <Link href={card.href} className="editionCard" data-effect={effect}>
       <div
         className="editionVisual"
         style={{ "--glow": card.c1 } as React.CSSProperties}
       >
-        {card.image ? (
-          <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              className="editionScan"
-              src={card.image}
-              alt={`${card.label} · ${card.variant}`}
-              loading="lazy"
-              width={card.w || 360}
-              height={card.h || 500}
-            />
-            <span className="editionSheen" aria-hidden />
-            <span className="realScanTag">REAL SCAN</span>
-          </>
-        ) : (
-          <div className="cardObject">
-            <span className="cardNo">#{card.cardNo}</span>
-            <CardVisual className="cardArt" art={card.art} a={card.c1} b={card.c2} />
-          </div>
-        )}
+        <div className="editionFace">
+          {card.image ? (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                className="editionScan"
+                src={card.image}
+                alt={`${card.label} · ${card.variant}`}
+                loading="lazy"
+              />
+              <span className="realScanTag">REAL SCAN</span>
+            </>
+          ) : (
+            <div className="cardObject">
+              <span className="cardNo">#{card.cardNo}</span>
+              <CardVisual className="cardArt" art={card.art} a={card.c1} b={card.c2} />
+            </div>
+          )}
+          <span className="editionSheen" aria-hidden />
+        </div>
         {run ? (
           <span className="serialFlag">
             {run === 1 ? "1/1 · 1 COPY" : `/${run} · ${run} COPIES`}
@@ -96,14 +105,14 @@ function Card({ card }: { card: LadderCard }) {
       <h4>{card.label}</h4>
       <div className="editionMeta">
         <span>{card.variant}</span>
-        <span>{run ? `${run} serial${run === 1 ? "" : "s"}` : "Edition"}</span>
+        <span>{copyLine}</span>
       </div>
       <div className="editionPrice">
         <div>
           <small>LOW ASK · DEMO</small>
           <b>{card.askDemo ? money(card.askDemo) : "—"}</b>
         </div>
-        <span className="link">{run ? "View all serials →" : "View edition →"}</span>
+        <span className="link">{cta}</span>
       </div>
     </Link>
   );

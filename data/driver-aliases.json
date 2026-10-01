@@ -1,0 +1,6 @@
+{
+  "_comment": "Same person, two spellings. The 1/1 archive writes drivers the way the paddock says them out loud; the official 2020 Topps Chrome checklist writes them the way they appear on the entry list. Both gen-market-mock.mjs and build-archive.ts read this file so the two spellings never drift apart. Key = the name used by the checklist / market item, value = the name used by the archive.",
+  "Alexander Albon": "Alex Albon",
+  "Guanyu Zhou": "Zhou Guanyu",
+  "Sergio Pérez": "Sergio Perez"
+}

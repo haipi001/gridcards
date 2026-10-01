@@ -235,6 +235,7 @@ export type Spotlight = {
     floorCents: number;
     art: CardArt;
     effect: string;
+    image: string | null;
   }>;
 };
 

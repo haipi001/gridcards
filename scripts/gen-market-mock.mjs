@@ -20,6 +20,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { createImagePicker } from "./lib/cardImages.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const OUT_DIR = path.join(ROOT, "public", "mock");
@@ -28,9 +29,7 @@ const GEN_DIR = path.join(ROOT, "src", "market", "generated");
 const catalog = JSON.parse(
   fs.readFileSync(path.join(ROOT, "data", "2020-topps-chrome-f1.json"), "utf8"),
 );
-const archive = JSON.parse(
-  fs.readFileSync(path.join(ROOT, "data", "allofone-archive.json"), "utf8"),
-);
+// The 1/1 archive is read by createImagePicker() in ./lib/cardImages.mjs.
 
 /* ------------------------------------------------------------------ PRNG --- */
 
@@ -75,28 +74,12 @@ const artKindOf = (sectionSlug) =>
       ? "crest"
       : "racer";
 
-/* --------------------------------------------------------- 1/1 real scans --- */
+/* ------------------------------------------------------------ real scans --- */
 
-// archive id -> /img/archive/{id}.jpg, indexed by driver name so a 1/1 card can
-// show a real scan instead of generated art.
-const scansByDriver = new Map();
-for (const c of archive) {
-  const name = (c.driver_name ?? "").trim();
-  const file = path.join(ROOT, "public", "img", "archive", `${c.id}.jpg`);
-  if (!name || !fs.existsSync(file)) continue;
-  if (!scansByDriver.has(name)) scansByDriver.set(name, []);
-  scansByDriver.get(name).push(`/img/archive/${c.id}.jpg`);
-}
-
-// A driver usually owns several scans, and a driver can own several 1/1
-// variants (SuperFractor 1/1, SuperFractor Auto 1/1 …). Handing every one of
-// them `scans[0]` made them all show the same photo, so walk the list instead.
-const scanCursor = new Map();
-function nextScan(subject, scans) {
-  const at = scanCursor.get(subject) ?? 0;
-  scanCursor.set(subject, at + 1);
-  return scans[at % scans.length];
-}
+// Which real photograph a card shows: the 1/1 archive first (upright scans
+// before sideways ones), then anything fetch-card-images.mjs downloaded. Shared
+// with gen-catalog-images.mjs so market and checklist cannot disagree.
+const images = createImagePicker();
 
 /* ------------------------------------------------------------- handle pool --- */
 
@@ -338,15 +321,14 @@ for (const col of COLLECTIONS) {
     const team = card.team ?? null;
     const th = theme(team);
     const pop = popularity(subject);
-    const scans = scansByDriver.get(subject) ?? [];
 
     for (const v of LADDER[col.ladder]) {
       const id = `${slugify(subject)}-${col.id}-${slugify(v.parallel)}`;
       const printRun = v.printRun;
-      // A 1/1 only gets a scan when a real one exists for that driver;
-      // everything else falls back to generated livery art. Successive 1/1s of
-      // the same driver get successive scans, never the same photo twice.
-      const image = printRun === 1 && scans.length ? nextScan(subject, scans) : null;
+      // Any edition of a driver the archive has photographed gets a real scan,
+      // not just the 1/1s. Gating this on printRun === 1 is what left 276 of
+      // 302 cards on generated art while 370 real scans sat unused.
+      const image = images.next(subject);
 
       const yuan = Math.round(
         (95 + pop * 420 + rnd() * 60) * v.mult * (0.85 + rnd() * 0.4),
@@ -704,6 +686,9 @@ const spotlight = {
       floorCents: it.floorCents,
       art: it.art,
       effect: it.effect,
+      // Carried through so the rail can show the real card instead of always
+      // falling back to generated livery art.
+      image: it.image,
     })),
 };
 

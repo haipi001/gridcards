@@ -207,3 +207,29 @@ test("archive scans are framed at their own aspect ratio, never cropped", async 
   expect(box).not.toBeNull();
   expect(Number.isFinite(declared)).toBe(true);
 });
+
+test("market cards show real photographs rather than generated art", async ({ page }) => {
+  await page.goto("/market/items/");
+  await page.waitForSelector(".mTile");
+  // The grid hydrates from the mock loader, so wait for it to fill in.
+  await expect
+    .poll(async () => page.locator(".mFace").count(), { timeout: 15_000 })
+    .toBeGreaterThan(0);
+
+  const photos = await page.locator(".mFace img").count();
+  const generated = await page.locator("svg.mFaceArt").count();
+  expect(photos).toBeGreaterThan(0);
+  // The archive photographs 210 of 302 editions, so a photo should be the
+  // common case. This fails if the image picker stops handing scans out.
+  expect(photos).toBeGreaterThan(generated);
+});
+
+test("home checklist cards show real card photographs", async ({ page }) => {
+  await page.goto("/");
+  await page.waitForSelector(".marketCard");
+  const photos = await page.locator("img.cardArtPhoto").count();
+  const generated = await page.locator("svg.cardArt").count();
+  expect(photos).toBeGreaterThan(0);
+  // 179 of 313 records now have a real scan; the base dataset renders a subset.
+  expect(photos).toBeGreaterThan(generated / 2);
+});

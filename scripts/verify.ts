@@ -184,6 +184,36 @@ const itemIds = uniqueIds(items, "item");
   if (missingArt.length) fail("image file exists", `${missingArt.length} missing: ${missingArt.slice(0, 3).join(", ")}`);
   else ok(`image file exists (${withImage.length} with a real scan, ${items.length - withImage.length} livery art)`);
 
+  // Regression guard: the archive alone covers 210 of 302 editions. If this
+  // ever drops, the generator stopped handing out scans it actually has.
+  const SCAN_FLOOR = 210;
+  if (withImage.length < SCAN_FLOOR)
+    fail(
+      `at least ${SCAN_FLOOR} editions carry a real photo`,
+      `only ${withImage.length} — did the image picker regress?`,
+    );
+  else ok(`at least ${SCAN_FLOOR} editions carry a real photo (${withImage.length})`);
+
+  // Any photo under /img/cards/ came from outside the repo, so it must carry a
+  // licence and an author to credit (see THIRD_PARTY_NOTICES.md).
+  const external = withImage.filter((i) => i.image.startsWith("/img/cards/"));
+  let manifest: { subjects?: Array<{ images?: Array<{ file: string }> }>; series?: Array<{ images?: Array<{ file: string }> }> } | null = null;
+  try {
+    manifest = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "image-manifest.json"), "utf8"));
+  } catch {
+    manifest = null;
+  }
+  const credited = new Set(
+    [...(manifest?.subjects ?? []), ...(manifest?.series ?? [])].flatMap(
+      (e) => (e.images ?? []).map((i) => i.file),
+    ),
+  );
+  const uncredited = external.map((i) => i.image).filter((f) => !credited.has(f));
+  if (uncredited.length)
+    fail("every fetched photo is credited in image-manifest.json", `${uncredited.length} missing: ${uncredited.slice(0, 3).join(", ")}`);
+  else
+    ok(`every fetched photo is credited (${external.length} from /img/cards/)`);
+
   const noAttrs = items.filter((i) => !Array.isArray(i.attributes) || i.attributes.length === 0);
   if (noAttrs.length) fail("attributes present", `${noAttrs.length} empty`);
   else ok("attributes present");

@@ -143,7 +143,7 @@ export function MoversRow({
           <div className="mMoverArt">
             <CardFace
               art={m.art}
-              image={null}
+              image={m.image ?? null}
               rarity="rare"
               title={m.title}
               effect={m.effect}

@@ -96,11 +96,26 @@ export function slugify(value: string): string {
 
 // The archive writes several drivers the way the paddock says them out loud,
 // not the way they are entered in the official entry list.
-const DRIVER_SLUG_ALIASES: Record<string, string> = {
-  "alex-albon": "alexander-albon",
+// Written here because these two do not appear on the market checklist at all
+// (Antonelli joined after 2020), so data/driver-aliases.json — which maps
+// checklist spellings onto archive spellings — has no entry for them.
+const ARCHIVE_ONLY_SLUG_ALIASES: Record<string, string> = {
   "kimi-antonelli": "andrea-kimi-antonelli",
-  "zhou-guanyu": "guanyu-zhou",
 };
+
+// Merged with the shared table so both generators agree on who is who. The
+// shared file maps checklist spelling -> archive spelling; this builder looks
+// names up the other way round, so the pair is reversed here.
+const DRIVER_SLUG_ALIASES: Record<string, string> = Object.fromEntries([
+  ...Object.entries(ARCHIVE_ONLY_SLUG_ALIASES),
+  ...Object.entries(
+    JSON.parse(
+      fs.readFileSync(path.join(ROOT, "data", "driver-aliases.json"), "utf8"),
+    ) as Record<string, string>,
+  )
+    .filter(([k]) => !k.startsWith("_"))
+    .map(([checklistName, archiveName]) => [slugify(archiveName), slugify(checklistName)]),
+]);
 
 // Names the archive catalogues that are not 2020–2026 grand prix entries.
 const CONSTRUCTORS = new Set([

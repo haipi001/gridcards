@@ -10,6 +10,7 @@ import raw from "@/data/catalog.json";
 import { buildPlayerTiers, type EditionTier } from "@/lib/parallels";
 import { slugify } from "@/lib/slug";
 import type { CatalogItem } from "@/lib/marketUi";
+import { catalogImage } from "@/data/catalogImages";
 
 export { slugify };
 
@@ -64,6 +65,7 @@ export const ALL_ITEMS: CatalogItem[] = source.sections.flatMap((section) =>
     sectionSlug: section.slug,
     sectionName: section.name,
     sectionCategory: section.category,
+    image: catalogImage(section.slug, card.cardNumber),
   })),
 );
 

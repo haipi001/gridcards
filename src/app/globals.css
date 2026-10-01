@@ -101,6 +101,10 @@ button:has(.soonTag):hover{opacity:.65;background:inherit;color:inherit}
    of the one shared silhouette all 313 records used.
    ========================================================================== */
 .cardArt{position:absolute;left:11%;right:11%;top:22%;bottom:11%;filter:drop-shadow(0 5px 9px #00000080)}
+/* A real scan fills the whole face of the checklist card object. contain, not
+   cover: a landscape scan then letterboxes onto the team-colour gradient, which
+   reads as a card border, instead of losing half its height to the crop. */
+.cardArtPhoto{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;border-radius:7px}
 .setLogoArt{width:100%;height:100%;display:block}
 .portrait{background:radial-gradient(circle at 50% 22%,var(--pA,#8da6b5),var(--pB,#26333c) 64%,#0f1215)}
 .portraitMark{position:absolute;inset:0;display:grid;place-items:center;font-size:38px;font-weight:900;letter-spacing:.02em;color:#fff;opacity:.92;text-shadow:0 2px 10px #000000a6}
@@ -523,7 +527,10 @@ button:has(.soonTag):hover{opacity:.65;background:inherit;color:inherit}
 
 /* --- card face + rarity ------------------------------------------------ */
 .mFace{position:relative;width:100%;aspect-ratio:2.5/3.5;border-radius:12px;overflow:hidden;background:radial-gradient(120% 90% at 30% 8%,#171c22,#080a0c);box-shadow:0 0 0 1px var(--line),0 10px 26px rgba(0,0,0,.5)}
-.mFace img{width:100%;height:100%;object-fit:cover;display:block}
+/* contain, not cover: 35 of the 210 scans are landscape, and cover would crop
+   away half of them to fill the 2.5:3.5 frame. The mount behind is a dark
+   gradient, so the letterboxing reads as part of the card. */
+.mFace img{width:100%;height:100%;object-fit:contain;display:block}
 .mFaceArt{width:100%;height:100%;display:block}
 .mFaceSheen{position:absolute;inset:0;background:linear-gradient(115deg,#ffffff10,transparent 42%,#ffffff0a);mix-blend-mode:screen;pointer-events:none}
 .mFaceEdge{position:absolute;inset:0;border-radius:12px;box-shadow:inset 0 0 0 1px var(--rarity),inset 0 0 26px -8px var(--rarityGlow);pointer-events:none}
@@ -1606,3 +1613,104 @@ html[data-theme="light"] .post{
   background:linear-gradient(180deg,#ffffff,#f6f8fa)!important;border-color:var(--line)!important;
 }
 html[data-theme="light"] .postCard{background:#fff!important;border-color:var(--line)!important}
+
+/* ==========================================================================
+   V24 · ONE CARD, ONE FRAME
+   The display-logic pass. Two ideas, both from the same principle: a card is
+   an object with a fixed shape, and everything that shows cards must show
+   them the same way.
+
+     1. .editionFace owns the geometry (2.5 × 3.5, one radius, one shadow).
+        A real 1/1 photograph and a generated livery card are now the same
+        object; only the picture inside differs. A photograph can no longer
+        overflow its tile, and a parallel reads as one edition — not as a
+        pile of near-identical tiles — because the print run is stated once
+        on the card and once in the meta line ("/300 · 300 COPIES").
+     2. The foil sweep (a 145deg rainbow) stays on hero-sized cards. On a
+        ~110px tile it used to bleed past the card edge, and in light mode it
+        washed the whole tile pastel. It is now clamped to the card face.
+   Plus the contrast leftovers the audits flagged in both themes.
+   ========================================================================== */
+
+/* --- the display case ----------------------------------------------------- */
+.editionVisual{
+  height:206px;padding:11px;
+  background:
+    radial-gradient(circle at 50% 20%,var(--glow,#4a6f84),transparent 58%),
+    #0f1318;
+  box-shadow:inset 0 0 0 1px #ffffff0a;
+}
+html[data-theme="light"] .editionVisual{
+  background:
+    radial-gradient(circle at 50% 20%,color-mix(in srgb,var(--glow,#4a6f84) 24%,transparent),transparent 64%),
+    linear-gradient(180deg,#eef2f7,#e4eaf1);
+  box-shadow:inset 0 0 0 1px #11151a0d;
+}
+
+/* --- the card itself: identical for a scan and for generated art ---------- */
+.editionFace{
+  position:relative;height:100%;aspect-ratio:2.5/3.5;max-width:100%;
+  border-radius:9px;overflow:hidden;background:#0b0e12;
+  box-shadow:0 14px 30px rgba(0,0,0,.5),0 0 0 1px #ffffff14;
+  transition:transform .22s cubic-bezier(.2,.7,.3,1),box-shadow .22s;
+}
+.editionCard:hover .editionFace{
+  transform:translateY(-4px) scale(1.012);
+  box-shadow:0 22px 42px rgba(0,0,0,.55),0 0 0 1px #ffffff24;
+}
+/* the scan sits *inside* the frame, never over it */
+.editionFace .editionScan{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:contain;background:#0b0e12;
+}
+/* generated art fills the same frame edge to edge */
+.editionFace .cardObject{
+  width:100%;height:100%;aspect-ratio:auto;
+  border-radius:0;border:0;box-shadow:none;transform:none;
+}
+.editionFace .cardObject:before{inset:6px;border-color:#ffffff26}
+.editionFace .cardObject:after{
+  inset:0;transform:none;
+  background:linear-gradient(115deg,#ffffff26,transparent 44%,#ffffff12);
+}
+.editionCard:hover .editionFace .cardObject:after{transform:none}
+.realScanTag{z-index:3}
+.serialFlag{z-index:3}
+
+/* --- card text: a little more air, numbers aligned ------------------------ */
+.editionCard h4{margin:11px 0 4px;font-size:13px;letter-spacing:-.005em}
+.editionMeta{font-size:10.5px;color:var(--mut2)}
+.editionPrice{margin-top:10px;padding-top:9px;border-top:1px solid var(--line)}
+.editionPrice small{font-size:9.5px}
+.editionPrice b{font-size:14px;font-variant-numeric:tabular-nums}
+.editionPrice .link{font-size:11.5px}
+.tierCards{gap:13px}
+
+/* grid tiles keep their sweep near the card, not across the tile ---------- */
+.marketCard .cardObject:after{inset:-8%;transform:translateX(-26%)}
+.marketCard:hover .cardObject:after{transform:translateX(26%)}
+
+/* --- contrast pass (both themes) ------------------------------------------
+   Every rule below was a WCAG failure in one theme or the other; the fix is
+   always the same: stop hard-coding an ink that only works on one ground. */
+.marketHeaderV7 p{color:var(--mut)}
+.spotlightSub{color:var(--mut)}
+.spotlightInfo p{color:var(--mut)}
+.eyebrow{color:var(--mut)}
+.footerCol a{color:var(--mut)}
+.footerCol a:hover{color:var(--text)}
+.footerProvenance small,
+.footerCol small,
+.footerNote small{color:var(--mut)}
+.footerBottom{color:var(--mut);border-top-color:var(--line)}
+.paletteTrigger .searchIcon,
+.paletteTrigger .kbd{color:var(--mut)}
+.demoStripLink{color:var(--mut)}
+.demoStripLink:hover{color:var(--text)}
+
+/* --- light mode: two grounds the tint pass left dark --------------------- */
+html[data-theme="light"] .railRoadmap{background:#f2f5f9}
+html[data-theme="light"] .railRoadmap li span{color:var(--mut)}
+html[data-theme="light"] .mStageGlow{box-shadow:0 26px 60px -22px var(--rarityGlow)}
+html[data-theme="light"] .sideTitle{color:var(--text)}
+

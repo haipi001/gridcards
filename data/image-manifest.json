@@ -1,0 +1,469 @@
+{
+ "_comment": "Subjects the 1/1 archive has never photographed (or not enough of), so the site falls back to generated art. Each entry names a Wikimedia Commons search; scripts/fetch-card-images.mjs downloads `need` distinct images per subject, resizes them to 360x504 and writes licence/author back into `images`. Edit `query` freely and re-run.",
+ "subjects": [
+  {
+   "key": "Alfa Romeo Racing ORLEN",
+   "kind": "constructor",
+   "query": "Alfa Romeo Racing ORLEN Formula One car",
+   "need": 2,
+   "slug": "alfa-romeo-racing-orlen"
+  },
+  {
+   "key": "Andreas Seidl",
+   "kind": "person",
+   "query": "Andreas Seidl Formula One",
+   "need": 3,
+   "slug": "andreas-seidl"
+  },
+  {
+   "key": "Antonio Giovinazzi",
+   "kind": "person",
+   "query": "Antonio Giovinazzi Formula One",
+   "need": 12,
+   "slug": "antonio-giovinazzi"
+  },
+  {
+   "key": "Artem Markelov",
+   "kind": "person",
+   "query": "Artem Markelov Formula One",
+   "need": 5,
+   "slug": "artem-markelov"
+  },
+  {
+   "key": "Aston Martin Red Bull Racing",
+   "kind": "constructor",
+   "query": "Aston Martin Red Bull Racing Formula One car",
+   "need": 4,
+   "slug": "aston-martin-red-bull-racing"
+  },
+  {
+   "key": "Aston Martin Red Bull Racing RB16",
+   "kind": "car",
+   "query": "Aston Martin Red Bull Racing RB16",
+   "need": 2,
+   "slug": "aston-martin-red-bull-racing-rb16"
+  },
+  {
+   "key": "BWT Racing Point F1® Team",
+   "kind": "constructor",
+   "query": "BWT Racing Point F1 Team Formula One car",
+   "need": 2,
+   "slug": "bwt-racing-point-f1-team"
+  },
+  {
+   "key": "Callum Ilott",
+   "kind": "person",
+   "query": "Callum Ilott Formula One",
+   "need": 3,
+   "slug": "callum-ilott"
+  },
+  {
+   "key": "Christian Horner",
+   "kind": "person",
+   "query": "Christian Horner Formula One",
+   "need": 3,
+   "slug": "christian-horner"
+  },
+  {
+   "key": "Christian Lundgaard",
+   "kind": "person",
+   "query": "Christian Lundgaard Formula One",
+   "need": 3,
+   "slug": "christian-lundgaard"
+  },
+  {
+   "key": "Claire Williams",
+   "kind": "person",
+   "query": "Claire Williams Formula One",
+   "need": 3,
+   "slug": "claire-williams"
+  },
+  {
+   "key": "Cyril Abiteboul",
+   "kind": "person",
+   "query": "Cyril Abiteboul Formula One",
+   "need": 3,
+   "slug": "cyril-abiteboul"
+  },
+  {
+   "key": "Dan Ticktum",
+   "kind": "person",
+   "query": "Dan Ticktum Formula One",
+   "need": 3,
+   "slug": "dan-ticktum"
+  },
+  {
+   "key": "Daniel Ricciardo",
+   "kind": "person",
+   "query": "Daniel Ricciardo Formula One",
+   "need": 4,
+   "slug": "daniel-ricciardo"
+  },
+  {
+   "key": "Daniil Kvyat",
+   "kind": "person",
+   "query": "Daniil Kvyat Formula One",
+   "need": 11,
+   "slug": "daniil-kvyat"
+  },
+  {
+   "key": "Felipe Drugovich",
+   "kind": "person",
+   "query": "Felipe Drugovich Formula One",
+   "need": 2,
+   "slug": "felipe-drugovich"
+  },
+  {
+   "key": "Ferrari SF1000",
+   "kind": "car",
+   "query": "Ferrari SF1000",
+   "need": 2,
+   "slug": "ferrari-sf1000"
+  },
+  {
+   "key": "Franz Tost",
+   "kind": "person",
+   "query": "Franz Tost Formula One",
+   "need": 3,
+   "slug": "franz-tost"
+  },
+  {
+   "key": "Frederic Vasseur",
+   "kind": "person",
+   "query": "Frederic Vasseur Formula One",
+   "need": 2,
+   "slug": "frederic-vasseur"
+  },
+  {
+   "key": "GIULIANO Alesi",
+   "kind": "person",
+   "query": "GIULIANO Alesi Formula One",
+   "need": 3,
+   "slug": "giuliano-alesi"
+  },
+  {
+   "key": "Guenther Steiner",
+   "kind": "person",
+   "query": "Guenther Steiner Formula One",
+   "need": 3,
+   "slug": "guenther-steiner"
+  },
+  {
+   "key": "Guilherme Samaia",
+   "kind": "person",
+   "query": "Guilherme Samaia Formula One",
+   "need": 3,
+   "slug": "guilherme-samaia"
+  },
+  {
+   "key": "Haas F1® Team",
+   "kind": "constructor",
+   "query": "Haas F1 Team Formula One car",
+   "need": 2,
+   "slug": "haas-f1-team"
+  },
+  {
+   "key": "Jack Aitken",
+   "kind": "person",
+   "query": "Jack Aitken Formula One",
+   "need": 4,
+   "slug": "jack-aitken"
+  },
+  {
+   "key": "James Allison",
+   "kind": "person",
+   "query": "James Allison Formula One",
+   "need": 1,
+   "slug": "james-allison"
+  },
+  {
+   "key": "James Key",
+   "kind": "person",
+   "query": "James Key Formula One",
+   "need": 1,
+   "slug": "james-key"
+  },
+  {
+   "key": "Jan Monchaux",
+   "kind": "person",
+   "query": "Jan Monchaux Formula One",
+   "need": 1,
+   "slug": "jan-monchaux"
+  },
+  {
+   "key": "Jehan Daruvala",
+   "kind": "person",
+   "query": "Jehan Daruvala Formula One",
+   "need": 3,
+   "slug": "jehan-daruvala"
+  },
+  {
+   "key": "Kevin Magnussen",
+   "kind": "person",
+   "query": "Kevin Magnussen Formula One",
+   "need": 3,
+   "slug": "kevin-magnussen"
+  },
+  {
+   "key": "Kimi Räikkönen",
+   "kind": "person",
+   "query": "Kimi Räikkönen Formula One",
+   "need": 4,
+   "slug": "kimi-r-ikk-nen"
+  },
+  {
+   "key": "Lewis / Valtteri Hamilton / Bottas",
+   "kind": "dual",
+   "query": "Lewis Hamilton Valtteri Bottas Mercedes Formula One",
+   "need": 2,
+   "slug": "lewis-valtteri-hamilton-bottas"
+  },
+  {
+   "key": "Louis Delétraz",
+   "kind": "person",
+   "query": "Louis Delétraz Formula One",
+   "need": 4,
+   "slug": "louis-del-traz"
+  },
+  {
+   "key": "Luca Ghiotto",
+   "kind": "person",
+   "query": "Luca Ghiotto Formula One",
+   "need": 4,
+   "slug": "luca-ghiotto"
+  },
+  {
+   "key": "Marcus Armstrong",
+   "kind": "person",
+   "query": "Marcus Armstrong Formula One",
+   "need": 3,
+   "slug": "marcus-armstrong"
+  },
+  {
+   "key": "Marino Sato",
+   "kind": "person",
+   "query": "Marino Sato Formula One",
+   "need": 3,
+   "slug": "marino-sato"
+  },
+  {
+   "key": "Mattia Binotto",
+   "kind": "person",
+   "query": "Mattia Binotto Formula One",
+   "need": 1,
+   "slug": "mattia-binotto"
+  },
+  {
+   "key": "McLaren F1® Team",
+   "kind": "constructor",
+   "query": "McLaren F1 Team Formula One car",
+   "need": 2,
+   "slug": "mclaren-f1-team"
+  },
+  {
+   "key": "Mercedes-AMG F1 W11 EQ Performance",
+   "kind": "car",
+   "query": "Mercedes-AMG F1 W11 EQ Performance",
+   "need": 2,
+   "slug": "mercedes-amg-f1-w11-eq-performance"
+  },
+  {
+   "key": "Mercedes-AMG Petronas Formula One Team",
+   "kind": "constructor",
+   "query": "Mercedes-AMG Petronas Formula One Team Formula One car",
+   "need": 2,
+   "slug": "mercedes-amg-petronas-formula-one-team"
+  },
+  {
+   "key": "Mick Schumacher",
+   "kind": "person",
+   "query": "Mick Schumacher Formula One",
+   "need": 3,
+   "slug": "mick-schumacher"
+  },
+  {
+   "key": "Nicholas Latifi",
+   "kind": "person",
+   "query": "Nicholas Latifi Formula One",
+   "need": 3,
+   "slug": "nicholas-latifi"
+  },
+  {
+   "key": "Nikita Mazepin",
+   "kind": "person",
+   "query": "Nikita Mazepin Formula One",
+   "need": 3,
+   "slug": "nikita-mazepin"
+  },
+  {
+   "key": "Nobuharu Matsushita",
+   "kind": "person",
+   "query": "Nobuharu Matsushita Formula One",
+   "need": 2,
+   "slug": "nobuharu-matsushita"
+  },
+  {
+   "key": "Otmar Szafnauer",
+   "kind": "person",
+   "query": "Otmar Szafnauer Formula One",
+   "need": 2,
+   "slug": "otmar-szafnauer"
+  },
+  {
+   "key": "Pedro Piquet",
+   "kind": "person",
+   "query": "Pedro Piquet Formula One",
+   "need": 3,
+   "slug": "pedro-piquet"
+  },
+  {
+   "key": "Pierre Wache",
+   "kind": "person",
+   "query": "Pierre Wache Formula One",
+   "need": 1,
+   "slug": "pierre-wache"
+  },
+  {
+   "key": "Renault DP World F1® Team",
+   "kind": "constructor",
+   "query": "Renault DP World F1 Team Formula One car",
+   "need": 2,
+   "slug": "renault-dp-world-f1-team"
+  },
+  {
+   "key": "Robert Shwartzman",
+   "kind": "person",
+   "query": "Robert Shwartzman Formula One",
+   "need": 3,
+   "slug": "robert-shwartzman"
+  },
+  {
+   "key": "Romain Grosjean",
+   "kind": "person",
+   "query": "Romain Grosjean Formula One",
+   "need": 7,
+   "slug": "romain-grosjean"
+  },
+  {
+   "key": "Roy Nissany",
+   "kind": "person",
+   "query": "Roy Nissany Formula One",
+   "need": 3,
+   "slug": "roy-nissany"
+  },
+  {
+   "key": "Scuderia AlphaTauri",
+   "kind": "person",
+   "query": "Scuderia AlphaTauri Formula One",
+   "need": 2,
+   "slug": "scuderia-alphatauri"
+  },
+  {
+   "key": "Scuderia Ferrari",
+   "kind": "person",
+   "query": "Scuderia Ferrari Formula One",
+   "need": 2,
+   "slug": "scuderia-ferrari"
+  },
+  {
+   "key": "Sean Gelael",
+   "kind": "person",
+   "query": "Sean Gelael Formula One",
+   "need": 4,
+   "slug": "sean-gelael"
+  },
+  {
+   "key": "Sebastian Vettel",
+   "kind": "person",
+   "query": "Sebastian Vettel Formula One",
+   "need": 5,
+   "slug": "sebastian-vettel"
+  },
+  {
+   "key": "Sergio Pérez",
+   "kind": "person",
+   "query": "Sergio Pérez Formula One",
+   "need": 6,
+   "slug": "sergio-p-rez"
+  },
+  {
+   "key": "Simon Roberts",
+   "kind": "person",
+   "query": "Simon Roberts Formula One",
+   "need": 2,
+   "slug": "simon-roberts"
+  },
+  {
+   "key": "Toto Wolff",
+   "kind": "person",
+   "query": "Toto Wolff Formula One",
+   "need": 1,
+   "slug": "toto-wolff"
+  },
+  {
+   "key": "Valtteri Bottas",
+   "kind": "person",
+   "query": "Valtteri Bottas Formula One",
+   "need": 6,
+   "slug": "valtteri-bottas"
+  },
+  {
+   "key": "Williams Racing",
+   "kind": "person",
+   "query": "Williams Racing Formula One",
+   "need": 2,
+   "slug": "williams-racing"
+  }
+ ],
+ "series": [
+  {
+   "key": "series:chrome-base",
+   "kind": "series",
+   "query": "2020 Formula One season",
+   "need": 1,
+   "slug": "series-chrome-base"
+  },
+  {
+   "key": "series:chrome-autographs",
+   "kind": "series",
+   "query": "Formula One driver helmet",
+   "need": 1,
+   "slug": "series-chrome-autographs"
+  },
+  {
+   "key": "series:track-tags",
+   "kind": "series",
+   "query": "Formula One race track",
+   "need": 1,
+   "slug": "series-track-tags"
+  },
+  {
+   "key": "series:world-on-wheels",
+   "kind": "series",
+   "query": "1950s Formula One car",
+   "need": 1,
+   "slug": "series-world-on-wheels"
+  },
+  {
+   "key": "series:image-variations",
+   "kind": "series",
+   "query": "Formula One pit stop",
+   "need": 1,
+   "slug": "series-image-variations"
+  },
+  {
+   "key": "series:grand-prix-heroes",
+   "kind": "series",
+   "query": "Formula One podium",
+   "need": 1,
+   "slug": "series-grand-prix-heroes"
+  },
+  {
+   "key": "series:team-logos",
+   "kind": "series",
+   "query": "Formula One team garage",
+   "need": 1,
+   "slug": "series-team-logos"
+  }
+ ]
+}

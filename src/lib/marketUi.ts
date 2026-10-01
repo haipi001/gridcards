@@ -42,6 +42,8 @@ export type CatalogItem = {
   sectionSlug: string;
   sectionName: string;
   sectionCategory: string;
+  /** Real 1/1 scan when the archive has photographed this driver, else null. */
+  image: string | null;
 };
 
 export type DatasetKey = "base" | "tt" | "54w" | "variations" | "autographs";

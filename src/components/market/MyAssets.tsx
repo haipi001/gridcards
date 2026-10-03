@@ -148,6 +148,7 @@ export default function MyAssetsBoard({ enabled }: { enabled: boolean }) {
                     <CardFace
                       art={it.art}
                       image={it.image}
+                      photo={it.photo}
                       rarity={it.rarity}
                       title={it.title}
                       effect={it.effect}
@@ -358,6 +359,7 @@ export default function MyAssetsBoard({ enabled }: { enabled: boolean }) {
                     <CardFace
                       art={it.art}
                       image={it.image}
+                      photo={it.photo}
                       rarity={it.rarity}
                       title={it.title}
                       effect={it.effect}

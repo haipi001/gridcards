@@ -16,8 +16,13 @@ import {
   profileSnapshot,
   subscribeProfile,
 } from "@/lib/profile";
+import { CLOUD, STORAGE_NOTE } from "@/lib/backend";
 import { storeIngested } from "@/lib/upload/store";
-import { createPost, newPostId, type PostCardRef } from "@/lib/social";
+import { storeIngestedCloud } from "@/lib/upload/storeCloud";
+import { createPost as createPostCloud, newPostId, type PostCardRef } from "@/lib/socialCloud";
+import { createPost as createPostLocal } from "@/lib/social";
+import { useSession } from "@/lib/auth";
+import { openAuthModal } from "@/lib/authModal";
 
 const MAX_PHOTOS = 3;
 
@@ -28,6 +33,7 @@ export default function Composer() {
     () => SERVER_PROFILE,
   );
   const claims = useSyncExternalStore(subscribeClaims, claimsSnapshot, () => NO_CLAIMS);
+  const { user } = useSession();
 
   const [text, setText] = useState("");
   const [photos, setPhotos] = useState<PickedPhoto[]>([]);
@@ -40,22 +46,28 @@ export default function Composer() {
 
   const submit = async () => {
     if (!canPost) return;
+    if (CLOUD && !user) {
+      openAuthModal();
+      return;
+    }
     setBusy(true);
     setError(null);
     try {
       // Bytes before metadata: a failed encode must not leave a dangling ref.
       const id = newPostId();
-      const images = [];
-      for (const [i, p] of photos.entries()) {
-        images.push(await storeIngested(p.result, `post:${id}:${i}`));
+      if (CLOUD) {
+        const images = [];
+        for (const [i, p] of photos.entries()) {
+          images.push(await storeIngestedCloud(p.result, `post:${id}:${i}`));
+        }
+        await createPostCloud({ id, author: profile.handle, text, images, card });
+      } else {
+        const images = [];
+        for (const [i, p] of photos.entries()) {
+          images.push(await storeIngested(p.result, `post:${id}:${i}`));
+        }
+        createPostLocal({ id, author: profile.handle, text, images, card });
       }
-      createPost({
-        id,
-        author: profile.handle,
-        text,
-        images,
-        card,
-      });
       setText("");
       setPhotos([]);
       setCard(null);
@@ -142,7 +154,9 @@ export default function Composer() {
 
       {error ? <div className="uploadError">{error}</div> : null}
       <p className="composerNote">
-        帖子、照片与评论都只保存在这台设备的浏览器里——静态站点没有服务器，换设备或清缓存就看不到了。
+        {CLOUD
+          ? "内容会保存到云端，所有登录用户都能看到。"
+          : STORAGE_NOTE}
       </p>
     </div>
   );

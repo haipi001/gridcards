@@ -2,6 +2,10 @@
 // demoMarket values are UI placeholders ONLY — always rendered with a DEMO
 // label. Real ask/last-sale values arrive with the Listing engine (Phase 7).
 
+import type { PhotoOrigin } from "@/market/types";
+
+export type { PhotoOrigin };
+
 export function shadeFor(section: string): [string, string, string] {
   const map: Record<string, [string, string, string]> = {
     "F1 RACERS": ["#244c6f", "#243744", "#326d9a"],
@@ -42,9 +46,23 @@ export type CatalogItem = {
   sectionSlug: string;
   sectionName: string;
   sectionCategory: string;
-  /** Real 1/1 scan when the archive has photographed this driver, else null. */
+  /** Real card scan when one is allocated to this record, else null. */
   image: string | null;
+  /** Where that photograph comes from — never null when `image` is set. */
+  photo: PhotoOrigin | null;
 };
+
+/**
+ * Corner badge for a photograph: which product and year it really came from.
+ *
+ * Most scans in the archive are not 2020 Topps Chrome, and pretending they are
+ * is worse than showing nothing — so a non-Chrome scan is labelled with its own
+ * year and set ("2025 DYNASTY") instead of "REAL SCAN".
+ */
+export function scanLabel(p: PhotoOrigin | null): string | null {
+  if (!p) return null;
+  return [p.year ?? null, p.setShort].filter(Boolean).join(" ").toUpperCase();
+}
 
 export type DatasetKey = "base" | "tt" | "54w" | "variations" | "autographs";
 

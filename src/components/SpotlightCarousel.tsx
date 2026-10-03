@@ -124,9 +124,9 @@ export default function SpotlightCarousel({
           <Link className="btn primary" href={slide.href}>
             {slide.cta}
           </Link>
-          <span className="mut" style={{ fontSize: 11 }}>
-            {paused ? "已暂停 · 鼠标移开继续轮播" : "自动轮播中"}
-          </span>
+          {/* Only speak up when the visitor paused the rotation — a permanent
+              caption here read like a stray fragment next to the button. */}
+          {paused ? <span className="spotlightPaused">已暂停 · 移开鼠标继续</span> : null}
         </div>
       </div>
     </section>

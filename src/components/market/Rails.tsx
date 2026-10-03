@@ -21,6 +21,7 @@ export function HeroRail({ spotlight }: { spotlight: Spotlight }) {
             <CardFace
               art={h.art}
               image={h.image}
+              photo={h.photo}
               rarity="ultimate"
               title={h.title}
             />
@@ -144,6 +145,7 @@ export function MoversRow({
             <CardFace
               art={m.art}
               image={m.image ?? null}
+              photo={m.photo ?? null}
               rarity="rare"
               title={m.title}
               effect={m.effect}

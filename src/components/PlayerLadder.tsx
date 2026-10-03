@@ -11,7 +11,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import CardVisual from "@/components/CardVisual";
-import { money } from "@/lib/marketUi";
+import { money, scanLabel, type PhotoOrigin } from "@/lib/marketUi";
 import type { ArtKind } from "@/lib/teams";
 
 export type LadderCard = {
@@ -29,8 +29,10 @@ export type LadderCard = {
   href: string;
   /** Market detail page, only when the market carries this exact edition. */
   marketHref: string | null;
-  /** Real 1/1 scan, or null when only generated art exists. */
+  /** Real scan, or null when only generated art exists. */
   image: string | null;
+  /** Which set/year that photograph really is — `exact` false is labelled. */
+  photo: PhotoOrigin | null;
   effect: string | null;
   w: number;
   h: number;
@@ -86,7 +88,16 @@ function Card({ card }: { card: LadderCard }) {
                 alt={`${card.label} · ${card.variant}`}
                 loading="lazy"
               />
-              <span className="realScanTag">REAL SCAN</span>
+              <span
+                className={card.photo?.exact ? "realScanTag" : "scanTagOther"}
+                title={
+                  card.photo?.exact
+                    ? "2020 Topps Chrome 实物照"
+                    : `实物照来自 ${card.photo?.year ?? "—"} ${card.photo?.setShort ?? ""}，非本张 2020 Chrome 卡`
+                }
+              >
+                {scanLabel(card.photo)}
+              </span>
             </>
           ) : (
             <div className="cardObject">

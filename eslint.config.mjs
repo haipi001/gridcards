@@ -9,6 +9,10 @@ const eslintConfig = defineConfig([
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
+    // Backup copies of the build dirs (kept by hand during a publish attempt);
+    // they are generated JS, not source, so linting them only produces noise.
+    ".next_bak/**",
+    "out_bak/**",
     "out/**",
     "out-dev/**",
     "build/**",

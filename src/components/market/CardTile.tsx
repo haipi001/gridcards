@@ -20,6 +20,7 @@ export default function CardTile({
         <CardFace
           art={item.art}
           image={item.image}
+          photo={item.photo}
           rarity={item.rarity}
           title={`${item.title} · ${item.parallel}`}
           effect={item.effect}

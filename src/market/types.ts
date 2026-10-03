@@ -10,6 +10,21 @@ export type RarityTier = "ultimate" | "legendary" | "rare" | "uncommon" | "base"
 
 export type ArtKind = "racer" | "car" | "crest";
 
+/**
+ * Which product a photograph really came from.
+ *
+ * The 1/1 archive is mostly 2024/2025 sets, so most scans are not this card —
+ * `exact` is false for those and the UI labels them by year and set instead of
+ * passing them off as a 2020 Topps Chrome scan.
+ */
+export type PhotoOrigin = {
+  /** "Chrome" / "Dynasty" / "Eccellenza" … */
+  setShort: string;
+  year: number | null;
+  /** True only for a 2020 Topps Chrome scan. */
+  exact: boolean;
+};
+
 export type CardArt = { kind: ArtKind; c1: string; c2: string };
 
 export type Attribute = {
@@ -38,8 +53,10 @@ export type MarketItem = {
   rarity: RarityTier;
   effect: string;
   art: CardArt;
-  /** Real 1/1 scan when one exists, otherwise null → generated livery art. */
+  /** Real card scan when one is allocated to this edition, else null. */
   image: string | null;
+  /** Which set/year that photograph really is; null when `image` is null. */
+  photo: PhotoOrigin | null;
   attributes: Attribute[];
   floorCents: number;
   lastSaleCents: number;
@@ -193,6 +210,7 @@ export type Spotlight = {
     title: string;
     parallel: string;
     image: string | null;
+    photo: PhotoOrigin | null;
     art: CardArt;
     floorCents: number;
     tag: string;
@@ -236,6 +254,7 @@ export type Spotlight = {
     art: CardArt;
     effect: string;
     image: string | null;
+    photo: PhotoOrigin | null;
   }>;
 };
 

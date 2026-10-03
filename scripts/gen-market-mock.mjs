@@ -20,7 +20,13 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import { createImagePicker } from "./lib/cardImages.mjs";
+import { buildPhotoPlan } from "./lib/cardPhotoPlan.mjs";
+import {
+  COLLECTIONS,
+  EFFECT_BY_RARITY,
+  LADDER,
+  collectionCards,
+} from "./lib/ladder.mjs";
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const OUT_DIR = path.join(ROOT, "public", "mock");
@@ -76,10 +82,11 @@ const artKindOf = (sectionSlug) =>
 
 /* ------------------------------------------------------------ real scans --- */
 
-// Which real photograph a card shows: the 1/1 archive first (upright scans
-// before sideways ones), then anything fetch-card-images.mjs downloaded. Shared
-// with gen-catalog-images.mjs so market and checklist cannot disagree.
-const images = createImagePicker();
+// Which real photograph a card shows. The planner allocates every scan in the
+// archive to at most one edition across the whole site, ranked by how closely
+// the scan's own set/year matches 2020 Topps Chrome. Shared with
+// gen-catalog-images.mjs, so the market grid and the checklist cannot disagree.
+const photos = buildPhotoPlan();
 
 /* ------------------------------------------------------------- handle pool --- */
 
@@ -132,144 +139,9 @@ function makeHandles(n) {
 const USERS = makeHandles(120);
 const ME = { id: "u_me", handle: "you", rating: 4.8, sales: 27, verified: true };
 
-/* --------------------------------------------------------------- variants --- */
-
-// printRun === null means unnumbered (Base / Refractor / inserts).
-const LADDER = {
-  full: [
-    { parallel: "SuperFractor 1/1", printRun: 1, rarity: "ultimate", mult: 92 },
-    { parallel: "Red Refractor /5", printRun: 5, rarity: "legendary", mult: 26 },
-    { parallel: "Gold Refractor /50", printRun: 50, rarity: "rare", mult: 8.5 },
-    { parallel: "Refractor", printRun: null, rarity: "uncommon", mult: 2.6 },
-    { parallel: "Base", printRun: null, rarity: "base", mult: 1 },
-  ],
-  auto: [
-    { parallel: "SuperFractor Auto 1/1", printRun: 1, rarity: "ultimate", mult: 78 },
-    { parallel: "Red Auto /5", printRun: 5, rarity: "legendary", mult: 22 },
-    { parallel: "Chrome Auto", printRun: null, rarity: "rare", mult: 6.4 },
-  ],
-  insert: [
-    { parallel: "Gold /50", printRun: 50, rarity: "rare", mult: 5.2 },
-    { parallel: "Base Insert", printRun: null, rarity: "uncommon", mult: 1.9 },
-  ],
-};
-
-const EFFECT_BY_RARITY = {
-  ultimate: "superfractor",
-  legendary: "gold",
-  rare: "refractor",
-  uncommon: "prism",
-  base: "none",
-};
-
-/* ------------------------------------------------------------- collections --- */
-
-const COLLECTIONS = [
-  {
-    id: "chrome-base",
-    name: "2020 Topps Chrome F1 · Base Set",
-    shortName: "Chrome Base",
-    season: "2020",
-    category: "base",
-    blurb:
-      "官方 checklist 的 40 位一级方程式车手，完整平行卡阶梯从 Base 到 SuperFractor 1/1。",
-    sections: ["f1-racers"],
-    limit: 40,
-    ladder: "full",
-    c1: "#1f6fb2",
-    c2: "#0b1a2b",
-    tags: ["Drivers", "Chrome", "Full ladder"],
-  },
-  {
-    id: "chrome-autographs",
-    name: "Chrome Autograph Variations",
-    shortName: "Autographs",
-    season: "2020",
-    category: "autograph",
-    blurb: "亲笔签名平行卡，含 Red Auto /5 与 SuperFractor Auto 1/1。",
-    sections: ["chrome-autograph-variations"],
-    limit: 26,
-    ladder: "auto",
-    c1: "#8f6a29",
-    c2: "#2b1f14",
-    tags: ["Signature", "Chrome"],
-  },
-  {
-    id: "track-tags",
-    name: "Track Tags",
-    shortName: "Track Tags",
-    season: "2020",
-    category: "insert",
-    blurb: "赛道铭牌插入卡，编号与车队一一对应。",
-    sections: ["track-tags"],
-    limit: 14,
-    ladder: "insert",
-    c1: "#375f76",
-    c2: "#16232c",
-    tags: ["Insert", "Numbered"],
-  },
-  {
-    id: "world-on-wheels",
-    name: "1954 Topps World on Wheels",
-    shortName: "World on Wheels",
-    season: "1954",
-    category: "insert",
-    blurb: "向 1954 年 Topps 经典设计致敬的复古插入系列。",
-    sections: ["world-on-wheels"],
-    limit: 18,
-    ladder: "insert",
-    c1: "#8d5228",
-    c2: "#2a1c11",
-    tags: ["Insert", "Retro"],
-  },
-  {
-    id: "image-variations",
-    name: "Base Card Image Variations",
-    shortName: "Image Variations",
-    season: "2020",
-    category: "variation",
-    blurb: "同卡号不同照片的短印刷版本，收藏市场最热门的短板之一。",
-    sections: ["base-card-image-variations"],
-    limit: 10,
-    ladder: "insert",
-    c1: "#4b6f9c",
-    c2: "#15202b",
-    tags: ["Short print", "Variation"],
-  },
-  {
-    id: "grand-prix-heroes",
-    name: "Grand Prix Heroes",
-    shortName: "GP Heroes",
-    season: "2020",
-    category: "insert",
-    blurb: "分站冠军、当日最佳车手、年度奖项与新人盘点。",
-    sections: [
-      "grand-prix-winners",
-      "grand-prix-driver-of-the-day",
-      "f1-award-winners",
-      "f1-freshest",
-    ],
-    limit: 16,
-    ladder: "insert",
-    c1: "#6d4fa8",
-    c2: "#1d1730",
-    tags: ["Insert", "Winners"],
-  },
-  {
-    id: "team-logos",
-    name: "Team Logos",
-    shortName: "Team Logos",
-    season: "2020",
-    category: "base",
-    blurb: "十支车队的队徽卡，队徽为本站自绘，不使用厂商素材。",
-    sections: ["team-logos"],
-    limit: 10,
-    ladder: "insert",
-    c1: "#2f8f7a",
-    c2: "#10201d",
-    tags: ["Teams", "Chrome"],
-  },
-];
+// LADDER / EFFECT_BY_RARITY / COLLECTIONS live in ./lib/ladder.mjs now: the
+// photo planner allocates against the same edition list, so the two can no
+// longer disagree about which card exists.
 
 /* ------------------------------------------------------------------ items --- */
 
@@ -301,19 +173,9 @@ const seriesStats = new Map(
 
 for (const col of COLLECTIONS) {
   // The checklist lists some subjects more than once (the PDF marks them
-  // sourceDuplicate); one card = one tradable edition, so dedupe first.
-  const seen = new Set();
-  const cards = catalog.sections
-    .filter((s) => col.sections.includes(s.slug))
-    .flatMap((s) => s.cards.map((c) => ({ ...c, sectionSlug: s.slug })))
-    .filter((c) => {
-      // One tradable edition per subject per collection — a subject listed in
-      // two sections of the same collection is still one card.
-      if (seen.has(c.name)) return false;
-      seen.add(c.name);
-      return true;
-    })
-    .slice(0, col.limit);
+  // sourceDuplicate); one card = one tradable edition, so dedupe first. The
+  // photo planner walks the very same list — see ./lib/ladder.mjs.
+  const cards = collectionCards(catalog, col);
 
   for (const card of cards) {
     const subject = card.name;
@@ -325,10 +187,13 @@ for (const col of COLLECTIONS) {
     for (const v of LADDER[col.ladder]) {
       const id = `${slugify(subject)}-${col.id}-${slugify(v.parallel)}`;
       const printRun = v.printRun;
-      // Any edition of a driver the archive has photographed gets a real scan,
-      // not just the 1/1s. Gating this on printRun === 1 is what left 276 of
-      // 302 cards on generated art while 370 real scans sat unused.
-      const image = images.next(subject);
+      // One scan per edition, allocated site-wide (see ./lib/cardPhotoPlan.mjs):
+      // no repeats, and the scan carries the set/year it was actually shot
+      // from so the UI can label a photo that is not 2020 Chrome.
+      const photo = photos.editions.get(
+        `${card.sectionSlug}#${card.cardNumber}#${v.parallel}`,
+      );
+      const image = photo?.src ?? null;
 
       const yuan = Math.round(
         (95 + pop * 420 + rnd() * 60) * v.mult * (0.85 + rnd() * 0.4),
@@ -386,6 +251,12 @@ for (const col of COLLECTIONS) {
         effect: EFFECT_BY_RARITY[v.rarity],
         art: { kind: artKindOf(card.sectionSlug), c1: th.a, c2: th.b },
         image,
+        // Which product the photograph really comes from. `exact` is only true
+        // for a 2020 Topps Chrome scan — everything else is the same driver
+        // photographed in another set, and must be labelled as such.
+        photo: photo
+          ? { setShort: photo.setShort, year: photo.year, exact: photo.exact }
+          : null,
         attributes: attrs,
         floorCents,
         lastSaleCents,
@@ -655,6 +526,7 @@ const spotlight = {
       title: it.title,
       parallel: it.parallel,
       image: it.image,
+      photo: it.photo,
       art: it.art,
       floorCents: it.floorCents,
       tag: "ULTIMATE · 1/1",
@@ -689,6 +561,7 @@ const spotlight = {
       // Carried through so the rail can show the real card instead of always
       // falling back to generated livery art.
       image: it.image,
+      photo: it.photo,
     })),
 };
 

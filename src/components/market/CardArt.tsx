@@ -1,6 +1,7 @@
 import CardVisual from "@/components/CardVisual";
 import { rarityMeta } from "@/market/rarity";
-import type { CardArt as Art, RarityTier } from "@/market/types";
+import { scanLabel } from "@/lib/marketUi";
+import type { CardArt as Art, PhotoOrigin, RarityTier } from "@/market/types";
 
 /**
  * One card face: a real 1/1 scan when the checklist has one, otherwise livery
@@ -9,6 +10,7 @@ import type { CardArt as Art, RarityTier } from "@/market/types";
 export function CardFace({
   art,
   image,
+  photo,
   rarity,
   title,
   effect,
@@ -16,6 +18,8 @@ export function CardFace({
 }: {
   art: Art;
   image: string | null;
+  /** Which set/year the photograph is really from; labels it accordingly. */
+  photo?: PhotoOrigin | null;
   rarity: RarityTier;
   title: string;
   /** Foil tier, straight from MarketItem.effect. Drives the CSS foil layer. */
@@ -23,6 +27,7 @@ export function CardFace({
   className?: string;
 }) {
   const meta = rarityMeta(rarity);
+  const tag = image ? scanLabel(photo ?? null) : null;
   return (
     <div
       className={`mFace${className ? ` ${className}` : ""}`}
@@ -38,6 +43,18 @@ export function CardFace({
       )}
       <span className="mFaceSheen" aria-hidden />
       <span className="mFaceEdge" aria-hidden />
+      {tag ? (
+        <span
+          className={photo?.exact ? "realScanTag" : "scanTagOther"}
+          title={
+            photo?.exact
+              ? "2020 Topps Chrome 实物照"
+              : `实物照来自 ${photo?.year ?? "—"} ${photo?.setShort ?? ""}，非本张 2020 Chrome 卡`
+          }
+        >
+          {tag}
+        </span>
+      ) : null}
     </div>
   );
 }

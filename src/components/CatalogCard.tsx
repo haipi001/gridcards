@@ -8,7 +8,13 @@ import CardVisual from "@/components/CardVisual";
 import type { LadderEntry } from "@/lib/ladderIndex";
 import { slugify } from "@/lib/slug";
 import { artKind, teamLogo, teamTheme } from "@/lib/teams";
-import { demoMarket, money, shadeFor, type CatalogItem } from "@/lib/marketUi";
+import {
+  demoMarket,
+  money,
+  scanLabel,
+  shadeFor,
+  type CatalogItem,
+} from "@/lib/marketUi";
 
 // One catalog record in the checklist grid. Person cards link to the Player
 // page; collection objects (team / logo / car) link to Collections.
@@ -62,6 +68,18 @@ export default function CatalogCard({
           <WatchButton entry={catalogWatchEntry(card)} />
           <div className="cardObject">
             <span className="cardNo">#{card.cardNumber}</span>
+            {card.image && card.photo ? (
+              <span
+                className={card.photo.exact ? "realScanTag" : "scanTagOther"}
+                title={
+                  card.photo.exact
+                    ? "2020 Topps Chrome 实物照"
+                    : `实物照来自 ${card.photo.year ?? "—"} ${card.photo.setShort}，非本张 2020 Chrome 卡`
+                }
+              >
+                {scanLabel(card.photo)}
+              </span>
+            ) : null}
             {card.image ? (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img

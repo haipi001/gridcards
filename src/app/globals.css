@@ -977,7 +977,7 @@ body{
 /* --- spotlight carousel: kill the dead right half ----------------------- */
 .spotlight{
   position:relative;overflow:hidden;
-  grid-template-columns:minmax(0,400px) minmax(0,1fr);
+  grid-template-columns:minmax(0,360px) minmax(0,1fr);
   gap:40px;padding:30px 34px;
   border-color:#262d36;border-radius:20px;
   background:
@@ -986,7 +986,7 @@ body{
     linear-gradient(150deg,#10151b,#0a0d11 58%);
   box-shadow:0 1px 0 #ffffff06 inset,0 26px 60px rgba(0,0,0,.3);
 }
-.spotlightStage{max-width:400px;box-shadow:0 26px 60px rgba(0,0,0,.5)}
+.spotlightStage{max-width:360px;box-shadow:0 26px 60px rgba(0,0,0,.5)}
 .spotlightInfo{
   max-width:600px;margin-inline:auto;width:100%;
   display:flex;flex-direction:column;justify-content:center;
@@ -1001,6 +1001,24 @@ body{
 .spotlightArrow{width:38px;height:38px;backdrop-filter:blur(6px);transition:background .15s,transform .15s}
 .spotlightArrow:hover{background:#1a2129;transform:translateY(-50%) scale(1.06)}
 .spotlightDots button{transition:width .22s,background .22s}
+/* Dots sit on a small pill so they read as pagination instead of a stray
+   white streak floating on the photo. */
+.spotlightDots{
+  left:50%;right:auto;transform:translateX(-50%);bottom:10px;
+  background:#080a0bc2;border:1px solid #ffffff1a;border-radius:999px;
+  padding:6px 10px;backdrop-filter:blur(4px);
+}
+.spotlightDots button{width:6px;height:6px}
+.spotlightDots button.active{width:18px}
+.spotlightPaused{font-size:11px;color:var(--mut);align-self:center}
+/* Thin, dark scrollbar for the sticky filter rail: the default white thumb
+   read as a broken white bar stuck between the rail and the grid. */
+.filterRail{scrollbar-width:thin;scrollbar-color:#2b333d transparent}
+.filterRail::-webkit-scrollbar{width:6px}
+.filterRail::-webkit-scrollbar-thumb{background:#2b333d;border-radius:999px}
+.filterRail::-webkit-scrollbar-track{background:transparent}
+html[data-theme="light"] .filterRail{scrollbar-color:#c3ccd6 transparent}
+html[data-theme="light"] .filterRail::-webkit-scrollbar-thumb{background:#c3ccd6}
 @media(max-width:1100px){.spotlight{grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:26px;padding:24px}}
 @media(max-width:960px){.spotlight{grid-template-columns:1fr}.spotlightStage{max-width:380px;margin-inline:auto}.spotlightInfo{margin-inline:0}}
 
@@ -1492,6 +1510,15 @@ html[data-theme="light"] .editionCard:hover{
   font-size:8.5px;font-weight:850;letter-spacing:.08em;
   color:#0b0d0f;background:#e3b95a;border-radius:4px;padding:2px 5px;
 }
+/* A scan that is not 2020 Topps Chrome: same slot, deliberately quieter, and
+   it names the set it came from so nobody reads it as this card. */
+.scanTagOther{
+  position:absolute;left:7px;top:7px;
+  font-size:8.5px;font-weight:850;letter-spacing:.08em;
+  color:#cbd5df;background:#2b3542;border-radius:4px;padding:2px 5px;
+  border:1px solid #ffffff1f;
+}
+html[data-theme="light"] .scanTagOther{color:#48586a;background:#e6ecf2;border-color:#0b122033}
 .tierMore{display:inline-block;margin-top:7px;font-size:11px;font-weight:750;color:var(--cyan)}
 .tierMore:hover{color:var(--text)}
 .serialFx{width:100%;height:100%;display:grid;place-items:center;padding:8px}
@@ -1843,6 +1870,9 @@ html[data-theme="light"] .sideTitle{color:var(--text)}
 .postTopics{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .postTopic{font-size:10.5px;font-weight:800;color:#8fdcff;background:#0d1c25;border:1px solid #28516a;border-radius:6px;padding:3px 7px}
 .postActions button.on{color:#ff8fa3}
+.postActions span{font-variant-numeric:tabular-nums}
+.postDemoNote{margin-left:auto;font-size:10.5px;color:#6b7784}
+html[data-theme="light"] .postDemoNote{color:var(--mut)}
 .postComments{border-top:1px solid var(--line);margin-top:12px;padding-top:12px;display:grid;gap:9px}
 .postComment{display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;align-items:baseline;font-size:12px}
 .postComment b{color:#c9d0d8}

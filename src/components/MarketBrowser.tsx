@@ -15,7 +15,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import CatalogCard from "@/components/CatalogCard";
 import { DATASETS, type CatalogItem, type DatasetKey } from "@/lib/marketUi";
 import type { SectionInfo } from "@/lib/catalog";
-import type { LadderIndex } from "@/lib/ladderIndex";
+import { compareYears, type LadderIndex } from "@/lib/ladderIndex";
 
 const SPECIAL_SETS = [
   {
@@ -67,6 +67,15 @@ const RARITY_BANDS: Array<{ key: Rarity; label: string; hint: string }> = [
   { key: "unnumbered", label: "未编号", hint: "有未编号版本" },
 ];
 
+/**
+ * Every record in this grid is a card from the 2020 Topps Chrome F1 checklist —
+ * that much is fixed by the source PDF. On top of that each driver carries real
+ * 1/1 scans from later seasons in the digital archive, so the year filter is
+ * answered from those scans rather than guessed: picking 2025 shows the drivers
+ * who genuinely have a 2025 one-of-one photographed.
+ */
+const CHECKLIST_YEAR = "2020";
+
 type Query = {
   dataset: DatasetKey;
   sections: string[];
@@ -75,6 +84,7 @@ type Query = {
   name: string;
   rarity: Rarity;
   scans: boolean;
+  year: string;
 };
 
 // Card numbers are strings on purpose ("196", "TT-1", "F1A-LH"): fall back to a
@@ -103,6 +113,7 @@ function parseQuery(search: string): Query {
       ? (rarity as Rarity)
       : "all",
     scans: sp.get("scans") === "1",
+    year: sp.get("year")?.trim() ?? "",
   };
 }
 
@@ -120,6 +131,7 @@ function toHref(q: Query): string {
   if (q.name) sp.set("name", q.name);
   if (q.rarity !== "all") sp.set("rarity", q.rarity);
   if (q.scans) sp.set("scans", "1");
+  if (q.year) sp.set("year", q.year);
   const qs = sp.toString();
   return qs ? `/?${qs}` : "/";
 }
@@ -151,6 +163,7 @@ export default function MarketBrowser({
     name: "",
     rarity: "all",
     scans: false,
+    year: "",
   });
 
   // Adopt the real query string once we are in the browser.
@@ -206,6 +219,22 @@ export default function MarketBrowser({
     });
   };
 
+  /**
+   * The seasons one checklist record exists in. The checklist year is always
+   * present; a driver additionally picks up every season in which the archive
+   * holds a real scanned card of theirs. Objects (teams / logos) have no
+   * archive presence, so they only ever belong to the checklist year.
+   */
+  const yearsFor = (item: CatalogItem): string[] => {
+    const years = [CHECKLIST_YEAR];
+    if (item.kind === "person") {
+      for (const y of ladders[item.name]?.years ?? []) {
+        if (!years.includes(y)) years.push(y);
+      }
+    }
+    return years;
+  };
+
   const filtered = items.filter((item) => {
     if (q.kind === "person" && item.kind !== "person") return false;
     if (q.kind === "object" && item.kind === "person") return false;
@@ -216,6 +245,7 @@ export default function MarketBrowser({
       if (!inBand(item.name, q.rarity)) return false;
     }
     if (q.scans && !(ladders[item.name]?.oneOfOneCount ?? 0)) return false;
+    if (q.year && !yearsFor(item).includes(q.year)) return false;
     if (allowed) {
       if (!allowed.includes(item.sectionSlug)) return false;
     } else if (item.sectionCategory !== "base") {
@@ -312,6 +342,21 @@ export default function MarketBrowser({
     [items, ladders],
   );
 
+  // Checklist records per season, newest first. Every record sits in the 2020
+  // checklist year, so that bucket always reads the full set — the later
+  // seasons are the ones that actually narrow anything, and each count here is
+  // drivers with a photographed card from that year.
+  const yearCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const item of items) {
+      for (const y of yearsFor(item)) counts.set(y, (counts.get(y) ?? 0) + 1);
+    }
+    return [...counts.entries()].sort((a, b) => compareYears(a[0], b[0]));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items, ladders]);
+
+  const archiveSeasons = yearCounts.filter(([y]) => y !== CHECKLIST_YEAR);
+
   // What is currently narrowing the list, so the rail can show it and undo it.
   const activeFilters: Array<{ label: string; clear: () => void }> = [];
   if (q.kind !== "all")
@@ -333,6 +378,11 @@ export default function MarketBrowser({
     activeFilters.push({
       label: "有 1/1 实物照",
       clear: () => navigate(toHref({ ...q, scans: false })),
+    });
+  if (q.year)
+    activeFilters.push({
+      label: `年份：${q.year}`,
+      clear: () => navigate(toHref({ ...q, year: "" })),
     });
   for (const slug of q.sections)
     activeFilters.push({
@@ -358,6 +408,7 @@ export default function MarketBrowser({
       name: "",
       rarity: "all",
       scans: false,
+      year: "",
     });
     setSort("checklist");
     navigate("/");
@@ -387,17 +438,55 @@ export default function MarketBrowser({
         {/* Filter rail */}
         <aside className="filterRail">
           <h3>Filters</h3>
-          <div className="filterStatic">
-            <small>YEAR</small>
-            <div className="filterStaticRow">
-              <b>2020</b>
-              <span className="count">CURRENT DATASET</span>
+          <details className="filter" open>
+            <summary>
+              发行年份 <span>⌄</span>
+            </summary>
+            <div className="inner">
+              <div className="mChips">
+                <button
+                  type="button"
+                  className={`mChip${q.year === "" ? " on" : ""}`}
+                  aria-pressed={q.year === ""}
+                  title="全部赛季"
+                  onClick={() => navigate(toHref({ ...q, year: "" }))}
+                >
+                  全部
+                  <em className="chipCount">{items.length}</em>
+                </button>
+                {yearCounts.map(([y, n]) => {
+                  const on = q.year === y;
+                  const isBase = y === CHECKLIST_YEAR;
+                  return (
+                    <button
+                      key={y}
+                      type="button"
+                      className={`mChip${on ? " on" : ""}`}
+                      aria-pressed={on}
+                      title={
+                        isBase
+                          ? "Checklist 本体年份：全部 313 条官方记录都属于 2020"
+                          : `该赛季有 ${n} 位人物留存 1/1 实物照`
+                      }
+                      disabled={n === 0}
+                      onClick={() =>
+                        navigate(toHref({ ...q, year: on ? "" : y }))
+                      }
+                    >
+                      {y}
+                      <em className="chipCount">{n}</em>
+                    </button>
+                  );
+                })}
+              </div>
+              <p className="railNote">
+                Checklist 本体为 <b>{CHECKLIST_YEAR} Topps Chrome F1</b>
+                ，共 {items.length} 条官方记录；{CHECKLIST_YEAR}
+                之后的赛季来自 1/1 实物档案——选中后会筛出该赛季确有卡面留存的
+                {archiveSeasons.length} 个赛季中对应的人物。
+              </p>
             </div>
-            <p className="mut">
-              已录入 2020 Topps Chrome F1 官方 checklist；2021–2025
-              待官方卡谱发布后接入。
-            </p>
-          </div>
+          </details>
           <details className="filter" open>
             <summary>
               Card type <span>⌄</span>

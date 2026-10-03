@@ -55,18 +55,24 @@ export const SECTIONS: SectionInfo[] = source.sections.map((s) => ({
 
 // Flat checklist records, ordered exactly like the PDF.
 export const ALL_ITEMS: CatalogItem[] = source.sections.flatMap((section) =>
-  section.cards.map((card, idx) => ({
-    id: `${section.slug}-${card.cardNumber}-${idx}`,
-    cardNumber: card.cardNumber,
-    name: card.name,
-    team: card.team ?? null,
-    kind: card.kind,
-    sourceDuplicate: card.sourceDuplicate ?? false,
-    sectionSlug: section.slug,
-    sectionName: section.name,
-    sectionCategory: section.category,
-    image: catalogImage(section.slug, card.cardNumber),
-  })),
+  section.cards.map((card, idx) => {
+    const scan = catalogImage(section.slug, card.cardNumber);
+    return {
+      id: `${section.slug}-${card.cardNumber}-${idx}`,
+      cardNumber: card.cardNumber,
+      name: card.name,
+      team: card.team ?? null,
+      kind: card.kind,
+      sourceDuplicate: card.sourceDuplicate ?? false,
+      sectionSlug: section.slug,
+      sectionName: section.name,
+      sectionCategory: section.category,
+      image: scan?.src ?? null,
+      photo: scan
+        ? { setShort: scan.setShort, year: scan.year, exact: scan.exact }
+        : null,
+    };
+  }),
 );
 
 export function getCatalogSize(): number {

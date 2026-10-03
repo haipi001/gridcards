@@ -4,7 +4,12 @@
    "itemId": "lewis-hamilton-chrome-base-superfractor-1-1",
    "title": "Lewis Hamilton",
    "parallel": "SuperFractor 1/1",
-   "image": "/img/archive/16.jpg",
+   "image": "/img/archive/21.jpg",
+   "photo": {
+    "setShort": "Chrome",
+    "year": 2020,
+    "exact": true
+   },
    "art": {
     "kind": "racer",
     "c1": "#00d7b6",
@@ -17,7 +22,12 @@
    "itemId": "valtteri-bottas-chrome-base-superfractor-1-1",
    "title": "Valtteri Bottas",
    "parallel": "SuperFractor 1/1",
-   "image": "/img/archive/55.jpg",
+   "image": "/img/archive/340.jpg",
+   "photo": {
+    "setShort": "Chrome",
+    "year": 2020,
+    "exact": true
+   },
    "art": {
     "kind": "racer",
     "c1": "#00d7b6",
@@ -31,6 +41,11 @@
    "title": "Sebastian Vettel",
    "parallel": "SuperFractor 1/1",
    "image": "/img/archive/36.jpg",
+   "photo": {
+    "setShort": "Chrome",
+    "year": 2020,
+    "exact": true
+   },
    "art": {
     "kind": "racer",
     "c1": "#e8002d",
@@ -44,6 +59,11 @@
    "title": "Charles Leclerc",
    "parallel": "SuperFractor 1/1",
    "image": "/img/archive/23.jpg",
+   "photo": {
+    "setShort": "Chrome",
+    "year": 2020,
+    "exact": true
+   },
    "art": {
     "kind": "racer",
     "c1": "#e8002d",
@@ -56,7 +76,12 @@
    "itemId": "alexander-albon-chrome-base-superfractor-1-1",
    "title": "Alexander Albon",
    "parallel": "SuperFractor 1/1",
-   "image": "/img/archive/97.jpg",
+   "image": "/img/archive/479.jpg",
+   "photo": {
+    "setShort": "Chrome",
+    "year": 2020,
+    "exact": true
+   },
    "art": {
     "kind": "racer",
     "c1": "#1e41ff",
@@ -69,7 +94,12 @@
    "itemId": "max-verstappen-chrome-base-superfractor-1-1",
    "title": "Max Verstappen",
    "parallel": "SuperFractor 1/1",
-   "image": "/img/archive/2.jpg",
+   "image": "/img/archive/15.jpg",
+   "photo": {
+    "setShort": "Chrome",
+    "year": 2020,
+    "exact": true
+   },
    "art": {
     "kind": "racer",
     "c1": "#1e41ff",
@@ -316,7 +346,8 @@
     "c2": "#3b2000"
    },
    "effect": "superfractor",
-   "image": null
+   "image": null,
+   "photo": null
   },
   {
    "itemId": "daniil-kvyat-chrome-autographs-red-auto-5",
@@ -330,7 +361,8 @@
     "c2": "#152232"
    },
    "effect": "gold",
-   "image": "/img/archive/344.jpg"
+   "image": null,
+   "photo": null
   },
   {
    "itemId": "daniil-kvyat-chrome-autographs-chrome-auto",
@@ -344,7 +376,8 @@
     "c2": "#152232"
    },
    "effect": "refractor",
-   "image": "/img/archive/344.jpg"
+   "image": null,
+   "photo": null
   },
   {
    "itemId": "nicholas-latifi-chrome-base-refractor",
@@ -358,7 +391,8 @@
     "c2": "#062a4d"
    },
    "effect": "prism",
-   "image": "/img/archive/524.jpg"
+   "image": null,
+   "photo": null
   },
   {
    "itemId": "guenther-steiner-chrome-autographs-superfractor-auto-1-1",
@@ -372,7 +406,8 @@
     "c2": "#2a2f34"
    },
    "effect": "superfractor",
-   "image": null
+   "image": null,
+   "photo": null
   },
   {
    "itemId": "esteban-ocon-world-on-wheels-gold-50",
@@ -386,7 +421,12 @@
     "c2": "#3a3300"
    },
    "effect": "refractor",
-   "image": "/img/archive/341.jpg"
+   "image": "/img/archive/251.jpg",
+   "photo": {
+    "setShort": "Chrome",
+    "year": 2023,
+    "exact": false
+   }
   }
  ]
 }

@@ -9,15 +9,14 @@ import { useMemo, useState } from "react";
 import Modal from "@/components/Modal";
 import { useBlobUrls } from "@/lib/useBlobUrl";
 import { avatarCss } from "@/lib/profile";
-import {
-  addComment,
-  removeComment,
-  removePost,
-  timeAgo,
-  toggleLike,
-  type Post,
-} from "@/lib/social";
+import { timeAgo, type Post } from "@/lib/social";
+import { CLOUD } from "@/lib/backend";
+import * as localStore from "@/lib/social";
+import * as cloudStore from "@/lib/socialCloud";
 import { useMounted } from "@/lib/browserStore";
+
+/** Same function names, two backends — see lib/backend.ts for the switch. */
+const store = CLOUD ? cloudStore : localStore;
 
 export default function PostCard({
   post,
@@ -60,11 +59,11 @@ export default function PostCard({
                 : "仅本机可见"}
           </span>
         </div>
-        {isMine ? (
+        {isMine && !post.demo ? (
           <button
             type="button"
             className="postDelete"
-            onClick={() => removePost(post.id)}
+            onClick={() => void store.removePost(post.id)}
             aria-label="删除这条帖子"
           >
             删除
@@ -123,31 +122,42 @@ export default function PostCard({
         </div>
       )}
 
-      <div className="postActions">
-        <button
-          type="button"
-          className={post.liked ? "on" : ""}
-          onClick={() => toggleLike(post.id)}
-          aria-pressed={post.liked}
-        >
-          {post.liked ? "♥" : "♡"} {post.likes}
-        </button>
-        <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
-          ◌ {post.comments.length}
-        </button>
-      </div>
+      {/* Demo posts show their counts as plain text. Rendering them as
+          *disabled* buttons was the "nothing is clickable" complaint: a greyed
+          control that still looks interactive reads as a broken page. */}
+      {post.demo ? (
+        <div className="postActions">
+          <span>♡ {post.likes}</span>
+          <span>◌ {post.comments.length}</span>
+          <span className="postDemoNote">演示内容 · 不可互动</span>
+        </div>
+      ) : (
+        <div className="postActions">
+          <button
+            type="button"
+            className={post.liked ? "on" : ""}
+            onClick={() => void store.toggleLike(post.id)}
+            aria-pressed={post.liked}
+          >
+            {post.liked ? "♥" : "♡"} {post.likes}
+          </button>
+          <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open}>
+            ◌ {post.comments.length}
+          </button>
+        </div>
+      )}
 
-      {open && (
+      {open && !post.demo && (
         <div className="postComments">
           {post.comments.length === 0 ? (
-            <p className="mut">还没有评论。评论也只存在这台设备上。</p>
+            <p className="mut">还没有评论，来抢沙发。</p>
           ) : (
             post.comments.map((c) => (
               <div className="postComment" key={c.id}>
                 <b>@{c.author}</b>
                 <span>{c.text}</span>
                 <em>{mounted ? timeAgo(c.at) : ""}</em>
-                <button type="button" onClick={() => removeComment(post.id, c.id)}>
+                <button type="button" onClick={() => void store.removeComment(post.id, c.id)}>
                   删除
                 </button>
               </div>
@@ -162,7 +172,7 @@ export default function PostCard({
               onChange={(e) => setDraft(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" && draft.trim()) {
-                  addComment(post.id, myHandle, draft);
+                  void store.addComment(post.id, myHandle, draft);
                   setDraft("");
                 }
               }}
@@ -172,7 +182,7 @@ export default function PostCard({
               className="btn"
               disabled={!draft.trim()}
               onClick={() => {
-                addComment(post.id, myHandle, draft);
+                void store.addComment(post.id, myHandle, draft);
                 setDraft("");
               }}
             >

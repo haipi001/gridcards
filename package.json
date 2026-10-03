@@ -15,6 +15,7 @@
     "prebuild": "npm run verify"
   },
   "dependencies": {
+    "@tencent-ai/workbuddy-cloud-sdk": "^0.1.2-dev.1b37f73.202609222026",
     "next": "16.3.5",
     "react": "19.2.8",
     "react-dom": "19.2.8",

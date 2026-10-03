@@ -36,6 +36,12 @@ export type LadderEntry = {
   oneOfOnes: LadderOneOfOne[];
   /** Total 1/1 scans in the archive for this driver (may exceed the strip). */
   oneOfOneCount: number;
+  /**
+   * Every release year this driver actually exists in, newest first — read
+   * from the real archive scans, so the market rail can filter on season
+   * without inventing anything. "Undated" always sorts last.
+   */
+  years: string[];
 };
 
 export type LadderIndex = Record<string, LadderEntry>;
@@ -43,6 +49,17 @@ export type LadderIndex = Record<string, LadderEntry>;
 // The thumbnail strip is capped: a handful of drivers have 30+ scans and the
 // index ships with the page.
 const ONE_OF_ONE_LIMIT = 10;
+
+// Newest season first; scans whose year the archive could not resolve sink to
+// the bottom instead of sorting above "2026" on a plain text compare.
+export function compareYears(a: string, b: string): number {
+  const an = /^\d{4}$/.test(a);
+  const bn = /^\d{4}$/.test(b);
+  if (an && bn) return b.localeCompare(a); // numeric strings compare correctly
+  if (an) return -1;
+  if (bn) return 1;
+  return a.localeCompare(b);
+}
 
 export function buildLadderIndex(): LadderIndex {
   const index: LadderIndex = {};
@@ -75,6 +92,7 @@ export function buildLadderIndex(): LadderIndex {
         label: c.cardName || c.setName,
       })),
       oneOfOneCount: scans.length,
+      years: [...new Set(scans.map((c) => c.year))].sort(compareYears),
     };
   }
   return index;

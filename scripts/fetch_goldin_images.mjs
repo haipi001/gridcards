@@ -41,7 +41,7 @@ async function scrapePage(browser, pageNum) {
     // 等待至少一张卡片图渲染
     try {
       await page.waitForSelector('img[src*="cloudfront.net"]', { timeout: 60000 });
-    } catch (e) { console.error(`page ${pageNum}: no card img selector`); }
+    } catch { console.error(`page ${pageNum}: no card img selector`); }
     for (let i = 0; i < 14; i++) {
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
       await sleep(600);
@@ -82,7 +82,7 @@ async function scrapePage(browser, pageNum) {
           const buf = await resp.body();
           const kind = isImage(buf);
           if (kind && buf.length >= 1000) fs.writeFileSync(path.join(OUT, `${slug}.${kind}`), buf);
-        } catch (e) { /* ignore */ }
+        } catch { /* ignore */ }
       }
     }
   } catch (e) {
@@ -102,15 +102,27 @@ async function scrapePage(browser, pageNum) {
   });
   const all = [];
   const seen = new Set();
-  console.log("initial cooldown 20s to ease rate-limit...");
-  await sleep(20000);
+  console.log("initial cooldown 15s...");
+  await sleep(15000);
+  let consecutiveZeros = 0;
   for (let p = 1; p <= MAXPAGES; p++) {
-    const found = await scrapePage(browser, p);
+    let found = await scrapePage(browser, p);
+    if (found.length === 0) {
+      // 空页重试一次（可能是偶发渲染失败）
+      console.log(`page ${p}: empty, retrying once...`);
+      await sleep(5000);
+      found = await scrapePage(browser, p);
+    }
     let added = 0;
     for (const c of found) { const k = c.href + c.src; if (!seen.has(k)) { seen.add(k); all.push(c); added++; } }
     console.log(`page ${p}: imgs=${found.length} new=${added} totalUnique=${all.length}`);
-    if (found.length === 0) { console.log("no images this page, stopping."); break; }
-    await sleep(6000);
+    if (found.length === 0) {
+      consecutiveZeros++;
+      if (consecutiveZeros >= 2) { console.log("2 consecutive empty pages, stopping."); break; }
+    } else {
+      consecutiveZeros = 0;
+    }
+    await sleep(3000);
   }
   fs.writeFileSync(path.join(OUT, "manifest.json"), JSON.stringify(all.map(c => ({
     slug: c.href.split("/item/")[1], title: c.title, href: c.href, image: c.src,

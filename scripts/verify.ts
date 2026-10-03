@@ -120,6 +120,7 @@ type Item = {
   id: string;
   seriesId: string;
   title: string;
+  subject: string;
   cardNumber: unknown;
   parallel: string;
   printRun: number | null;
@@ -128,6 +129,8 @@ type Item = {
   // null is legitimate: CardFace falls back to livery art generated from the
   // constructor's real colours (src/components/market/CardArt.tsx).
   image: string | null;
+  /** Which set/year the photograph really is; null whenever `image` is null. */
+  photo: { setShort: string; year: number | null; exact: boolean } | null;
   floorCents: number;
   lastSaleCents: number | null;
   askCents: number | null;
@@ -184,15 +187,53 @@ const itemIds = uniqueIds(items, "item");
   if (missingArt.length) fail("image file exists", `${missingArt.length} missing: ${missingArt.slice(0, 3).join(", ")}`);
   else ok(`image file exists (${withImage.length} with a real scan, ${items.length - withImage.length} livery art)`);
 
-  // Regression guard: the archive alone covers 210 of 302 editions. If this
-  // ever drops, the generator stopped handing out scans it actually has.
-  const SCAN_FLOOR = 210;
+  // One photo, one card. A scan may never be reused: the old modulo picker hit
+  // 210 by repeating 30 photographs across several cards each, which read as
+  // "the same card twice" on every grid. Coverage is now lower on purpose and
+  // every scan is unique, so the guard asserts uniqueness first.
+  const SCAN_FLOOR = 150;
   if (withImage.length < SCAN_FLOOR)
     fail(
       `at least ${SCAN_FLOOR} editions carry a real photo`,
-      `only ${withImage.length} — did the image picker regress?`,
+      `only ${withImage.length} — did the photo planner regress?`,
     );
   else ok(`at least ${SCAN_FLOOR} editions carry a real photo (${withImage.length})`);
+
+  const seen = new Map<string, number>();
+  for (const i of withImage) seen.set(i.image, (seen.get(i.image) ?? 0) + 1);
+  const reused = [...seen.entries()].filter(([, n]) => n > 1);
+  if (reused.length)
+    fail(
+      "no scan is used by two editions",
+      `${reused.length} repeated: ${reused.slice(0, 3).map(([p, n]) => `${p} ×${n}`).join(", ")}`,
+    );
+  else ok(`no scan is used twice (${seen.size} distinct across ${withImage.length})`);
+
+  // Parallels of one card number are physically different cards, so they must
+  // not share a photograph either.
+  const byNumber = new Map<string, string[]>();
+  for (const i of withImage) {
+    const k = `${i.subject}#${i.cardNumber}`;
+    byNumber.set(k, [...(byNumber.get(k) ?? []), i.image]);
+  }
+  const shared = [...byNumber.entries()].filter(
+    ([, imgs]) => new Set(imgs).size !== imgs.length,
+  );
+  if (shared.length)
+    fail(
+      "parallels of one card number use distinct photos",
+      `${shared.length} groups share a scan, e.g. ${shared[0][0]}`,
+    );
+  else ok(`parallels of one card number use distinct photos (${byNumber.size} groups)`);
+
+  // Every scan must state where it came from, so the UI can label the ones
+  // that are not 2020 Topps Chrome instead of passing them off as this card.
+  const noOrigin = withImage.filter(
+    (i) => !i.photo || typeof i.photo.setShort !== "string" || typeof i.photo.exact !== "boolean",
+  );
+  if (noOrigin.length)
+    fail("every scan names its set/year", `${noOrigin.length} without photo origin`);
+  else ok(`every scan names its set/year (${withImage.length})`);
 
   // Any photo under /img/cards/ came from outside the repo, so it must carry a
   // licence and an author to credit (see THIRD_PARTY_NOTICES.md).

@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   // Static export cannot run the image optimizer.
   images: { unoptimized: true },
+  // The publish build redirects the heavy-churn cache dir off the sandbox-
+  // restricted project directory (the runtime blocks file deletes there).
+  // NEXT_DIST_DIR is consumed only by the build step; the default ".next" keeps
+  // ordinary local `next dev` / `next build` behaviour untouched.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   reactStrictMode: true,
   poweredByHeader: false,
   // Keep error/warn: this build has no error reporting backend, and the

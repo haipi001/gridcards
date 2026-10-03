@@ -69,6 +69,9 @@ function buildLadder(name: string): LadderTier[] {
         href: `/players/${playerSlug(name)}/editions/${slugify(edition.variant)}/`,
         marketHref: scan ? `/market/items/${scan.itemId}/` : null,
         image: scan?.image ?? null,
+        photo: scan
+          ? { setShort: scan.setShort, year: scan.year, exact: scan.exact }
+          : null,
         effect: scan?.effect ?? null,
         w: 0,
         h: 0,
@@ -103,6 +106,11 @@ function buildLadder(name: string): LadderTier[] {
         href: "/archive/",
         marketHref: null,
         image: s.img,
+        photo: {
+          setShort: s.setName.replace(/^Topps\s+/i, "").replace(/\s*F1\s*$/i, ""),
+          year: Number.parseInt(s.year, 10) || null,
+          exact: s.setName === "Topps Chrome F1" && s.year === "2020",
+        },
         effect: "superfractor",
         w: s.w,
         h: s.h,

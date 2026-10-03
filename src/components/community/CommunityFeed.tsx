@@ -11,17 +11,19 @@ import Link from "next/link";
 import { useMemo, useState, useSyncExternalStore } from "react";
 import Composer from "./Composer";
 import PostCard from "./PostCard";
+import AuthModal from "./AuthModal";
 import { useMounted } from "@/lib/browserStore";
 import { claimsSnapshot, NO_CLAIMS, subscribeClaims } from "@/lib/claims";
 import { avatarCss, SERVER_PROFILE, profileSnapshot, subscribeProfile } from "@/lib/profile";
-import {
-  DEMO_POSTS,
-  feedOrder,
-  NO_POSTS,
-  postsSnapshot,
-  subscribePosts,
-  type Post,
-} from "@/lib/social";
+import { useSession } from "@/lib/auth";
+import { openAuthModal } from "@/lib/authModal";
+import { CLOUD, CLOUD_ORIGIN, STORAGE_NOTE } from "@/lib/backend";
+import { DEMO_POSTS, feedOrder, NO_POSTS, type Post } from "@/lib/social";
+import * as localStore from "@/lib/social";
+import * as cloudStore from "@/lib/socialCloud";
+
+/** Same shape, two backends. Local is the default, cloud is opt-in. */
+const store = CLOUD ? cloudStore : localStore;
 
 type Filter = "all" | "mine" | "photos";
 
@@ -40,15 +42,25 @@ function topicCounts(posts: Post[]): Array<[string, number]> {
 }
 
 export default function CommunityFeed() {
-  const posts = useSyncExternalStore(subscribePosts, postsSnapshot, () => NO_POSTS);
+  const posts = useSyncExternalStore(
+    store.subscribePosts,
+    store.postsSnapshot,
+    () => NO_POSTS,
+  );
   const claims = useSyncExternalStore(subscribeClaims, claimsSnapshot, () => NO_CLAIMS);
   const profile = useSyncExternalStore(
     subscribeProfile,
     profileSnapshot,
     () => SERVER_PROFILE,
   );
+  const { user, loading } = useSession();
   const mounted = useMounted();
   const [filter, setFilter] = useState<Filter>("all");
+
+  // Cloud auth is bound to an exact Origin, so it only works on the app's own
+  // release domain. Say so instead of letting a login click fail silently.
+  const onReleaseDomain =
+    mounted && typeof window !== "undefined" && window.location.origin === CLOUD_ORIGIN;
 
   const feed = useMemo(() => feedOrder(posts), [posts]);
   const shown = useMemo(
@@ -65,15 +77,50 @@ export default function CommunityFeed() {
     <div className="communityGrid">
       <main>
         <div className="communityHead">
-          <div className="eyebrow">COLLECTOR SOCIAL · LOCAL FIRST</div>
+          <div className="eyebrow">
+            COLLECTOR SOCIAL · {CLOUD ? "云端共享" : "LOCAL FIRST"}
+          </div>
           <h1>Community</h1>
           <p>
-            晒卡、开箱、收藏故事、求卡、成交心得都在这里。你发布的内容保存在这台设备的浏览器里（静态站点没有服务器），
+            晒卡、开箱、收藏故事、求卡、成交心得都在这里。{STORAGE_NOTE}
             带 <span className="soonTag">DEMO</span> 的条目是随原型附带的演示内容。
           </p>
         </div>
 
-        <Composer />
+        {CLOUD && !onReleaseDomain ? (
+          <div className="panel" style={{ padding: 20 }}>
+            <b style={{ fontSize: 14 }}>当前地址不是正式域名，云端登录不可用</b>
+            <p className="mut" style={{ margin: "8px 0 0", fontSize: 12.5, lineHeight: 1.7 }}>
+              云端账号按访问域名做校验，只有在{" "}
+              <a href={`${CLOUD_ORIGIN}/community/`} style={{ textDecoration: "underline" }}>
+                {CLOUD_ORIGIN}
+              </a>{" "}
+              打开时才能登录、发帖和上传图片（本地预览与 127.0.0.1 不可用）。下面的演示内容可以正常浏览。
+            </p>
+          </div>
+        ) : null}
+
+        {/* Local mode is always writable — a login gate here would make the
+            whole page look broken to anyone who has not signed in. */}
+        {!CLOUD ? (
+          <Composer />
+        ) : loading ? (
+          <div className="panel" style={{ padding: 28, textAlign: "center" }}>
+            <span className="mut">正在检查登录状态…</span>
+          </div>
+        ) : user ? (
+          <Composer />
+        ) : (
+          <div className="panel" style={{ padding: 28, textAlign: "center" }}>
+            <h3 style={{ margin: "0 0 8px" }}>登录后即可发帖、上传实拍图</h3>
+            <p className="mut" style={{ margin: "0 0 14px" }}>
+              内容会保存到云端，所有人登录后都能看到。注册只需邮箱 + 验证码。
+            </p>
+            <button className="btn primary" onClick={openAuthModal}>
+              登录 / 注册
+            </button>
+          </div>
+        )}
 
         <div className="marketTabs">
           {FILTERS.map((f) => (
@@ -113,7 +160,7 @@ export default function CommunityFeed() {
 
       <aside>
         <div className="trendBox">
-          <h3 className="sideTitle">你在这台设备上</h3>
+          <h3 className="sideTitle">{CLOUD ? "你的账号" : "你在这台设备上"}</h3>
           <div className="meCard">
             <i className="miniAvatar" style={{ background: avatarCss(profile.avatar) }} aria-hidden />
             <div>
@@ -150,11 +197,13 @@ export default function CommunityFeed() {
         <div className="collectorBox">
           <h3 className="sideTitle">关于这个功能</h3>
           <p className="mut" style={{ fontSize: 12, lineHeight: 1.7, margin: 0 }}>
-            没有账号体系，也没有服务器：帖子、图片、点赞与评论都写进本机浏览器存储。
+            {STORAGE_NOTE}
             这里的内容不会进入市场数据——成交历史只来自已完成的订单。
           </p>
         </div>
       </aside>
+
+      {CLOUD ? <AuthModal /> : null}
     </div>
   );
 }

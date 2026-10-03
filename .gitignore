@@ -56,3 +56,8 @@ next-env.d.ts
 
 # user uploads must never enter the repository (see THIRD_PARTY_NOTICES.md)
 public/img/uploads/
+
+# local build backups from the sandbox (never commit)
+/.next_bak/
+/out_bak/
+/__t_del

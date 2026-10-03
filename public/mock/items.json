@@ -2157,7 +2157,7 @@
    "c1": "#1e41ff",
    "c2": "#141a4d"
   },
-  "image": "/img/archive/418.jpg",
+  "image": "/img/archive/417.jpg",
   "photo": {
    "setShort": "Chrome",
    "year": 2023,
@@ -5384,8 +5384,12 @@
    "c1": "#b0342f",
    "c2": "#2b1010"
   },
-  "image": null,
-  "photo": null,
+  "image": "/img/goldin/2025-topps-dynasty-f1-legendary-patch-autograph-lpa-kraii-kimi-raikkonrxau6.jpg",
+  "photo": {
+   "setShort": "Dynasty",
+   "year": 2025,
+   "exact": false
+  },
   "attributes": [
    {
     "trait": "Subject",
@@ -13562,7 +13566,7 @@
    "c1": "#1e41ff",
    "c2": "#141a4d"
   },
-  "image": "/img/archive/417.jpg",
+  "image": "/img/archive/129.jpg",
   "photo": {
    "setShort": "Chrome",
    "year": 2023,
@@ -15564,10 +15568,10 @@
    "c1": "#1e41ff",
    "c2": "#141a4d"
   },
-  "image": "/img/archive/45.jpg",
+  "image": "/img/goldin/2022-topps-chrome-f1-red-wave-refractor-1-max-verstappen-1-5-driver-nurldx7_queryId_eyJxdWVyeUlkIjoiZjE0NWMxZGI1MzIxOTY2YWZkNDgzNTI3Yjk5MGI2OTEiLCJjYXJkSW5kZXgiOjEwLCJldmVudEluZGV4IjoibG90cy1wcm9kLWxvdF9udW1iZXJfYXNjIn0.jpg",
   "photo": {
    "setShort": "Chrome",
-   "year": 2023,
+   "year": 2022,
    "exact": false
   },
   "attributes": [
@@ -19290,7 +19294,7 @@
    "c1": "#1e41ff",
    "c2": "#141a4d"
   },
-  "image": "/img/archive/129.jpg",
+  "image": "/img/archive/45.jpg",
   "photo": {
    "setShort": "Chrome",
    "year": 2023,

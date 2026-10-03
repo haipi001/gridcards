@@ -1,7 +1,7 @@
 // 1/1 Digital Archive — mirrored from allofone.app.
 // GENERATED FILE — do not edit by hand. Run: npx tsx scripts/build-archive.ts
 //
-// 515 one-of-one cards spanning 2020–2026, 9 Topps
+// 524 one-of-one cards spanning 2020–2026, 11 Topps
 // F1 sets and 69 subjects. Every card has a real scan served
 // from public/img/archive/{id}.jpg, so the gallery works fully offline.
 //
@@ -6726,12 +6726,129 @@ export const ARCHIVE_CARDS: ArchiveCard[] = [
     "img": "/img/archive/545.jpg",
     "w": 311,
     "h": 440
+  },
+  {
+    "id": 9002,
+    "driver": "Isack Hadjar",
+    "drivers": ["Isack Hadjar"],
+    "team": "RB F1 Team",
+    "serial": "1/1",
+    "setName": "Topps Dynasty F1",
+    "year": "2025",
+    "cardName": "Patch Autograph Gold",
+    "img": "/img/goldin/2025-topps-dynasty-f1-patch-autograph-dap-ihavi-isack-hadjar-signed-pae53oh.jpg",
+    "w": 640,
+    "h": 431
+  },
+  {
+    "id": 9003,
+    "driver": "Kimi Räikkönen",
+    "drivers": ["Kimi Räikkönen"],
+    "team": "Heritage / Legend",
+    "serial": "1/1",
+    "setName": "Topps Dynasty F1",
+    "year": "2025",
+    "cardName": "Legendary Patch Autographs Gold",
+    "img": "/img/goldin/2025-topps-dynasty-f1-legendary-patch-autograph-lpa-kraii-kimi-raikkonrxau6.jpg",
+    "w": 640,
+    "h": 951
+  },
+  {
+    "id": 9004,
+    "driver": "George Russell",
+    "drivers": ["George Russell"],
+    "team": "Mercedes",
+    "serial": "1/1",
+    "setName": "Topps Chrome F1 LogoFractor Edition",
+    "year": "2025",
+    "cardName": "Topps Chrome LogoFractor  Edition Ace of Trades Rose Gold",
+    "img": "/img/goldin/2025-topps-chrome-logofractor-edition-ace-of-trades-rose-gold-sca-1-gev4ob6.jpg",
+    "w": 640,
+    "h": 1074
+  },
+  {
+    "id": 9018,
+    "driver": "Lando Norris / Oscar Piastri",
+    "drivers": ["Lando Norris", "Oscar Piastri"],
+    "team": "McLaren",
+    "serial": "1/1",
+    "setName": "Topps Now F1",
+    "year": "2026",
+    "cardName": "FoilFractor",
+    "img": "/img/goldin/2026-topps-now-f1-foilfractor-037-a-lando-norris-oscar-piastri-dual-siruuli.jpg",
+    "w": 640,
+    "h": 1082
+  },
+  {
+    "id": 9019,
+    "driver": "Oscar Piastri",
+    "drivers": ["Oscar Piastri"],
+    "team": "McLaren",
+    "serial": "1/1",
+    "setName": "Topps Paddock Pass F1",
+    "year": "2024",
+    "cardName": "Chrome SuperFractor",
+    "img": "/img/goldin/2024-topps-paddock-pass-f1-chrome-superfractor-38-oscar-piastri-1-1-psv0b1b.jpg",
+    "w": 640,
+    "h": 379
+  },
+  {
+    "id": 9022,
+    "driver": "Lewis Hamilton",
+    "drivers": ["Lewis Hamilton"],
+    "team": "Ferrari",
+    "serial": "1/1",
+    "setName": "Topps Chrome F1 Sapphire Edition",
+    "year": "2025",
+    "cardName": "Chrome Autographs Padparadscha",
+    "img": "/img/goldin/2025-topps-chrome-f1-sapphire-edition-chrome-autographs-padparadscha-chhvuz.jpg",
+    "w": 640,
+    "h": 1073
+  },
+  {
+    "id": 9024,
+    "driver": "Toto Wolff",
+    "drivers": ["Toto Wolff"],
+    "team": "Team personnel",
+    "serial": "1/1",
+    "setName": "Topps Dynasty F1",
+    "year": "2021",
+    "cardName": "Autographed Patch Gold",
+    "img": "/img/goldin/2021-topps-dynasty-autograph-patch-gold-dap-tw-toto-wolff-signed-patch7k7gd.jpg",
+    "w": 640,
+    "h": 430
+  },
+  {
+    "id": 9025,
+    "driver": "Oscar Piastri",
+    "drivers": ["Oscar Piastri"],
+    "team": "McLaren",
+    "serial": "1/1",
+    "setName": "Topps Chrome F1 Sapphire Edition",
+    "year": "2025",
+    "cardName": "Padparadscha",
+    "img": "/img/goldin/2025-topps-sapphire-edition-f1-padparadscha-6-oscar-piastri-1-1-psa-mism1nm.jpg",
+    "w": 640,
+    "h": 1073
+  },
+  {
+    "id": 9028,
+    "driver": "Fernando Alonso",
+    "drivers": ["Fernando Alonso"],
+    "team": "Aston Martin",
+    "serial": "1/1",
+    "setName": "Topps Dynasty F1",
+    "year": "2025",
+    "cardName": "Single Driver Dual Relic Autographs Gold",
+    "img": "/img/goldin/2025-topps-dynasty-f1-single-driver-dual-relic-autographs-gold-sddra-f2o21i.jpg",
+    "w": 640,
+    "h": 1071
   }
 ];
 
 export const ARCHIVE_YEARS: string[] = ["2026","2025","2024","2023","2022","2021","2020","Undated"];
 
-export const ARCHIVE_SETS: string[] = ["Topps Chrome F1","Topps Dynasty F1","Topps Eccellenza F1","Topps Fanatics Fest F1","Topps Finest F1","Topps Lights Out F1","Topps Now F1","Topps Paddock Pass F1","Topps Turbo Attax F1"];
+export const ARCHIVE_SETS: string[] = ["Topps Chrome F1","Topps Chrome F1 LogoFractor Edition","Topps Chrome F1 Sapphire Edition","Topps Dynasty F1","Topps Eccellenza F1","Topps Fanatics Fest F1","Topps Finest F1","Topps Lights Out F1","Topps Now F1","Topps Paddock Pass F1","Topps Turbo Attax F1"];
 
 export const ARCHIVE_TEAMS: string[] = ["Alfa Romeo","AlphaTauri","Alpine F1 Team","Aston Martin","Cadillac F1 Team","Ferrari","Haas F1 Team","Heritage / Legend","Junior / F2","McLaren","Mercedes","Moneygram Haas F1 Team","Non-F1","Oracle Red Bull Racing","RB F1 Team","Racing Bulls","Racing Point","Red Bull","Renault","Sauber","Team personnel","Williams"];
 

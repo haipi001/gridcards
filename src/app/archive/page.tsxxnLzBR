@@ -1,5 +1,5 @@
 // /archive — the 1/1 Digital Archive.
-// 524 one-of-one cards (2020–2026) mirrored from allofone.app + the Goldin scrape
+// 515 one-of-one cards (2020–2026) mirrored from the public allofone.app
 // archive, every one with a real card scan served from
 // public/img/archive/{id}.jpg — the gallery works fully offline/statically.
 //
@@ -28,7 +28,7 @@ import ArchiveBrowser, { type ArchiveRow } from "@/components/ArchiveBrowser";
 export const metadata: Metadata = pageMeta({
   title: "1/1 Digital Archive — GRIDCARDS",
   description:
-    "One-of-one Topps F1 card scans, 2020–2026: real imagery filterable by season, set, constructor and driver.",
+    "515 one-of-one Topps F1 cards, 2020–2026: real scans filterable by season, set, constructor and driver.",
   path: "/archive/",
 });
 

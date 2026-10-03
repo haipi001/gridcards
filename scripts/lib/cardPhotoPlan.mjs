@@ -58,13 +58,21 @@ function loadScans(aliases) {
     const n = (name ?? "").trim();
     return aliases[n] ?? n;
   };
-  const archive = read("data", "allofone-archive.json");
+  // Two scan sources, one pool: the mirrored allofone library plus the Goldin
+  // auction lots parsed by scripts/parse-goldin.mjs. Goldin records carry their
+  // own image path and set metadata, so a 2025 Dynasty photo is ranked as "wrong
+  // product" for a 2020 Chrome card instead of being passed off as one.
+  const archive = [
+    ...read("data", "allofone-archive.json"),
+    ...read("data", "goldin-archive.json"),
+  ];
   const byDriver = new Map();
 
   for (const r of archive) {
     const driver = key(r.driver_name);
     if (!driver) continue;
-    const file = path.join(ROOT, "public", "img", "archive", `${r.id}.jpg`);
+    const rel = (r.img ?? `img/archive/${r.id}.jpg`).replace(/^\//, "");
+    const file = path.join(ROOT, "public", rel);
     if (!fs.existsSync(file)) continue;
     const size = jpegSize(file);
     const upright = size && size.h ? size.w / size.h < 1.0 : true;
@@ -72,7 +80,7 @@ function loadScans(aliases) {
     if (!byDriver.has(driver)) byDriver.set(driver, []);
     byDriver.get(driver).push({
       id,
-      src: `/img/archive/${id}.jpg`,
+      src: `/${rel}`,
       set: setName,
       setShort: shortSet(setName),
       year,

@@ -3,6 +3,11 @@
 //   real checklist & real imagery · invented prices are always labeled DEMO.
 
 import Link from "next/link";
+import { ARCHIVE_CARDS } from "@/lib/archiveData";
+
+// Counted from the data, never hardcoded: the archive grows every time the
+// Goldin scrape turns up another one-of-one.
+const ARCHIVE_COUNT = ARCHIVE_CARDS.length;
 
 const COLUMNS = [
   {
@@ -60,7 +65,7 @@ export default function SiteFooter() {
             </div>
             <div>
               <small>IMAGERY</small>
-              <b>515 张 1/1 数字卡 · 第三方藏家投稿实物照</b>
+              <b>{ARCHIVE_COUNT} 张 1/1 数字卡 · 第三方藏家投稿实物照</b>
             </div>
           </div>
         </div>

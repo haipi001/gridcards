@@ -30,6 +30,10 @@ type RawCard = {
   clean_img_url: string | null;
   raw_img_url: string | null;
   card_img_front_url: string | null;
+  /** Goldin lots ship their own path (public/img/goldin/…); allofone does not. */
+  img?: string | null;
+  /** "goldin" when the record came from the auction scrape. */
+  source?: string | null;
 };
 
 type OutCard = {
@@ -78,9 +82,19 @@ function jpegSize(file: string): { w: number; h: number } {
 }
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
-const raw: RawCard[] = JSON.parse(
-  fs.readFileSync(path.join(ROOT, "data/allofone-archive.json"), "utf8"),
-);
+const readJson = (rel: string) =>
+  JSON.parse(fs.readFileSync(path.join(ROOT, rel), "utf8")) as RawCard[];
+
+// Two scan sources feed the same archive:
+//   allofone-archive.json — the mirrored allofone.app one-of-one library.
+//   goldin-archive.json   — auction lots parsed out of the Goldin scrape by
+//                           scripts/parse-goldin.mjs, which refuses anything
+//                           that is not an F1 card and records its own image
+//                           path, set, season, print run and subject.
+const raw: RawCard[] = [
+  ...readJson("data/allofone-archive.json"),
+  ...readJson("data/goldin-archive.json"),
+];
 const teamByDriverYear: Record<string, string> = JSON.parse(
   fs.readFileSync(path.join(ROOT, "data/driver-team.json"), "utf8"),
 );
@@ -184,10 +198,24 @@ function teamFor(driver: string, year: string): string {
 
 const cards: OutCard[] = raw
   .filter((r) => r.driver_name)
+  // This is the 1/1 Digital Archive: a Goldin lot graded #8/25 is a real card
+  // with a real photo, but it is not a one-of-one, so it belongs to the market
+  // photo pool (lib/cardPhotoPlan.mjs) rather than to this gallery.
+  //
+  // For allofone an empty serial means the source never numbered it and the
+  // archive has always defaulted those to 1/1. A Goldin *listing* without a
+  // print run is just a listing that didn't show one — a base card is far more
+  // likely than a 1/1 — so those stay out of the gallery too.
+  .filter((r) => {
+    const serial = (r.serial ?? "").trim();
+    return serial === "1/1" || (r.source !== "goldin" && serial === "");
+  })
   .map((r) => {
     const driver = r.driver_name!.trim();
     const year = (r.set_year ?? "").trim() || "Undated";
     const team = teamFor(splitDrivers(driver)[0], year);
+    // Goldin lots keep their scraped file; allofone cards are numbered.
+    const img = r.img?.trim() || `/img/archive/${r.id}.jpg`;
     return {
       id: r.id,
       driver,
@@ -197,8 +225,8 @@ const cards: OutCard[] = raw
       setName: (r.set_name ?? "").trim() || "Unknown set",
       year,
       cardName: (r.card_name ?? "").trim(),
-      img: `/img/archive/${r.id}.jpg`,
-      ...jpegSize(path.join(ROOT, "public/img/archive", `${r.id}.jpg`)),
+      img,
+      ...jpegSize(path.join(ROOT, "public", img.replace(/^\//, ""))),
     };
   })
   .sort((a, b) => a.id - b.id);

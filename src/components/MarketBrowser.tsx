@@ -457,6 +457,9 @@ export default function MarketBrowser({
                 {yearCounts.map(([y, n]) => {
                   const on = q.year === y;
                   const isBase = y === CHECKLIST_YEAR;
+                  // The archive holds a handful of scans whose season it could
+                  // not resolve; they are filterable, just not as a year.
+                  const label = /^\d{4}$/.test(y) ? y : "未标注";
                   return (
                     <button
                       key={y}
@@ -465,15 +468,15 @@ export default function MarketBrowser({
                       aria-pressed={on}
                       title={
                         isBase
-                          ? "Checklist 本体年份：全部 313 条官方记录都属于 2020"
-                          : `该赛季有 ${n} 位人物留存 1/1 实物照`
+                          ? `Checklist 本体年份：全部 ${items.length} 条官方记录都属于 ${CHECKLIST_YEAR}`
+                          : `该赛季有 ${n} 条记录的人物留存 1/1 实物照`
                       }
                       disabled={n === 0}
                       onClick={() =>
                         navigate(toHref({ ...q, year: on ? "" : y }))
                       }
                     >
-                      {y}
+                      {label}
                       <em className="chipCount">{n}</em>
                     </button>
                   );

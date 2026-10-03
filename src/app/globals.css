@@ -1962,3 +1962,18 @@ html[data-theme="light"] .postTopic{background:#e6f2f8;color:#0a6076;border-colo
 html[data-theme="light"] .claimRow{border-top-color:var(--line)}
 html[data-theme="light"] .claimNote{border-left-color:var(--line2)}
 
+
+/* ============================================================
+   V25 · SECTION RHYTHM — the spotlight hero was sitting almost
+   flush against the market tab row below it (only the tabs's own
+   16px bottom padding separated them), so the two blocks read as
+   one cramped slab. Give the hero real breathing room on both
+   sides and let the tab row own its own top margin.
+   ============================================================ */
+.spotlight{margin-top:26px;margin-bottom:34px}
+.marketTabs{margin-top:0;padding-top:2px}
+/* The tabs are horizontally scrollable: keep the focus ring visible. */
+.marketTabs .chip{flex:0 0 auto}
+@media (max-width:720px){
+  .spotlight{margin-top:20px;margin-bottom:26px}
+}
